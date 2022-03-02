@@ -1,0 +1,106 @@
+.navbar {
+  background-color: #1e2327;
+  text-align: center;
+}
+
+/*Home,Schools,Favourites,Forum,Feedback*/
+.navbar-headers {
+  margin-left: 8%;
+}
+
+.navbar-ul {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  margin-top: 0;
+  padding: 1.2rem;
+  margin-left: 5%;
+}
+/*li tags*/
+.navbar-list {
+  list-style-type: none;
+  display: inline;
+}
+
+/*NavLink tags*/
+.navbar-items {
+  text-decoration: none;
+  color: #faf9f6;
+  font-size: 1rem;
+  margin-right: 1.2rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+}
+
+.navbar-items:hover {
+  background-color: rgb(20, 102, 139);
+  border-radius: 0.2rem;
+}
+
+.login-button {
+  margin-left: auto;
+  margin-right: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.fa-book-icon {
+  padding: 0 0.5rem 0 0.5rem;
+  color: aliceblue;
+}
+
+.hamburger-menu {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+/*Mobile view navbar CSS*/
+.fa-cross-icon {
+  margin-left: 9rem;
+}
+
+.navbar-mobile {
+  background-color: #1e2327;
+  text-align: end;
+}
+.navbar-ul-mobile {
+  overflow: hidden;
+  display: inline-table;
+}
+
+.navbar-list-mobile {
+  list-style-type: none;
+  display: block;
+  padding: 0.5rem 0 0.5rem 0;
+}
+
+.navbar-items-mobile {
+  text-decoration: none;
+  color: #faf9f6;
+  font-size: 1rem;
+}
+
+.navbar-list-mobile:hover {
+  background-color: rgb(20, 102, 139);
+  border-radius: 0.2rem;
+}
+
+/*Responsive CSS*/
+@media screen and (min-width: 1000px) {
+  .hamburger-menu {
+    display: none;
+  }
+
+  .navbar-items {
+    display: inline;
+  }
+
+  .book-icon {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .navbar-items {
+    display: none;
+  }
+}
