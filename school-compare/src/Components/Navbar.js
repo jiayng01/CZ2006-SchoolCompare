@@ -102,7 +102,11 @@ function Navbar() {
         >
           {expandNavBar ? (
             <>
-              <FontAwesomeIcon className="fa-cross-icon"icon={faXmark} color="#fff" />
+              <FontAwesomeIcon
+                className="fa-cross-icon"
+                icon={faXmark}
+                color="#fff"
+              />
               <nav className="navbar-mobile">
                 <ul className="navbar-ul-mobile">
                   {/* To Home page */}
