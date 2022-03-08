@@ -1,0 +1,126 @@
+.school-card {
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 24px;
+  background-color: #f2c0c0;
+  width: 35rem;
+  height: 16rem;
+  margin: auto;
+  border-radius: 1rem;
+  padding-left: 3rem;
+  margin-bottom: 2rem;
+}
+
+.school-name {
+  color: #3b8185;
+  padding-top: 1rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 30px;
+  text-align: center;
+}
+
+.fa-heart-icon {
+  color: #e28c92;
+  float: right;
+  padding: 6px 50px 0 0;
+}
+
+.fa-heart-icon:hover {
+  color: #e7525b;
+}
+
+.school-location {
+  display: block;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-location-dot-icon {
+  width: 3rem;
+}
+
+.school-address {
+  text-transform: capitalize;
+}
+
+.school-postal {
+  padding-left: 3rem;
+}
+
+.school-mrt-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+}
+
+.fa-train-subway-icon {
+  width: 3rem;
+}
+
+.school-mrt-desc {
+  text-transform: capitalize;
+  text-align-last: left;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+}
+
+.compare-btn-form-control {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.1;
+  
+}
+
+.compare-btn {
+  cursor: pointer;
+  vertical-align: middle;
+  margin-left: 10px;
+  margin-right: 2rem;
+  width: 25px;
+  height: 25px;
+}
+
+@media screen and (max-width: 700px) {
+  .school-card {
+    font-size: 14px;
+    width: 18rem;
+    height: 12rem;
+    margin: auto;
+    border-radius: 1rem;
+    padding-left: 1rem;
+  }
+
+  .school-name {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .fa-heart-icon {
+    padding: 4px 16px 0 0;
+  }
+
+  .compare-btn-form-control {
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .compare-btn {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .school-card {
+    font-size: 14px;
+    width: 16rem;
+    height: 12rem;
+    margin: auto;
+    border-radius: 1rem;
+    padding-left: 1rem;
+  }
+}
