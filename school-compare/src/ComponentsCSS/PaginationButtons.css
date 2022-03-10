@@ -4,7 +4,6 @@
   list-style: none;
   display: flex;
   justify-content: center;
-  margin-right: 2rem;
 }
 
 .paginationButtons a {
@@ -28,7 +27,6 @@
   .paginationButtons a {
     margin: 2px;
     padding: 6px;
-    /* border:none; */
     font-size: 18px;
   }
 

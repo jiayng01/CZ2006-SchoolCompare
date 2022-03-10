@@ -3,15 +3,21 @@ import useFetch from "../../CustomHooks/useFetch";
 import SchoolsCard from "../../Components/SchoolsCard";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
-import "../../ComponentsCSS/PaginationButtons.css";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import Dropdown from "../../Components/Dropdown";
+import CompareButton from "../../Components/CompareButton";
+
+import "../../ComponentsCSS/PaginationButtons.css";
+import "../../ComponentsCSS/SchoolsCard.css";
+import "../../ComponentsCSS/SchoolSearchBar.css";
 
 function Secondary() {
   const [pageNumber, setPageNumber] = useState(0);
   const schoolsPerPage = 20;
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
+  const [searchTerm, setSearchTerm] = useState("");
 
+  // Fetching data
   const { data, loading, error } = useFetch(
     "https://data.gov.sg/api/action/datastore_search?resource_id=ede26d32-01af-4228-b1ed-f05c45a1d8ee&&limit=400"
   );
@@ -35,6 +41,7 @@ function Secondary() {
     console.log(error);
   }
 
+  // initialize schools
   let schools = [];
 
   if (data != null) {
@@ -50,7 +57,23 @@ function Secondary() {
     }
   }
 
+  // get only the schools we want
   const displaySchools = schools
+    .filter((value) => {
+      if (searchTerm === "") return value;
+      else if (
+        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        value.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        value.postal_code
+          .toLowerCase()
+          .includes(
+            searchTerm.toLowerCase() ||
+              value.mrt_desc.toLowerCase().includes(searchTerm.toLowerCase())
+          )
+      ) {
+        return value;
+      }
+    })
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
       <div key={school.school_name}>
@@ -68,7 +91,22 @@ function Secondary() {
 
   return (
     <div>
-      <Dropdown currentPage={"Secondary"}/>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Dropdown currentPage={"Secondary"} />
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Type to Search..."
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" ,width:"70%",margin:"auto",marginBottom:"1rem"}}>
+        <div className="school-level-title">Secondary Schools </div>
+        <CompareButton />
+      </div>
+
       {displaySchools}
       <ReactPaginate
         previousLabel="<"

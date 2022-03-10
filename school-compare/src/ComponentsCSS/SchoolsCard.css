@@ -1,3 +1,12 @@
+.school-level-title {
+  /* found in pri/sec/tertiary page*/
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  margin: 2.5rem 18rem 1rem 0;
+  color: #041d3f;
+}
+
 .school-card {
   font-family: "Saira Condensed", sans-serif;
   font-size: 24px;
@@ -40,13 +49,12 @@
 .fa-location-dot-icon {
   width: 3rem;
   font-size: 30px;
-  color:rgb(21, 78, 80);
+  color: rgb(21, 78, 80);
 }
 
 .school-address {
   text-transform: capitalize;
   padding-left: 0.2rem;
- 
 }
 
 .school-postal {
@@ -95,14 +103,40 @@
   height: 25px;
 }
 
+@media screen and (max-width: 1280px) {
+  .school-level-title {
+    font-size: 30px;
+    margin: auto;
+    margin-top: 0rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .school-level-title {
+    font-size: 30px;
+    margin: auto;
+    margin-top: 0rem;
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 700px) {
+  .school-level-title {
+    font-size: 22px;
+    margin-top: 0rem;
+    width: auto;
+    margin: auto;
+    text-align: center;
+  }
   .school-card {
-    font-size: 14px;
+    font-size: 16px;
     width: 18rem;
     height: 12rem;
     margin: auto;
     border-radius: 1rem;
     padding-left: 1rem;
+    margin-top: 1.2rem;
   }
 
   .school-name {
@@ -110,7 +144,7 @@
     text-align: center;
   }
 
-  .school-location{
+  .school-location {
     padding-bottom: 1rem;
   }
 
@@ -131,7 +165,7 @@
     margin-left: 16px;
   }
 
-  .fa-train-subway-icon{
+  .fa-train-subway-icon {
     display: inline;
     padding-top: 3px;
     margin-right: 10px;
@@ -151,12 +185,21 @@
 }
 
 @media screen and (max-width: 300px) {
+  .school-level-title {
+    font-size: 18px;
+    margin-top: 0rem;
+    width: auto;
+    margin: auto;
+    text-align: center;
+  }
+
   .school-card {
     font-size: 14px;
     width: 16rem;
     height: 12rem;
     margin: auto;
     border-radius: 1rem;
-    padding-left: 1rem;
+    padding-left: 0.6rem;
+    margin-top: 1.2rem;
   }
 }
