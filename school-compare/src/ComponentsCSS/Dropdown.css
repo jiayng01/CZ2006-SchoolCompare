@@ -1,0 +1,29 @@
+.fa-chevron-down {
+  font-size: 16px;
+  padding-left: 10px;
+}
+
+.dropdown-container {
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 20px;
+  background-color: #e9dddd;
+  width: 12%;
+  margin: auto;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.dropdown-button {
+  border-radius: 5px;
+  padding: 6px 10px 6px 10px;
+}
+
+.dropdown-content {
+}
+
+.dropdown-item {
+  list-style: none;
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+}

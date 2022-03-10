@@ -4,6 +4,8 @@ import SchoolsCard from "../../Components/SchoolsCard";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import "../../ComponentsCSS/PaginationButtons.css";
+import ScaleLoader from "react-spinners/ScaleLoader";
+import Dropdown from "../../Components/Dropdown";
 
 function Primary() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -15,7 +17,18 @@ function Primary() {
   );
 
   if (loading) {
-    return <h1>LOADING...</h1>;
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ScaleLoader color={"#1e2327"} loading={loading} size={30} />
+      </div>
+    );
   }
 
   if (error) {
@@ -41,34 +54,33 @@ function Primary() {
         <SchoolsCard data={school} />
       </div>
     ));
-  
-  // Determine number of pages
-  const pageCount = Math.ceil(schools.length / schoolsPerPage)
 
-  const handlePageClick = (event) =>{
+  // Determine number of pages
+  const pageCount = Math.ceil(schools.length / schoolsPerPage);
+
+  const handlePageClick = (event) => {
     setPageNumber(event.selected);
     window.scrollTo(0, 0);
-  }
+  };
 
   return (
     <div>
+      <Dropdown currentPage={"Primary"}/>
       {displaySchools}
       <ReactPaginate
         previousLabel="<"
-        nextLabel=" >"
+        nextLabel=">"
         breakLabel="..."
         pageCount={pageCount}
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         marginPagesDisplayed={8}
         renderOnZeroPageCount={null}
-
         containerClassName={"paginationButtons"}
         previousLinkClassName={"previousButtons"}
         nextLinkClassName={"nextButtons"}
         disabledClassName={"paginationDisabled"}
         activeClassName={"paginationActive"}
-        
       />
     </div>
   );

@@ -4,9 +4,9 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faTrainSubway } from "@fortawesome/free-solid-svg-icons";
+import mrtIcon from "../Images/mrt-icon.png";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import "../ComponentsCSS/SchoolsCard.css";
-
 
 function SchoolsCard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();
@@ -26,17 +26,16 @@ function SchoolsCard(props) {
           icon={faLocationDot}
         />
 
-        <span className="school-address">{props.data.address}</span>
-        <div className="school-postal">{props.data.postal_code}</div>
+        <span className="school-address">{props.data.address+" ,"}</span>
+        <div className="school-postal">{"S"+props.data.postal_code}</div>
       </div>
 
       <div className="school-mrt-wrapper">
-        <div>
-          <FontAwesomeIcon
+        <FontAwesomeIcon
             className="fa-train-subway-icon"
             icon={faTrainSubway}
           />
-        </div>
+        <img className="mrt-icon" src={mrtIcon} alt="mrt icon" />
 
         <div className="school-mrt-desc">{props.data.mrt_desc}</div>
       </div>
@@ -45,7 +44,6 @@ function SchoolsCard(props) {
         <label className="compare-btn-form-control">
           click to compare
           <input type="checkbox" className="compare-btn"></input>
-          
         </label>
       </div>
     </div>

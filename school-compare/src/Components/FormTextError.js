@@ -1,5 +1,6 @@
 import React from "react";
 
+/* Text error for validating forms */
 function FormTextError(props) {
   return (
     <div

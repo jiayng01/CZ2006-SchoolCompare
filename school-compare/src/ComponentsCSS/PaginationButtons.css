@@ -1,3 +1,4 @@
+/* CSS for the pagination buttons in primary/secondary/tertiary pages*/
 .paginationButtons {
   height: 40px;
   list-style: none;
@@ -7,31 +8,27 @@
 }
 
 .paginationButtons a {
-  padding: 10px;
+  padding: 8px 10px 8px 10px;
   margin: 4px;
-  border-radius: 12px;
-  border: 1px solid rgb(54, 54, 54);
+  border-radius: 10px;
   color: #fae2e2;
   cursor: pointer;
 }
 
 .paginationButtons a:hover {
   color: white;
-  background-color: #225b75;
+  background-color: #5d90a8;
 }
 
 .paginationActive a {
-  background-color: #225b75;
-  color:#c5d3ff; 
+  background-color: #4585a3;
 }
-
-
 
 @media screen and (max-width: 700px) {
   .paginationButtons a {
-    margin:2px;
-    padding:6px;
-    border:none;
+    margin: 2px;
+    padding: 6px;
+    /* border:none; */
     font-size: 18px;
   }
 
@@ -43,11 +40,10 @@
     background-color: transparent;
     color: #0b3142;
   }
-  
 }
 
 @media screen and (max-width: 300px) {
-    .paginationButtons a {
-        font-size: 12px;
-      }
+  .paginationButtons a {
+    font-size: 12px;
   }
+}

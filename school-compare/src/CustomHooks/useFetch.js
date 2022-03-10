@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -20,7 +19,7 @@ function useFetch(url) {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [url]);
 
   return { data, loading, error };
 }

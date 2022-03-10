@@ -1,4 +1,3 @@
-import React, {createContext} from "react";
 import { Link } from "react-router-dom";
 import "../../PagesCSS/Schools/SchoolsMainPage.css";
 

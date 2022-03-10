@@ -4,6 +4,8 @@ import SchoolsCard from "../../Components/SchoolsCard";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import "../../ComponentsCSS/PaginationButtons.css";
+import ScaleLoader from "react-spinners/ScaleLoader";
+import Dropdown from "../../Components/Dropdown";
 
 function Tertiary() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -15,7 +17,18 @@ function Tertiary() {
   );
 
   if (loading) {
-    return <h1>LOADING...</h1>;
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ScaleLoader color={"#1e2327"} loading={loading} size={30} />
+      </div>
+    );
   }
 
   if (error) {
@@ -52,6 +65,7 @@ function Tertiary() {
 
   return (
     <div>
+      <Dropdown currentPage={"Tertiary"}/>
       {displaySchools}
       <ReactPaginate
         previousLabel="<"
