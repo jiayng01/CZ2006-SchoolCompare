@@ -1,11 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../PagesCSS/Schools/SchoolsMainPage.css";
-
-let activeStyle = {
-  color: "#80De80",
-  transition: "all 0.2s linear",
-};
 
 function SchoolsMainPage() {
   return (
@@ -14,33 +8,21 @@ function SchoolsMainPage() {
 
       {/* Primary */}
       <li className="schools-main-list">
-        <NavLink
-          className="schools-main-items primary"
-          to="/schools/primary"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+        <Link className="schools-main-items primary" to="/schools/primary">
           Primary
-        </NavLink>
+        </Link>
       </li>
       {/* Secondary */}
       <li className="schools-main-list">
-        <NavLink
-          className="schools-main-items secondary"
-          to="/schools/secondary"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+        <Link className="schools-main-items secondary" to="/schools/secondary">
           Secondary
-        </NavLink>
+        </Link>
       </li>
       {/* Tertiary */}
       <li className="schools-main-list">
-        <NavLink
-          className="schools-main-items tertiary"
-          to="/schools/tertiary"
-          style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        >
+        <Link className="schools-main-items tertiary" to="/schools/tertiary">
           Tertiary
-        </NavLink>
+        </Link>
       </li>
     </div>
   );

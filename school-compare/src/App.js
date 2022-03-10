@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./Components/Navbar";
 
@@ -10,6 +9,9 @@ import Forum from "./Pages/Forum";
 import Feedback from "./Pages/Feedback";
 import Login from "./Pages/Login";
 import Error from "./Pages/Error";
+import Primary from "./Pages/Schools/Primary";
+import Secondary from "./Pages/Schools/Secondary";
+import Tertiary from "./Pages/Schools/Tertiary";
 
 function App() {
   return (
@@ -21,12 +23,9 @@ function App() {
         <Route path="home" element={<Home />} />
         <Route>
           <Route path="schools" element={<Schools />} />
-          <Route path="schools/primary" element={<div>primary</div>} />
-          {/* Havent implement yet */}
-          <Route path="schools/secondary" element={<div>secondary</div>} />
-          {/* Havent implement yet */}
-          <Route path="schools/tertiary" element={<div>tertiary</div>} />
-          {/* Havent implement yet */}
+          <Route path="schools/primary" element={<Primary />} />
+          <Route path="schools/secondary" element={<Secondary />} />
+          <Route path="schools/tertiary" element={<Tertiary />} />
         </Route>
         <Route path="favourites" element={<Favourites />} />
         <Route path="forum" element={<Forum />} />
