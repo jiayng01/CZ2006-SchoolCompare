@@ -93,10 +93,15 @@
   margin-bottom: 1em;
 }
 
-.home-button:hover,
-.home-button:active {
+.home-button:hover {
   background-color: whitesmoke;
-  box-shadow: 0.5px 0.5px 10px 3px #084e5e;
+  box-shadow: 0.5px 0.5px 10px 2px #084e5e;
+}
+
+.home-button:active {
+  color: white;
+  background-color: #0c7187;
+  box-shadow: none;
 }
 
 .home-link3 {

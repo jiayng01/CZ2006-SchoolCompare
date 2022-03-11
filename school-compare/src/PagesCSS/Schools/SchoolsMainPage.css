@@ -23,14 +23,14 @@
   text-decoration: none;
   color: black;
   font-size: 25px;
-  border: 1px solid #90f9ff;
+  border: 1px solid #80CED7;
   border-radius: 5px;
   padding: 5px 0 5px 0;
   text-align: center;
 }
 
 .schools-main-items:hover{
-    background-color: #6FA5CC;
+    background-color: #80CED7;
 }
 
 .primary{
