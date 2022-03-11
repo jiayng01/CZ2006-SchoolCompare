@@ -1,6 +1,8 @@
 .navbar {
   background-color: #1e2327;
   text-align: center;
+  position: sticky;
+  top: 0;
 }
 
 /*Home,Schools,Favourites,Forum,Feedback*/
@@ -16,6 +18,18 @@
   padding: 1.2rem;
   margin-left: 5%;
 }
+
+.navbar-badge {
+  background-color: #713E5A;
+  color: white;
+  border-radius: 15px;
+  padding: 0 0.5rem 0.1rem 0.4rem;
+  position: relative;
+  right: 1.5rem;
+  bottom: 0.3rem;
+  font-size: 14px;
+}
+
 /*li tags*/
 .navbar-list {
   list-style-type: none;

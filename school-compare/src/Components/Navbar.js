@@ -8,7 +8,8 @@ import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
+import FavouritesContext from "../Contexts/FavouritesContext";
 
 // Change the inline-style on selecting the respective tabs
 let activeStyle = {
@@ -18,6 +19,7 @@ let activeStyle = {
 
 function Navbar() {
   const [expandNavBar, setExpandNavBar] = useState(false);
+  const favouritesCtx = useContext(FavouritesContext);
 
   return (
     <nav className="navbar">
@@ -58,6 +60,9 @@ function Navbar() {
             >
               Favourites
             </NavLink>
+            <span className="navbar-badge">
+              {favouritesCtx.totalFavourites}
+            </span>
           </li>
 
           {/* To Forum page */}
