@@ -1,0 +1,18 @@
+.more-info-button{
+  position: relative;
+  font-family: "Saira Condensed", sans-serif;
+  width: fit-content;
+  height: fit-content;
+  font-size: 20px;
+  background-color: #46af9c;
+  color: black;
+  padding: 2px 6px 2px 6px;
+  border-radius: 11px;
+  bottom: 0rem;
+  left: 8.5rem;
+  border: 1px solid #319b87;
+}
+
+.more-info-button:hover {
+  color: white;
+}
