@@ -1,5 +1,6 @@
 import SchoolsCard from "./SchoolsCard";
 import "../ComponentsCSS/SchoolsList.css";
+import React from "react";
 
 function SchoolsList(props) {
   return (

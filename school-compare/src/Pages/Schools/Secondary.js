@@ -1,7 +1,7 @@
 import React from "react";
 import useFetch from "../../CustomHooks/useFetch";
 import SchoolsCard from "../../Components/SchoolsCard";
-import ReactPaginate from "react-paginate";
+import ReactPaginate from 'react-paginate';
 import { useState } from "react";
 import ScaleLoader from "react-spinners/ScaleLoader";
 import Dropdown from "../../Components/Dropdown";
