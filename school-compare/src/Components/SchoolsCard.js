@@ -10,6 +10,7 @@ import "../ComponentsCSS/SchoolsCard.css";
 
 import { useContext } from "react"; // allows us to establish connection btwn this component and the Favourites context
 import FavouritesContext from "../Contexts/FavouritesContext";
+import MoreInfoButton from "./MoreInfoButton";
 
 function SchoolsCard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();
@@ -66,6 +67,9 @@ function SchoolsCard(props) {
           <input type="checkbox" className="compare-btn"></input>
         </label>
       </div>
+
+      <MoreInfoButton />
+
     </div>
   );
 }
