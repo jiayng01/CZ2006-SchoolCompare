@@ -1,17 +1,18 @@
 import React from "react";
-import useFetch from "../../CustomHooks/useFetch";
-import SchoolsCard from "../../Components/SchoolsCard";
-import ReactPaginate from 'react-paginate';
+import useFetch from "../../../CustomHooks/useFetch";
+import SchoolsCard from "../../../Components/SchoolsCard";
+import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import ScaleLoader from "react-spinners/ScaleLoader";
-import Dropdown from "../../Components/Dropdown";
-import CompareButton from "../../Components/CompareButton";
+import Dropdown from "../../../Components/Dropdown";
+import CompareButton from "../../../Components/CompareButton";
+import SideDrawer from "../../../Components/SideDrawer";
 
-import "../../ComponentsCSS/PaginationButtons.css";
-import "../../ComponentsCSS/SchoolsCard.css";
-import "../../ComponentsCSS/SchoolSearchBar.css";
+import "../../../ComponentsCSS/PaginationButtons.css";
+import "../../../ComponentsCSS/SchoolsCard.css";
+import "../../../ComponentsCSS/SchoolSearchBar.css";
 
-function Secondary() {
+function Primary() {
   const [pageNumber, setPageNumber] = useState(0);
   const schoolsPerPage = 20;
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
@@ -48,10 +49,7 @@ function Secondary() {
     // filter to get primary school data
     let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
     for (var i = 0; i < data.length; i++) {
-      if (
-        data[i].mainlevel_code === "SECONDARY" ||
-        data[i].mainlevel_code === "MIXED LEVELS"
-      ) {
+      if (data[i].mainlevel_code === "PRIMARY") {
         schools[index++] = data[i];
       }
     }
@@ -82,6 +80,7 @@ function Secondary() {
     ));
 
   // Determine number of pages
+
   const pageCount = Math.ceil(schools.length / schoolsPerPage);
 
   const handlePageClick = (event) => {
@@ -90,9 +89,10 @@ function Secondary() {
   };
 
   return (
-    <div>
+    <>
+      <SideDrawer level="primary"/>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Dropdown currentPage={"Secondary"} />
+        <Dropdown currentPage={"Primary"} />
         <input
           className="search-bar"
           type="text"
@@ -102,15 +102,23 @@ function Secondary() {
           }}
         />
       </div>
-      <div style={{ display: "flex", justifyContent: "center" ,width:"70%",margin:"auto",marginBottom:"1rem"}}>
-        <div className="school-level-title">Secondary Schools </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "70%",
+          margin: "auto",
+          marginBottom: "1rem",
+        }}
+      >
+        <div className="school-level-title">Primary Schools </div>
         <CompareButton />
       </div>
 
       {displaySchools}
       <ReactPaginate
         previousLabel="<"
-        nextLabel=" >"
+        nextLabel=">"
         breakLabel="..."
         pageCount={pageCount}
         onPageChange={handlePageClick}
@@ -123,8 +131,8 @@ function Secondary() {
         disabledClassName={"paginationDisabled"}
         activeClassName={"paginationActive"}
       />
-    </div>
+    </>
   );
 }
 
-export default Secondary;
+export default Primary;

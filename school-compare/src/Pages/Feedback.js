@@ -29,7 +29,7 @@ function Feedback() {
     <div className="feedback-form-container">
       <p className="feedback-form-title">FEEDBACK</p>
       <p className="feedback-form-p">we'd love you hear your feedback!</p>
-      <hr color="black" size="1.2" width="350px" />
+      <hr color="black" size="1.2" width="320px" style={{ margin: "auto" }} />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
