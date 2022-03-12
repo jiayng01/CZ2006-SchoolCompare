@@ -2,9 +2,12 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import "../ComponentsCSS/SubjectsCard.css";
+import "../ComponentsCSS/SchoolsCard.css";
 
 import { useContext } from "react"; // allows us to establish connection btwn this component and the Favourites context
 import FavouritesContext from "../Contexts/FavouritesContext";
+
+import MoreInfoButton from "./MoreInfoButton";
 
 function SubjectsCard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();
@@ -21,9 +24,8 @@ function SubjectsCard(props) {
     }
   }
 
-  
   return (
-    <div className="school-card">
+    <div className="school-card subjects-card">
       <p className="school-name">
         {props.data.school_name}
         <FontAwesomeIcon
@@ -34,10 +36,16 @@ function SubjectsCard(props) {
           onClick={toggleFavouriteStatusHandler}
         ></FontAwesomeIcon>
       </p>
-      <div>
-          {props.data.subject_desc}
+      <div className="subjects-desc">{props.data.subject_desc}</div>
+
+      <div className="container">
+        <label className="compare-btn-form-control">
+          click to compare
+          <input type="checkbox" className="compare-btn"></input>
+        </label>
       </div>
 
+      <MoreInfoButton />
     </div>
   );
 }

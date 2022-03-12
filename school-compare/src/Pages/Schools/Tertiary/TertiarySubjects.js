@@ -44,6 +44,7 @@ function TertiarySubjects() {
 
   // initialize schools
   let schools = [];
+  let filteredSchools = [];
 
   if (data != null) {
     // filter to get primary school data
@@ -57,10 +58,32 @@ function TertiarySubjects() {
         schools[index++] = data[i];
       }
     }
+    // because api id not in numeric order
+    schools.sort((a, b) => {
+      return a._id - b._id;
+    });
+
+    if (schools !== undefined) {
+      let arrayCounter = 0;
+      let currentSchool = schools[0].school_name;
+
+      filteredSchools.push(schools[0]);
+      for (let j = 1; j < schools.length; j++) {
+        if (currentSchool === schools[j].school_name) {
+          filteredSchools[arrayCounter].subject_desc +=
+            ", " + schools[j].subject_desc;
+          // filteredSchools[arrayCounter].subject_desc = schools[j].subject_desc;
+        } else {
+          currentSchool = schools[j].school_name;
+          filteredSchools.push(schools[j]);
+          arrayCounter++;
+        }
+      }
+    }
   }
 
   // get only the schools we want
-  const displaySchools = schools
+  const displaySchools = filteredSchools
     .filter((value) => {
       if (searchTerm === "") return value;
       else if (
@@ -76,7 +99,7 @@ function TertiarySubjects() {
         <SubjectsCard data={school} />
       </div>
     ));
-  const pageCount = Math.ceil(schools.length / schoolsPerPage);
+  const pageCount = Math.ceil(filteredSchools.length / schoolsPerPage);
 
   const handlePageClick = (event) => {
     setPageNumber(event.selected);
@@ -110,22 +133,22 @@ function TertiarySubjects() {
         <CompareButton />
       </div>
 
-      {/* {displaySchools} */}
-      {/* <ReactPaginate
-          previousLabel="<"
-          nextLabel=">"
-          breakLabel="..."
-          pageCount={pageCount}
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={8}
-          renderOnZeroPageCount={null}
-          containerClassName={"paginationButtons"}
-          previousLinkClassName={"previousButtons"}
-          nextLinkClassName={"nextButtons"}
-          disabledClassName={"paginationDisabled"}
-          activeClassName={"paginationActive"}
-        /> */}
+      {displaySchools}
+      <ReactPaginate
+        previousLabel="<"
+        nextLabel=">"
+        breakLabel="..."
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={8}
+        renderOnZeroPageCount={null}
+        containerClassName={"paginationButtons"}
+        previousLinkClassName={"previousButtons"}
+        nextLinkClassName={"nextButtons"}
+        disabledClassName={"paginationDisabled"}
+        activeClassName={"paginationActive"}
+      />
     </>
   );
 }

@@ -12,11 +12,20 @@
   font-size: 24px;
   background-color: #f2c0c0;
   width: 35rem;
-  height: 16rem;
+  height: 18rem;
   margin: auto;
   border-radius: 1rem;
   padding-left: 3rem;
   margin-bottom: 2rem;
+  border-bottom: 4px solid #103b79;;
+}
+
+.school-card:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 6px #103b79;
+  transition: all 0.3s ease;
+  transform: translateX(-10px) translateY(-10px);
+  
 }
 
 .school-name {

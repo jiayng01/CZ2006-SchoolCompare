@@ -77,7 +77,8 @@ function PrimarySubjects() {
         schools[index++] = data[i];
       }
     }
-    console.log("hello " + schools);
+    
+    // because api id not in numeric order
     schools.sort((a,b)=>{
         return a._id- b._id;
     })
@@ -101,7 +102,7 @@ function PrimarySubjects() {
     }
   }
 
-  let count = 0;
+  
   // get only the schools we want
   const displaySchools = filteredSchools
     .filter((value) => {
@@ -115,7 +116,7 @@ function PrimarySubjects() {
     })
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
-      <div key={count++}>
+      <div key={school.school_name}>
         <SubjectsCard data={school} />
       </div>
     ));
