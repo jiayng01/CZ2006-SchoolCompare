@@ -9,7 +9,7 @@ function MoreInfoButton() {
       className="more-info-button"
       onClick={() => console.log("button clicked")}
     >
-      Click here for more information
+      Click here for more information 
     </button>
   );
 }
