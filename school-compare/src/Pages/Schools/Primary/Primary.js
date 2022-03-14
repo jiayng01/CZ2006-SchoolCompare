@@ -90,7 +90,7 @@ function Primary() {
 
   return (
     <>
-      <SideDrawer level="primary"/>
+      <SideDrawer level="Primary" />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Dropdown currentPage={"Primary"} />
         <input

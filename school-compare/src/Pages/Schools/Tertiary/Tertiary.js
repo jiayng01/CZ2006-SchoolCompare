@@ -99,7 +99,7 @@ function Tertiary() {
 
   return (
     <div>
-      <SideDrawer level="tertiary" />
+      <SideDrawer level="Tertiary" />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Dropdown currentPage={"Tertiary"} />
         <input

@@ -85,7 +85,6 @@ function SecondarySubjects() {
         if (currentSchool === schools[j].school_name) {
           filteredSchools[arrayCounter].subject_desc +=
             ", " + schools[j].subject_desc;
-          // filteredSchools[arrayCounter].subject_desc = schools[j].subject_desc;
         } else {
           currentSchool = schools[j].school_name;
           filteredSchools.push(schools[j]);
@@ -118,7 +117,8 @@ function SecondarySubjects() {
     setPageNumber(event.selected);
     window.scrollTo(0, 0);
   };
-
+  
+  
   return (
     <>
       <SideDrawer level="Secondary" />
@@ -148,20 +148,20 @@ function SecondarySubjects() {
 
       {displaySchools}
       <ReactPaginate
-          previousLabel="<"
-          nextLabel=">"
-          breakLabel="..."
-          pageCount={pageCount}
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={8}
-          renderOnZeroPageCount={null}
-          containerClassName={"paginationButtons"}
-          previousLinkClassName={"previousButtons"}
-          nextLinkClassName={"nextButtons"}
-          disabledClassName={"paginationDisabled"}
-          activeClassName={"paginationActive"}
-        />
+        previousLabel="<"
+        nextLabel=">"
+        breakLabel="..."
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        marginPagesDisplayed={8}
+        renderOnZeroPageCount={null}
+        containerClassName={"paginationButtons"}
+        previousLinkClassName={"previousButtons"}
+        nextLinkClassName={"nextButtons"}
+        disabledClassName={"paginationDisabled"}
+        activeClassName={"paginationActive"}
+      />
     </>
   );
 }

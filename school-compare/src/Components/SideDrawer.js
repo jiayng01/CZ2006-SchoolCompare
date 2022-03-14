@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faLinkSlash } from "@fortawesome/free-solid-svg-icons";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faSquarePollVertical } from "@fortawesome/free-solid-svg-icons";
 import { faBasketball } from "@fortawesome/free-solid-svg-icons";
@@ -23,13 +23,13 @@ function SideDrawer(props) {
   const level = props.level;
   var link;
   var cutOffNeeded;
-  if (level === "primary") {
+  if (level === "Primary") {
     link = "/schools/primary";
     cutOffNeeded = false;
-  } else if (level === "secondary") {
+  } else if (level === "Secondary") {
     link = "/schools/secondary";
     cutOffNeeded = true;
-  } else {
+  } else if (level === "Tertiary") {
     link = "/schools/tertiary";
     cutOffNeeded = true;
   }

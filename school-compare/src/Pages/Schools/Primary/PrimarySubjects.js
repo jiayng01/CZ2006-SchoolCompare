@@ -11,7 +11,6 @@ import SubjectsCard from "../../../Components/SubjectsCard";
 import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
 import "../../../ComponentsCSS/SchoolSearchBar.css";
-import SchoolsCard from "../../../Components/SchoolsCard";
 
 function PrimarySubjects() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -77,11 +76,11 @@ function PrimarySubjects() {
         schools[index++] = data[i];
       }
     }
-    
+
     // because api id not in numeric order
-    schools.sort((a,b)=>{
-        return a._id- b._id;
-    })
+    schools.sort((a, b) => {
+      return a._id - b._id;
+    });
 
     if (schools !== undefined) {
       let arrayCounter = 0;
@@ -102,7 +101,6 @@ function PrimarySubjects() {
     }
   }
 
-  
   // get only the schools we want
   const displaySchools = filteredSchools
     .filter((value) => {
@@ -131,7 +129,7 @@ function PrimarySubjects() {
 
   return (
     <>
-      <SideDrawer level="primary" />
+      <SideDrawer level="Primary" />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Dropdown currentPage={"Primary"} />
         <input

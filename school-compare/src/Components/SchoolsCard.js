@@ -69,7 +69,6 @@ function SchoolsCard(props) {
       </div>
 
       <MoreInfoButton />
-
     </div>
   );
 }

@@ -1,98 +1,53 @@
 import React from "react";
-import useFetch from "../../../CustomHooks/useFetch";
-import SchoolsCard from "../../../Components/SchoolsCard";
+
+import secondaryCutOff from "../../../CutOff/secondary_cut_off.json"; /* CutOffPoints */
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
-import ScaleLoader from "react-spinners/ScaleLoader";
 import Dropdown from "../../../Components/Dropdown";
 import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
+import CutOffCard from "../../../Components/CutOffCard";
 
 import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
 import "../../../ComponentsCSS/SchoolSearchBar.css";
 
-function Secondary() {
+function SecondaryCutOff() {
   const [pageNumber, setPageNumber] = useState(0);
   const schoolsPerPage = 20;
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetching data
-  const { data, loading, error } = useFetch(
-    "https://data.gov.sg/api/action/datastore_search?resource_id=ede26d32-01af-4228-b1ed-f05c45a1d8ee&&limit=400"
-  );
-
-  if (loading) {
-    return (
-      <div
-        style={{
-          textAlign: "center",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <ScaleLoader color={"#1e2327"} loading={loading} size={30} />
-      </div>
-    );
-  }
-
-  if (error) {
-    console.log(error);
-  }
-
-  // initialize schools
-  let schools = [];
-
-  if (data != null) {
-    // filter to get primary school data
-    let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
-    for (var i = 0; i < data.length; i++) {
-      if (
-        data[i].mainlevel_code === "SECONDARY" ||
-        data[i].mainlevel_code === "MIXED LEVELS"
-      ) {
-        schools[index++] = data[i];
-      }
-    }
-  }
-
-  // get only the schools we want
-  const displaySchools = schools
+  /* extract the data we want */
+  const displaySchools = secondaryCutOff
     .filter((value) => {
       if (searchTerm === "") return value;
       else if (
-        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.postal_code
-          .toLowerCase()
-          .includes(
-            searchTerm.toLowerCase() ||
-              value.mrt_desc.toLowerCase().includes(searchTerm.toLowerCase())
-          )
+        value.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        value.express.includes(searchTerm) || // Numbers
+        value.na.includes(searchTerm) || // Numbers
+        value.nt.includes(searchTerm) // Numbers
       ) {
         return value;
       }
     })
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
-      <div key={school.school_name}>
-        <SchoolsCard data={school} />
+      <div key={school._id}>
+        <CutOffCard data={school} level={"Secondary"}/>
       </div>
     ));
 
-  // Determine number of pages
-  const pageCount = Math.ceil(schools.length / schoolsPerPage);
+  const pageCount = Math.ceil(secondaryCutOff.length / schoolsPerPage);
 
   const handlePageClick = (event) => {
     setPageNumber(event.selected);
     window.scrollTo(0, 0);
   };
-
+  
   return (
-    <div>
-      <SideDrawer level="Secondary"/>
+    <>
+      <SideDrawer level="Secondary" />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Dropdown currentPage={"Secondary"} />
         <input
@@ -120,7 +75,7 @@ function Secondary() {
       {displaySchools}
       <ReactPaginate
         previousLabel="<"
-        nextLabel=" >"
+        nextLabel=">"
         breakLabel="..."
         pageCount={pageCount}
         onPageChange={handlePageClick}
@@ -133,8 +88,8 @@ function Secondary() {
         disabledClassName={"paginationDisabled"}
         activeClassName={"paginationActive"}
       />
-    </div>
+    </>
   );
 }
 
-export default Secondary;
+export default SecondaryCutOff;

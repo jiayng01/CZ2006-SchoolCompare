@@ -9,14 +9,20 @@ import Feedback from "./Pages/Feedback";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import Error from "./Pages/Error";
+
+/* General Page */
 import Primary from "./Pages/Schools/Primary/Primary";
 import Secondary from "./Pages/Schools/Secondary/Secondary";
 import Tertiary from "./Pages/Schools/Tertiary/Tertiary";
 
+/* Subjects Page */
 import PrimarySubjects from "./Pages/Schools/Primary/PrimarySubjects";
 import SecondarySubjects from "./Pages/Schools/Secondary/SecondarySubjects";
 import TertiarySubjects from "./Pages/Schools/Tertiary/TertiarySubjects";
 
+/* Cut Off Page */
+import SecondaryCutOff from "./Pages/Schools/Secondary/SecondaryCutOff";
+import TertiaryCutOff from "./Pages/Schools/Tertiary/TertiaryCutOff";
 
 function App() {
   return (
@@ -50,7 +56,7 @@ function App() {
             <Route path="schools/secondary/general" element={<Secondary />} />
             <Route
               path="schools/secondary/cut-off-points"
-              element={<Secondary />}
+              element={<SecondaryCutOff />}
             />
             <Route
               path="schools/secondary/subjects-offered"
@@ -69,7 +75,7 @@ function App() {
             <Route path="schools/tertiary/general" element={<Tertiary />} />
             <Route
               path="schools/tertiary/cut-off-points"
-              element={<Tertiary />}
+              element={<TertiaryCutOff />}
             />
             <Route
               path="schools/tertiary/subjects-offered"
