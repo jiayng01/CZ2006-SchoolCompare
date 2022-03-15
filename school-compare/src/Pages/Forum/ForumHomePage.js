@@ -4,6 +4,9 @@ import { collection, deleteDoc, doc, onSnapshot, orderBy, query } from "firebase
 import { auth, db } from "../../Firebase"
 import "../../PagesCSS/Forum/ForumMainPage.css"
 
+// TODO: Pagination of the posts
+// TODO: Search bar
+
 function ForumHomePage({ isAuth }) {
   const [postList, setPostList] = useState([]);
 
@@ -15,7 +18,7 @@ function ForumHomePage({ isAuth }) {
           ...doc.data(),
           id: doc.id,
         })))
-        })
+    })
     return getPosts;
   }, []);
 
@@ -23,7 +26,6 @@ function ForumHomePage({ isAuth }) {
     const postDoc = doc(db, "posts", id)
     await deleteDoc(postDoc)
   }
-
 
   return (
     <div className="forum-mainpage">
