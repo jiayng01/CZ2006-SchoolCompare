@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage"
+import { getAuth } from "firebase/auth"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -13,8 +15,12 @@ const firebaseConfig = {
   storageBucket: "school-compare-cffbf.appspot.com",
   messagingSenderId: "788961608159",
   appId: "1:788961608159:web:d63d54c0a1486aadb6446a",
-  measurementId: "G-MX9P8H41WD"
+  measurementId: "G-MX9P8H41WD",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+export const storage = getStorage(app);
+export const db = getFirestore(app);
+export const auth = getAuth(app);
