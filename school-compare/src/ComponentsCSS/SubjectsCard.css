@@ -1,0 +1,37 @@
+.subjects-card {
+  height: fit-content;
+  text-transform: capitalize;
+}
+
+.subjects-desc {
+  text-align: justify;
+  width: 32rem;
+}
+
+@media screen and (max-width: 700px) {
+  .subjects-card {
+    height:fit-content;
+    width: fit-content;
+  }
+
+  .subjects-desc {
+    text-align: justify;
+    width: 17rem;
+    margin: auto;
+    padding-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+    .subjects-card {
+      height:fit-content;
+    }
+  
+    .subjects-desc {
+      text-align: justify;
+      width: 14rem;
+      margin: auto;
+     padding-left: 0.1rem;
+    }
+  }
+  
