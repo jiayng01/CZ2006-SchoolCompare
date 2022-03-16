@@ -1,15 +1,16 @@
 import React from "react";
-import useFetch from "../../CustomHooks/useFetch";
-import SchoolsCard from "../../Components/SchoolsCard";
-import ReactPaginate from 'react-paginate';
+import useFetch from "../../../CustomHooks/useFetch";
+import SchoolsCard from "../../../Components/SchoolsCard";
+import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import ScaleLoader from "react-spinners/ScaleLoader";
-import Dropdown from "../../Components/Dropdown";
-import CompareButton from "../../Components/CompareButton";
+import Dropdown from "../../../Components/Dropdown";
+import CompareButton from "../../../Components/CompareButton";
+import SideDrawer from "../../../Components/SideDrawer";
 
-import "../../ComponentsCSS/PaginationButtons.css";
-import "../../ComponentsCSS/SchoolsCard.css";
-import "../../ComponentsCSS/SchoolSearchBar.css";
+import "../../../ComponentsCSS/PaginationButtons.css";
+import "../../../ComponentsCSS/SchoolsCard.css";
+import "../../../ComponentsCSS/SchoolSearchBar.css";
 
 function Secondary() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -91,6 +92,7 @@ function Secondary() {
 
   return (
     <div>
+      <SideDrawer level="Secondary"/>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Dropdown currentPage={"Secondary"} />
         <input
@@ -102,7 +104,15 @@ function Secondary() {
           }}
         />
       </div>
-      <div style={{ display: "flex", justifyContent: "center" ,width:"70%",margin:"auto",marginBottom:"1rem"}}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "70%",
+          margin: "auto",
+          marginBottom: "1rem",
+        }}
+      >
         <div className="school-level-title">Secondary Schools </div>
         <CompareButton />
       </div>

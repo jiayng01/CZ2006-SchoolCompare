@@ -4,15 +4,18 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { FavouritesContextProvider } from "./Contexts/FavouritesContext";
+import "react-toastify/dist/ReactToastify.css";
+import "react-bootstrap"
+import { ToastContainer } from "react-toastify";
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <FavouritesContextProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </FavouritesContextProvider>
-  </React.StrictMode>,
+  <FavouritesContextProvider>
+    <BrowserRouter>
+      <App />
+      <ToastContainer />
+    </BrowserRouter>
+  </FavouritesContextProvider>,
   document.getElementById("root")
 );
 

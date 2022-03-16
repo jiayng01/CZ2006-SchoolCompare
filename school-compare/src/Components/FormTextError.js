@@ -7,7 +7,7 @@ function FormTextError(props) {
       className="form-error-msg"
       style={{
         color: "red",
-        fontSize: "10px",
+        fontSize: "12px",
         textAlign: "left",
         paddingLeft: "20px",
         paddingTop: "5px",

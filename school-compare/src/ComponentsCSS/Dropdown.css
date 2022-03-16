@@ -19,6 +19,8 @@
 .dropdown-button {
   border-radius: 5px;
   padding: 6px 10px 6px 22px;
+  font-weight: bold;
+  color: rgb(88, 79, 81);
 }
 
 .dropdown-item {
