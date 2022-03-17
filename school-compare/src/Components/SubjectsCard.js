@@ -11,7 +11,6 @@ import MoreInfoButton from "./MoreInfoButton";
 
 function SubjectsCard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();
-  props.data.subject_desc = props.data.subject_desc.toLowerCase();
 
   const favouritesCtx = useContext(FavouritesContext);
   const itemIsFavourite = favouritesCtx.itemIsFavourite(props.data._id);
@@ -24,9 +23,19 @@ function SubjectsCard(props) {
     }
   }
 
+  let subjects = [];
+
+  for (let i = 0; i < props.data.subject_desc.length; i++) {
+    if (i !== props.data.subject_desc.length - 1) {
+      subjects.push(props.data.subject_desc[i].toLowerCase() + " ,  ");
+    } else {
+      subjects.push(props.data.subject_desc[i].toLowerCase());
+    }
+  }
+
   return (
     <div className="school-card subjects-card">
-      <p className="school-name">
+      <p className="school-name subjects-card-school-name">
         {props.data.school_name}
         <FontAwesomeIcon
           className={
@@ -36,7 +45,7 @@ function SubjectsCard(props) {
           onClick={toggleFavouriteStatusHandler}
         ></FontAwesomeIcon>
       </p>
-      <div className="subjects-desc">{props.data.subject_desc}</div>
+      <div className="subjects-desc">{subjects}</div>
 
       <div className="container">
         <label className="compare-btn-form-control">

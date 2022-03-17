@@ -1,5 +1,5 @@
 import React from "react";
-import SchoolsCard from "../../../Components/SchoolsCard";
+import ElectiveCard from "../../../Components/ElectiveCard";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
@@ -11,7 +11,7 @@ import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
 import "../../../ComponentsCSS/SchoolSearchBar.css";
 
-function Secondary() {
+function SecondaryElective() {
   const [pageNumber, setPageNumber] = useState(0);
   const schoolsPerPage = 20;
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
@@ -25,12 +25,21 @@ function Secondary() {
     let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
     for (var i = 0; i < data.length; i++) {
       if (
-        data[i].mainlevel_code === "SECONDARY" ||
-        data[i].mainlevel_code === "MIXED LEVELS"
+        (data[i].mainlevel_code === "SECONDARY" ||
+          data[i].mainlevel_code === "MIXED LEVELS") &&
+        (data[i].moe_programme.length > 0 ||
+          data[i].alp_domain.length > 0 ||
+          data[i].llp_domain1.length > 0 ||
+          data[i].llp_domain2.length > 0)
       ) {
         schools[index++] = data[i];
       }
     }
+
+    // because api id not in numeric order
+    schools.sort((a, b) => {
+      return a._id - b._id;
+    });
   }
 
   // get only the schools we want
@@ -38,22 +47,15 @@ function Secondary() {
     .filter((value) => {
       if (searchTerm === "") return value;
       else if (
-        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.postal_code
-          .toLowerCase()
-          .includes(
-            searchTerm.toLowerCase() ||
-              value.mrt_desc.toLowerCase().includes(searchTerm.toLowerCase())
-          )
+        value.school_name.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         return value;
-      } 
+      }
     })
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
       <div key={school.school_name}>
-        <SchoolsCard data={school} />
+        <ElectiveCard data={school} />
       </div>
     ));
 
@@ -64,9 +66,8 @@ function Secondary() {
     setPageNumber(event.selected);
     window.scrollTo(0, 0);
   };
-
   return (
-    <div>
+    <>
       <SideDrawer level="Secondary" />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Dropdown currentPage={"Secondary"} />
@@ -95,7 +96,7 @@ function Secondary() {
       {displaySchools}
       <ReactPaginate
         previousLabel="<"
-        nextLabel=" >"
+        nextLabel=">"
         breakLabel="..."
         pageCount={pageCount}
         onPageChange={handlePageClick}
@@ -108,8 +109,8 @@ function Secondary() {
         disabledClassName={"paginationDisabled"}
         activeClassName={"paginationActive"}
       />
-    </div>
+    </>
   );
 }
 
-export default Secondary;
+export default SecondaryElective;

@@ -1,12 +1,11 @@
 import React from "react";
-import useFetch from "../../../CustomHooks/useFetch";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
-import ScaleLoader from "react-spinners/ScaleLoader";
 import Dropdown from "../../../Components/Dropdown";
 import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
 import SubjectsCard from "../../../Components/SubjectsCard";
+import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
 
 import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
@@ -18,55 +17,17 @@ function SecondarySubjects() {
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetching data
-  const { data, loading, error } = useFetch(
-    "https://data.gov.sg/api/action/datastore_search?resource_id=3bb9e6b0-6865-4a55-87ba-cc380bc4df39&limit=3400"
-  );
-
-  if (loading) {
-    return (
-      <div
-        style={{
-          textAlign: "center",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <ScaleLoader color={"#1e2327"} loading={loading} size={30} />
-      </div>
-    );
-  }
-
-  if (error) {
-    console.log(error);
-  }
-
   // initialize schools
   let schools = [];
-  let filteredSchools = [];
 
   if (data != null) {
     // filter to get primary school data
     let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
     for (var i = 0; i < data.length; i++) {
       if (
-        data[i].school_name.includes("SECONDARY") ||
-        data[i].school_name.includes("HIGH SCHOOL") ||
-        data[i].school_name.includes("NATIONAL") ||
-        data[i].school_name.includes("BARKER") ||
-        data[i].school_name.includes("ENGLISH") ||
-        (data[i].school_name.includes("CONVENT") &&
-          data[i].school_name.includes("CHIJ")) ||
-        data[i].school_name.includes("CHIJ ST. NICHOLAS GIRLS' SCHOOL") ||
-        data[i].school_name.includes("CREST") ||
-        data[i].school_name.includes("GAN ENG SENG") ||
-        data[i].school_name.includes("HWA CHONG") ||
-        data[i].school_name.includes("HAI SING") ||
-        data[i].school_name.includes("ST. PATRICK'S SCHOOL") ||
-        data[i].school_name.includes("TANJONG KATONG GIRLS' SCHOOL") ||
-        data[i].school_name.includes("VICTORIA SCHOOL") ||
-        data[i].school_name.includes("NORTHLIGHT SCHOOL")
+        (data[i].mainlevel_code === "SECONDARY" ||
+          data[i].mainlevel_code === "MIXED LEVELS") &&
+        data[i].subject_desc.length > 0
       ) {
         schools[index++] = data[i];
       }
@@ -75,35 +36,17 @@ function SecondarySubjects() {
     schools.sort((a, b) => {
       return a._id - b._id;
     });
-
-    if (schools !== undefined) {
-      let arrayCounter = 0;
-      let currentSchool = schools[0].school_name;
-
-      filteredSchools.push(schools[0]);
-      for (let j = 1; j < schools.length; j++) {
-        if (currentSchool === schools[j].school_name) {
-          filteredSchools[arrayCounter].subject_desc +=
-            ", " + schools[j].subject_desc;
-        } else {
-          currentSchool = schools[j].school_name;
-          filteredSchools.push(schools[j]);
-          arrayCounter++;
-        }
-      }
-    }
   }
 
   // get only the schools we want
-  const displaySchools = filteredSchools
+  const displaySchools = schools
     .filter((value) => {
       if (searchTerm === "") return value;
       else if (
-        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.subject_desc.toLowerCase().includes(searchTerm.toLowerCase())
+        value.school_name.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         return value;
-      }
+      } 
     })
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
@@ -111,14 +54,13 @@ function SecondarySubjects() {
         <SubjectsCard data={school} />
       </div>
     ));
-  const pageCount = Math.ceil(filteredSchools.length / schoolsPerPage);
+  const pageCount = Math.ceil(schools.length / schoolsPerPage);
 
   const handlePageClick = (event) => {
     setPageNumber(event.selected);
     window.scrollTo(0, 0);
   };
-  
-  
+
   return (
     <>
       <SideDrawer level="Secondary" />

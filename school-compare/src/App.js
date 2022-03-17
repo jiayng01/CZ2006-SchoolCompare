@@ -24,6 +24,16 @@ import TertiarySubjects from "./Pages/Schools/Tertiary/TertiarySubjects";
 import SecondaryCutOff from "./Pages/Schools/Secondary/SecondaryCutOff";
 import TertiaryCutOff from "./Pages/Schools/Tertiary/TertiaryCutOff";
 
+/* CCA Page */
+import PrimaryCCA from "./Pages/Schools/Primary/PrimaryCCA";
+import SecondaryCCA from "./Pages/Schools/Secondary/SecondaryCCA";
+import TertiaryCCA from "./Pages/Schools/Tertiary/TertiaryCCA";
+
+/* Electives Page */
+import PrimaryElective from "./Pages/Schools/Primary/PrimaryElective";
+import SecondaryElective from "./Pages/Schools/Secondary/SecondaryElective";
+import TertiaryElective from "./Pages/Schools/Tertiary/TertiaryElective";
+
 function App() {
   return (
     <>
@@ -43,10 +53,10 @@ function App() {
               path="schools/primary/subjects-offered"
               element={<PrimarySubjects />}
             />
-            <Route path="schools/primary/ccas" element={<Primary />} />
+            <Route path="schools/primary/ccas" element={<PrimaryCCA />} />
             <Route
               path="schools/primary/electives&programmes"
-              element={<Primary />}
+              element={<PrimaryElective />}
             />
           </Route>
           <Route>
@@ -62,10 +72,10 @@ function App() {
               path="schools/secondary/subjects-offered"
               element={<SecondarySubjects />}
             />
-            <Route path="schools/secondary/ccas" element={<Secondary />} />
+            <Route path="schools/secondary/ccas" element={<SecondaryCCA />} />
             <Route
               path="schools/secondary/electives&programmes"
-              element={<Secondary />}
+              element={<SecondaryElective />}
             />
           </Route>
           <Route>
@@ -81,10 +91,10 @@ function App() {
               path="schools/tertiary/subjects-offered"
               element={<TertiarySubjects />}
             />
-            <Route path="schools/tertiary/ccas" element={<Tertiary />} />
+            <Route path="schools/tertiary/ccas" element={<TertiaryCCA />} />
             <Route
               path="schools/tertiary/electives&programmes"
-              element={<Tertiary />}
+              element={<TertiaryElective />}
             />
           </Route>
         </Route>

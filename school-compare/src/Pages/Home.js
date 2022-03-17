@@ -23,7 +23,15 @@ function Home() {
             All the information you need in just a few clicks.
           </h2>
           <p className="home-description2">
-            Start navigating different <Link to="/schools" className="home-link2">Schools</Link> and add potential schools to your <Link to="/favourites" className="home-link2">Favourites</Link> for future reference!
+            Start navigating different{" "}
+            <Link to="/schools" className="home-link2">
+              Schools
+            </Link>{" "}
+            and add potential schools to your{" "}
+            <Link to="/favourites" className="home-link2">
+              Favourites
+            </Link>{" "}
+            for future reference!
           </p>
         </div>
         <div>
@@ -33,10 +41,14 @@ function Home() {
       <div className="home-section3">
         <h2 className="home-heading3">What are you waiting for?</h2>
         <Link to="/login">
-        <button className="home-button" >Log in</button>
+          <button className="home-button">Log in</button>
         </Link>
         <p className="home-description3">
-          or <Link to="/schools" className="home-link3">start exploring</Link> without an account.
+          or{" "}
+          <Link to="/schools" className="home-link3">
+            start exploring
+          </Link>{" "}
+          without an account.
         </p>
       </div>
     </section>

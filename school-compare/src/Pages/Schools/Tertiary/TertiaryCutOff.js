@@ -1,17 +1,17 @@
 import React from "react";
 
-import JCCutOff from "../../../CutOff/JC_cut_off.json"; /* CutOffPoints */
+import JCCutOff from "../../../JSON/JC_cut_off.json"; /* CutOffPoints */
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
 import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
 import CutOffCard from "../../../Components/CutOffCard";
+import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
 
 import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
 import "../../../ComponentsCSS/SchoolSearchBar.css";
-import Tertiary from "./Tertiary";
 
 function TertiaryCutOff() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -20,20 +20,61 @@ function TertiaryCutOff() {
   const [searchTerm, setSearchTerm] = useState("");
 
   /* extract the data we want */
-  const displaySchools = JCCutOff.filter((value) => {
-    if (searchTerm === "") return value;
-    else if (
-      value.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      value.arts.includes(searchTerm) || // Numbers
-      value.science.includes(searchTerm) // Numbers
-    ) {
-      return value;
+  let schools = [];
+
+  if (data !== undefined) {
+    // filter to get primary school data
+    let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
+    for (var i = 0; i < data.length; i++) {
+      if (
+        /* Total 18 entries*/
+        data[i].mainlevel_code.toLowerCase() ===
+          "JUNIOR COLLEGE".toLowerCase() ||
+        (data[i].school_name
+          .toLowerCase()
+          .includes("INSTITUTION".toLowerCase()) &&
+          !data[i].school_name
+            .toLowerCase()
+            .includes("JUNIOR".toLowerCase())) ||
+        (data[i].mainlevel_code.toLowerCase() ===
+          "MIXED LEVELS".toLowerCase() &&
+          (data[i].school_name
+            .toLowerCase()
+            .includes("TEMASEK".toLowerCase()) ||
+            data[i].school_name
+              .toLowerCase()
+              .includes("NATIONAL".toLowerCase()) ||
+            data[i].school_name
+              .toLowerCase()
+              .includes("JUNIOR COLLEGE".toLowerCase()) ||
+            data[i].school_name
+              .toLowerCase()
+              .includes("DUNMAN".toLowerCase()) ||
+            data[i].school_name.toLowerCase().includes("RIVER".toLowerCase()) ||
+            data[i].school_name
+              .toLowerCase()
+              .includes("INDEPENDENT".toLowerCase())))
+      ) {
+        schools[index++] = data[i];
+      }
     }
-  })
+  }
+
+  const displaySchools = schools
+    .filter((value) => {
+      if (searchTerm === "") return value;
+      else if (
+        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        value.arts.includes(searchTerm) || // Numbers
+        value.science.includes(searchTerm) // Numbers
+      ) {
+        return value;
+      }
+    })
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
       <div key={school._id}>
-        <CutOffCard data={school} level={"Tertiary"}/>
+        <CutOffCard data={school} level={"Tertiary"} />
       </div>
     ));
 
