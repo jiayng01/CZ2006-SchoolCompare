@@ -4,12 +4,13 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Schools from "./Pages/Schools/SchoolsMainPage";
 import Favourites from "./Pages/Favourites";
-import Forum from "./Pages/Forum";
 import Feedback from "./Pages/Feedback";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import Error from "./Pages/Error";
 
+import Forum from "./Pages/Forum/ForumHomePage";
+import PostCreate from "./Pages/Forum/PostCreate";
 /* General Page */
 import Primary from "./Pages/Schools/Primary/Primary";
 import Secondary from "./Pages/Schools/Secondary/Secondary";
@@ -99,7 +100,14 @@ function App() {
           </Route>
         </Route>
         <Route path="favourites" element={<Favourites />} />
-        <Route path="forum" element={<Forum />} />
+        <Route path="forum" element={<Forum /*isAuth={isAuth}*/ />} />
+        <Route>
+          {""}
+          <Route
+            path="forum/postCreate"
+            element={<PostCreate /*isAuth={isAuth}*/ />}
+          />
+        </Route>{" "}
         <Route path="feedback" element={<Feedback />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
