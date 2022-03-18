@@ -1,5 +1,5 @@
 import React from "react";
-import SchoolsCard from "../../../Components/SchoolsCard";
+import CCACard from "../../../Components/CCACard";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
@@ -11,7 +11,7 @@ import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
 import "../../../ComponentsCSS/SchoolSearchBar.css";
 
-function Secondary() {
+function PrimaryCCA() {
   const [pageNumber, setPageNumber] = useState(0);
   const schoolsPerPage = 20;
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
@@ -25,12 +25,24 @@ function Secondary() {
     let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
     for (var i = 0; i < data.length; i++) {
       if (
-        data[i].mainlevel_code === "SECONDARY" ||
-        data[i].mainlevel_code === "MIXED LEVELS"
+        (data[i].mainlevel_code === "PRIMARY" ||
+          data[i].school_name
+            .toLowerCase()
+            .includes("NICHOLAS".toLowerCase())) &&
+        (data[i].physical_sports.length > 0 ||
+          data[i].visual_and_pa.length > 0 ||
+          data[i].clubs_and_societies.length > 0 ||
+          data[i].uniformed_groups.length > 0 ||
+          data[i].others.length > 0)
       ) {
         schools[index++] = data[i];
       }
     }
+
+    // because api id not in numeric order
+    schools.sort((a, b) => {
+      return a._id - b._id;
+    });
   }
 
   // get only the schools we want
@@ -38,22 +50,15 @@ function Secondary() {
     .filter((value) => {
       if (searchTerm === "") return value;
       else if (
-        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.postal_code
-          .toLowerCase()
-          .includes(
-            searchTerm.toLowerCase() ||
-              value.mrt_desc.toLowerCase().includes(searchTerm.toLowerCase())
-          )
+        value.school_name.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         return value;
-      } 
+      }
     })
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
       <div key={school.school_name}>
-        <SchoolsCard data={school} />
+        <CCACard data={school} level="primary" />
       </div>
     ));
 
@@ -66,10 +71,10 @@ function Secondary() {
   };
 
   return (
-    <div>
-      <SideDrawer level="Secondary" />
+    <>
+      <SideDrawer level="Primary" />
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Dropdown currentPage={"Secondary"} />
+        <Dropdown currentPage={"Primary"} />
         <input
           className="search-bar"
           type="text"
@@ -88,14 +93,15 @@ function Secondary() {
           marginBottom: "1rem",
         }}
       >
-        <div className="school-level-title">Secondary Schools </div>
+        <div className="school-level-title">Primary Schools </div>
         <CompareButton />
       </div>
 
       {displaySchools}
+
       <ReactPaginate
         previousLabel="<"
-        nextLabel=" >"
+        nextLabel=">"
         breakLabel="..."
         pageCount={pageCount}
         onPageChange={handlePageClick}
@@ -108,8 +114,8 @@ function Secondary() {
         disabledClassName={"paginationDisabled"}
         activeClassName={"paginationActive"}
       />
-    </div>
+    </>
   );
 }
 
-export default Secondary;
+export default PrimaryCCA;

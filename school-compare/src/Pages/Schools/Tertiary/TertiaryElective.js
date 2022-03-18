@@ -1,5 +1,5 @@
 import React from "react";
-import SchoolsCard from "../../../Components/SchoolsCard";
+import ElectiveCard from "../../../Components/ElectiveCard";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
@@ -11,7 +11,7 @@ import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
 import "../../../ComponentsCSS/SchoolSearchBar.css";
 
-function Secondary() {
+function TertiaryElective() {
   const [pageNumber, setPageNumber] = useState(0);
   const schoolsPerPage = 20;
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
@@ -25,12 +25,48 @@ function Secondary() {
     let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
     for (var i = 0; i < data.length; i++) {
       if (
-        data[i].mainlevel_code === "SECONDARY" ||
-        data[i].mainlevel_code === "MIXED LEVELS"
+        /* Total 18 entries*/
+        (data[i].mainlevel_code.toLowerCase() ===
+          "JUNIOR COLLEGE".toLowerCase() ||
+          (data[i].school_name
+            .toLowerCase()
+            .includes("INSTITUTION".toLowerCase()) &&
+            !data[i].school_name
+              .toLowerCase()
+              .includes("JUNIOR".toLowerCase())) ||
+          (data[i].mainlevel_code.toLowerCase() ===
+            "MIXED LEVELS".toLowerCase() &&
+            (data[i].school_name
+              .toLowerCase()
+              .includes("TEMASEK".toLowerCase()) ||
+              data[i].school_name
+                .toLowerCase()
+                .includes("NATIONAL".toLowerCase()) ||
+              data[i].school_name
+                .toLowerCase()
+                .includes("JUNIOR COLLEGE".toLowerCase()) ||
+              data[i].school_name
+                .toLowerCase()
+                .includes("DUNMAN".toLowerCase()) ||
+              data[i].school_name
+                .toLowerCase()
+                .includes("RIVER".toLowerCase()) ||
+              data[i].school_name
+                .toLowerCase()
+                .includes("INDEPENDENT".toLowerCase())))) &&
+        (data[i].moe_programme.length > 0 ||
+          data[i].alp_domain.length > 0 ||
+          data[i].llp_domain1.length > 0 ||
+          data[i].llp_domain2.length > 0)
       ) {
         schools[index++] = data[i];
       }
     }
+
+    // because api id not in numeric order
+    schools.sort((a, b) => {
+      return a._id - b._id;
+    });
   }
 
   // get only the schools we want
@@ -38,22 +74,15 @@ function Secondary() {
     .filter((value) => {
       if (searchTerm === "") return value;
       else if (
-        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.postal_code
-          .toLowerCase()
-          .includes(
-            searchTerm.toLowerCase() ||
-              value.mrt_desc.toLowerCase().includes(searchTerm.toLowerCase())
-          )
+        value.school_name.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         return value;
-      } 
+      }
     })
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
       <div key={school.school_name}>
-        <SchoolsCard data={school} />
+        <ElectiveCard data={school} />
       </div>
     ));
 
@@ -64,12 +93,11 @@ function Secondary() {
     setPageNumber(event.selected);
     window.scrollTo(0, 0);
   };
-
   return (
-    <div>
-      <SideDrawer level="Secondary" />
+    <>
+      <SideDrawer level="Tertiary" />
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Dropdown currentPage={"Secondary"} />
+        <Dropdown currentPage={"Tertiary"} />
         <input
           className="search-bar"
           type="text"
@@ -88,14 +116,15 @@ function Secondary() {
           marginBottom: "1rem",
         }}
       >
-        <div className="school-level-title">Secondary Schools </div>
+        <div className="school-level-title">Tertiary Schools </div>
         <CompareButton />
       </div>
 
       {displaySchools}
+
       <ReactPaginate
         previousLabel="<"
-        nextLabel=" >"
+        nextLabel=">"
         breakLabel="..."
         pageCount={pageCount}
         onPageChange={handlePageClick}
@@ -108,8 +137,8 @@ function Secondary() {
         disabledClassName={"paginationDisabled"}
         activeClassName={"paginationActive"}
       />
-    </div>
+    </>
   );
 }
 
-export default Secondary;
+export default TertiaryElective;

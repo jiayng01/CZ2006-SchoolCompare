@@ -3,9 +3,14 @@
   text-transform: capitalize;
 }
 
+.subjects-card-school-name{
+  text-align: center;
+}
+
 .subjects-desc {
   text-align: justify;
   width: 32rem;
+  text-transform: capitalize;
 }
 
 @media screen and (max-width: 700px) {

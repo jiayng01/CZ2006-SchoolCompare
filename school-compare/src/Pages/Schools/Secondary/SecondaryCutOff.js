@@ -1,12 +1,13 @@
 import React from "react";
 
-import secondaryCutOff from "../../../CutOff/secondary_cut_off.json"; /* CutOffPoints */
+import secondaryCutOff from "../../../JSON/secondary_cut_off.json"; /* CutOffPoints */
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
 import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
 import CutOffCard from "../../../Components/CutOffCard";
+import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
 
 import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
@@ -19,11 +20,27 @@ function SecondaryCutOff() {
   const [searchTerm, setSearchTerm] = useState("");
 
   /* extract the data we want */
-  const displaySchools = secondaryCutOff
+  let schools = [];
+
+  if (data !== undefined) {
+    // filter to get primary school data
+    let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
+    for (var i = 0; i < data.length; i++) {
+      if (
+        data[i].mainlevel_code === "SECONDARY" ||
+        data[i].mainlevel_code === "MIXED LEVELS"
+      ) {
+        schools[index++] = data[i];
+      }
+    }
+  }
+
+
+  const displaySchools = schools
     .filter((value) => {
       if (searchTerm === "") return value;
       else if (
-        value.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         value.express.includes(searchTerm) || // Numbers
         value.na.includes(searchTerm) || // Numbers
         value.nt.includes(searchTerm) // Numbers
@@ -34,7 +51,7 @@ function SecondaryCutOff() {
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
       <div key={school._id}>
-        <CutOffCard data={school} level={"Secondary"}/>
+        <CutOffCard data={school} level={"Secondary"} />
       </div>
     ));
 
@@ -44,7 +61,7 @@ function SecondaryCutOff() {
     setPageNumber(event.selected);
     window.scrollTo(0, 0);
   };
-  
+
   return (
     <>
       <SideDrawer level="Secondary" />

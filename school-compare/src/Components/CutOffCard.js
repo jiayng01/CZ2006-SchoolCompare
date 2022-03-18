@@ -11,7 +11,7 @@ import MoreInfoButton from "./MoreInfoButton";
 
 function CutOffCard(props) {
   const level = props.level;
-  props.data.name = props.data.name.toLowerCase();
+  props.data.school_name = props.data.school_name.toLowerCase();
 
   const favouritesCtx = useContext(FavouritesContext);
   const itemIsFavourite = favouritesCtx.itemIsFavourite(props.data._id);
@@ -23,13 +23,15 @@ function CutOffCard(props) {
       favouritesCtx.addFavourite(props.data);
     }
   }
-  console.log(props.data.name);
 
   if (level === "Secondary") {
+    if (props.data.express.length === 0 && props.data.na.length === 0 && props.data.nt.length === 0){
+      return null;
+    }
     return (
       <div className="school-card cut-off-card">
         <p className="school-name">
-          {props.data.name}
+          {props.data.school_name}
           <FontAwesomeIcon
             className={
               !itemIsFavourite ? "fa-heart-icon" : "fa-heart-icon-toggled"
@@ -67,7 +69,7 @@ function CutOffCard(props) {
     return (
         <div className="school-card cut-off-card">
           <p className="school-name">
-            {props.data.name}
+            {props.data.school_name}
             <FontAwesomeIcon
               className={
                 !itemIsFavourite ? "fa-heart-icon" : "fa-heart-icon-toggled"

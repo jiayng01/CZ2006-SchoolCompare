@@ -20,7 +20,8 @@ function Feedback() {
     //alert(JSON.stringify(values, null, 2));
     console.log("Form data", values);
     setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
+      alert("Thank you for your feedback!\nFeedback received!");
       setSubmitting(false);
     }, 400);
   };
