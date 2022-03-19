@@ -25,7 +25,11 @@ function CutOffCard(props) {
   }
 
   if (level === "Secondary") {
-    if (props.data.express.length === 0 && props.data.na.length === 0 && props.data.nt.length === 0){
+    if (
+      props.data.express.length === 0 &&
+      props.data.na.length === 0 &&
+      props.data.nt.length === 0
+    ) {
       return null;
     }
     return (
@@ -41,17 +45,74 @@ function CutOffCard(props) {
           ></FontAwesomeIcon>
         </p>
         <div className="cut-off-container">
+          {/* <div className="cut-off-container">
+            <div>
+              <span className="cut-off-entry">Express</span> :
+              {props.data.express}
+            </div>
+
+            <div>
+              <span className="cut-off-entry">NA</span> :{props.data.na}
+            </div>
+
+            <div>
+              <span className="cut-off-entry">NT</span> :{props.data.nt}
+            </div>
+          </div> */}
+          <div className="cut-off-box">
+            <span className="cut-off-entry">Express</span>
+            <div className="cut-off-affiliation">Affiliated: </div>
+            <div>{props.data.express_affiliated}</div>
+            <div className="cut-off-affiliation">Non-Affiliated:</div>
+            <div>{props.data.express}</div>
+          </div>
+          <div className="cut-off-box">
+            <span className="cut-off-entry">NA</span>
+            <div className="cut-off-affiliation">Affiliated:</div>
+            <div>{props.data.na_affiliated}</div>
+            <div className="cut-off-affiliation">Non-Affiliated:</div>
+            <div>{props.data.na}</div>
+          </div>
+
+          <div className="cut-off-box">
+            <span className="cut-off-entry">NT</span>
+            <div className="cut-off-affiliation">Affiliated:</div>
+            <div>{props.data.nt_affiliated}</div>
+            <div className="cut-off-affiliation">Non-Affiliated:</div>
+            <div>{props.data.nt}</div>
+          </div>
+        </div>
+
+        <div className="container">
+          <label className="compare-btn-form-control">
+            click to compare
+            <input type="checkbox" className="compare-btn"></input>
+          </label>
+        </div>
+
+        <MoreInfoButton />
+      </div>
+    );
+  } else if (level === "Tertiary") {
+    return (
+      <div className="school-card cut-off-card">
+        <p className="school-name">
+          {props.data.school_name}
+          <FontAwesomeIcon
+            className={
+              !itemIsFavourite ? "fa-heart-icon" : "fa-heart-icon-toggled"
+            }
+            icon={faHeart}
+            onClick={toggleFavouriteStatusHandler}
+          ></FontAwesomeIcon>
+        </p>
+        <div className="cut-off-container">
           <div>
-            <span className="cut-off-entry">Express</span> :{" "}
-            {props.data.express}
+            <span className="cut-off-entry">Arts</span> : {props.data.arts}
           </div>
           <div>
-            <span className="cut-off-entry">Normal Academic (NA)</span> :{" "}
-            {props.data.na}
-          </div>
-          <div>
-            <span className="cut-off-entry">Normal Technical (NT)</span> :
-            {props.data.nt}
+            <span className="cut-off-entry">Science</span> :{" "}
+            {props.data.science}
           </div>
         </div>
         <div className="container">
@@ -64,41 +125,6 @@ function CutOffCard(props) {
         <MoreInfoButton />
       </div>
     );
-  }
-  else if (level === "Tertiary" ){
-    return (
-        <div className="school-card cut-off-card">
-          <p className="school-name">
-            {props.data.school_name}
-            <FontAwesomeIcon
-              className={
-                !itemIsFavourite ? "fa-heart-icon" : "fa-heart-icon-toggled"
-              }
-              icon={faHeart}
-              onClick={toggleFavouriteStatusHandler}
-            ></FontAwesomeIcon>
-          </p>
-          <div className="cut-off-container">
-            <div>
-              <span className="cut-off-entry">Arts</span> :{" "}
-              {props.data.arts}
-            </div>
-            <div>
-              <span className="cut-off-entry">Science</span> :{" "}
-              {props.data.science}
-            </div>
-
-          </div>
-          <div className="container">
-            <label className="compare-btn-form-control">
-              click to compare
-              <input type="checkbox" className="compare-btn"></input>
-            </label>
-          </div>
-  
-          <MoreInfoButton />
-        </div>
-      );
   }
 }
 

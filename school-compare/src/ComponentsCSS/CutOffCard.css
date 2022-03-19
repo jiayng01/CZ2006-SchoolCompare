@@ -1,7 +1,39 @@
-.cut-off-container{
-    margin-left: 1rem;
+.cut-off-card {
+  height: fit-content;
 }
 
-.cut-off-entry{
-    color: crimson;
+.cut-off-container {
+  display: flex;
+  margin-right: 1.5rem;
+  align-items: center;
+}
+
+.cut-off-container > * {
+  flex: 1 1 100px;
+}
+
+.cut-off-box {
+  background-color: #d5dfdf;
+  border-radius: 10px;
+  border: 1px solid rgb(146, 146, 146);
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.cut-off-affiliation {
+  border: 1px solid rgb(201, 192, 192);
+  background-color: aliceblue;
+  border-radius: 5px;
+  border-bottom: 1px solid black;
+  width: fit-content;
+  height: 2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin: auto;
+}
+
+.cut-off-entry {
+  color: crimson;
+  text-decoration: 2px underline crimson;
 }
