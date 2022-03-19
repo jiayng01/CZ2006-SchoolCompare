@@ -3,6 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import "../PagesCSS/Feedback.css";
 import FormTextArea from "../Components/FormTextError";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "../Firebase";
 
 function Feedback() {
   const initialValues = {
@@ -15,21 +17,27 @@ function Feedback() {
     email: Yup.string().email("Invalid email address").required("Required"),
     message: Yup.string().required("Required"),
   });
-  const onSubmit = (values, { setSubmitting }) => {
-    // connect to API in the future
-    //alert(JSON.stringify(values, null, 2));
-    console.log("Form data", values);
-    setTimeout(() => {
-      // alert(JSON.stringify(values, null, 2));
-      alert("Thank you for your feedback!\nFeedback received!");
-      setSubmitting(false);
-    }, 400);
+
+  const feedbackCollectionRef = collection(db, "feedback");
+  const onSubmit = async (values, actions) => {
+    await addDoc(feedbackCollectionRef, {
+      timestamp: serverTimestamp(),
+      values,
+    })
+      .then(() => {
+        alert("Feedback received!\nThank you for your feedback!");
+        actions.resetForm();
+      })
+      .catch((err) => {
+        console.log("Error: ", err);
+        alert("Submission unsuccessful.");
+      });
   };
 
   return (
     <div className="feedback-form-container">
       <p className="feedback-form-title">FEEDBACK</p>
-      <p className="feedback-form-p">we'd love you hear your feedback!</p>
+      <p className="feedback-form-p">We'd love to hear your feedback!</p>
       <hr color="black" size="1.2" width="320px" style={{ margin: "auto" }} />
       <Formik
         initialValues={initialValues}
