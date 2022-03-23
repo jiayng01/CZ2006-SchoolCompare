@@ -8,7 +8,7 @@ import { db, auth, storage } from "../../Firebase";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { ref } from "firebase/storage";
-import ProgressBar from "../../Components/ProgressBar";
+// import ProgressBar from "../../Components/ProgressBar";
 
 // TODO: API for onSubmit method
 // TODO: Word Limit for query Field
