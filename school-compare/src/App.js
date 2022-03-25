@@ -13,6 +13,8 @@ import Error from "./Pages/Error";
 
 import Forum from "./Pages/Forum/ForumHomePage";
 import PostCreate from "./Pages/Forum/PostCreate";
+import Post from "./Pages/Forum/Post";
+
 /* General Page */
 import Primary from "./Pages/Schools/Primary/Primary";
 import Secondary from "./Pages/Schools/Secondary/Secondary";
@@ -107,9 +109,11 @@ function App() {
           {""}
           <Route
             path="forum/postCreate"
-            element={<PostCreate /*isAuth={isAuth}*/ />}
-          />
-        </Route>{" "}
+            element={<PostCreate /*isAuth={isAuth}*/ />} />
+          <Route
+            path="forum/Post/:title/:id"
+            element={<Post /*isAuth={isAuth}*/ />} />
+        </Route>
         <Route path="feedback" element={<Feedback />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />

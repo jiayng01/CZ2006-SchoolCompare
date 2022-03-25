@@ -8,12 +8,12 @@ import { db, auth, storage } from "../../Firebase";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { ref } from "firebase/storage";
-// import ProgressBar from "../../Components/ProgressBar";
+// import ProgressBar from "./ProgressBar";
 
 // TODO: API for onSubmit method
 // TODO: Word Limit for query Field
 // TODO: Image attachment
-// TODO: secure routing
+// TODO: secure routing to forum main page
 
 function PostCreate({ isAuth }) {
 
@@ -33,7 +33,7 @@ function PostCreate({ isAuth }) {
   const postsCollectionRef = collection(db, "posts");
   const navigate = useNavigate();
 
-  const onSubmit = async(values) => {
+  const onSubmit = async (values) => {
     //const username = !values.toggle ? auth.currentUser.displayName: "User" + auth.currentUser.uid;
     await addDoc(postsCollectionRef, {
       values,
@@ -46,6 +46,7 @@ function PostCreate({ isAuth }) {
       navigate("/Forum");
     }).catch(err => {
       toast("Post upload failed!", { type: "error" })
+      console.log(err)
     })
 
 
@@ -57,12 +58,11 @@ function PostCreate({ isAuth }) {
   //   }
   // }, [])
 
-
   return (
     <div className="pcContainer">
       <p className="pc-forum">Forum</p>
       <p className="pc-sent">Post your questions here!</p>
-      <hr color="black" size="1.2" width="320px" style={{ margin: "auto" }}/>
+      <hr color="black" size="1.2" width="320px" style={{ margin: "auto" }} />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -99,7 +99,11 @@ function PostCreate({ isAuth }) {
             {/* checkbox */}
             <div className="form-control-checkbox">
               <label>
-                <Field type="checkbox" name="checkbox" id="checkbox" />
+                <Field
+                  type="checkbox"
+                  name="checkbox"
+                  id="checkbox"
+                />
                 Post anonymously
               </label>
             </div>
