@@ -1,12 +1,14 @@
 import "./App.css";
 import Navbar from "./Components/Navbar";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Schools from "./Pages/Schools/SchoolsMainPage";
 import Favourites from "./Pages/Favourites";
 import Feedback from "./Pages/Feedback";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
+import Reset from "./Pages/ResetPassword";
+import Dashboard from "./Pages/Dashboard";
 import Error from "./Pages/Error";
 
 import Forum from "./Pages/Forum/ForumHomePage";
@@ -111,6 +113,8 @@ function App() {
         <Route path="feedback" element={<Feedback />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
+        <Route exact path="/reset" element={<Reset />} />
+        <Route exact path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </>
