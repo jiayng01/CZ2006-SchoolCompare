@@ -6,7 +6,7 @@ import "../../PagesCSS/Forum/Post.css";
 import Comments from "./Comments"
 import Time from "../../Components/DatePosted"
 
-// TODO: Comment section
+// TODO: Post Edit with img
 // TODO: Auth signed in users to comment
 
 function Post() {

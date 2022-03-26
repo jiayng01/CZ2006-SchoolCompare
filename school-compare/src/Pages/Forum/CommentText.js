@@ -19,7 +19,8 @@ function CommentText({ handleSubmit, submitLabel, hasCancelButton = false, initi
             <textarea
                 className='comment-form-textarea'
                 value={text}
-                onChange={onChange} />
+                onChange={onChange}
+                placeholder='what are your thoughts?' />
             <button
                 className='comment-button'
                 disabled={isTextAreaDisabled}>

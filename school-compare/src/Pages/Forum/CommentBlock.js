@@ -7,6 +7,9 @@ import { createComment } from './CommentController';
 
 function Comment({ comment, replies, getReplies, isAuth, activeComment, setActiveComment, updateComment, addComment }) {
 
+    // TODO: Authentication C & U operation
+    // TODO: Image + CSS
+
     const editTime = 300000;
     const timePassed = new Date() - new Date(comment.createdAt) > editTime
     // const canReply = isAuth;
