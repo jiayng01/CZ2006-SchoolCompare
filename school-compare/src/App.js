@@ -104,15 +104,15 @@ function App() {
           </Route>
         </Route>
         <Route path="favourites" element={<Favourites />} />
-        <Route path="forum" element={<Forum /*isAuth={isAuth}*/ />} />
+        <Route path="forum" element={<Forum />} />
         <Route>
           {""}
           <Route
             path="forum/postCreate"
-            element={<PostCreate /*isAuth={isAuth}*/ />} />
+            element={<PostCreate />} />
           <Route
             path="forum/Post/:title/:postId"
-            element={<Post /*isAuth={isAuth}*/ />} />
+            element={<Post />} />
         </Route>
         <Route path="feedback" element={<Feedback />} />
         <Route path="login" element={<Login />} />

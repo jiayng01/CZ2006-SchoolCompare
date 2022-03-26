@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
-function CommentText({ handleSubmit, submitLabel, hasCancelButton = false, initialText = '', handleCancel }) {
+function CommentText({ handleSubmit, submitLabel, hasCancelButton = false, initialText = '', handleCancel, postId }) {
+
+    // TODO: Authentication
 
     const [text, setText] = useState(initialText);
     const isTextAreaDisabled = text.length === 0;
 
     const onSubmit = event => {
         event.preventDefault()
-        handleSubmit(text);
+        handleSubmit(text, postId);
         setText("")
     }
     const onChange = event => {

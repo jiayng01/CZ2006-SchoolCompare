@@ -17,6 +17,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  onAuthStateChanged
 } from "firebase/auth";
 // import "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use

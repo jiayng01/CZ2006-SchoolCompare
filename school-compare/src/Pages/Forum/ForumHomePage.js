@@ -1,65 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { collection, doc, getDocs, onSnapshot, orderBy, query } from "firebase/firestore"
-import { auth, db } from "../../Firebase"
+import { auth } from "../../Firebase"
 import "../../PagesCSS/Forum/ForumMainPage.css"
 import Time from "../../Components/DatePosted"
 import SearchBar from "../../Components/SearchBar";
+import DropDownFilter from "./DropDownFilter";
+import { useGetPostsReplies } from "./PostController"
 // TODO: Pagination of the posts
 // TODO: Auth signed in users to create posts, if 
 // not signed in redirect to login page
-// TODO: Drop down bar for sorting by activity and latest post
-// TODO: Edit post
+// TODO: Edit post ?
 
 function ForumHomePage({ isAuth }) {
 
-  const [postList, setPostList] = useState([]);
+
   const [filteredPost, setFilteredPost] = useState([]);
   const [textEntered, setTextEntered] = useState('')
+  const [chosen, setChosen] = useState("Latest");
+  const fullList = useGetPostsReplies();
+  const replyList = fullList.replyList;
+  const postList = fullList.postList;
 
+  const getRepliesNo = (post) => {
+    return replyList.filter((reply) => reply.values.postId === post.id).length
+  }
+
+  const arrangeByAct = () => {
+    return postList.map((post) => post).sort((a, b) => getRepliesNo(b) - getRepliesNo(a))
+  }
+
+  const arrangeByOld = () => {
+    return postList.map((post) => post).sort((a, b) => a.values.createdAt - b.values.createdAt)
+  }
+  const list = chosen === "Latest" ? postList :
+    chosen === "Oldest" ? arrangeByOld() :
+      arrangeByAct()
 
   const handleFilter = (event) => {
     const searchTerm = event.target.value
     setTextEntered(searchTerm)
-    const newFilter = postList.filter((post) => {
+    const newFilter = list.filter((post) => {
       return post.values.title.toLowerCase().includes(searchTerm.toLowerCase())
     })
     searchTerm === "" ? setFilteredPost([]) : setFilteredPost(newFilter)
   }
-
-  useEffect(() => {
-    const postsCollectionRef = query(collection(db, "posts"),
-      orderBy("values.createdAt", "desc"));
-    const getPosts = async () => {
-      const col = await getDocs(postsCollectionRef);
-      setPostList(col.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id
-      })))
-    }
-    getPosts();
-
-    // const getPosts = onSnapshot(postsCollectionRef, (snapshot) => {
-    //   setPostList(
-    //     snapshot.docs.map((doc) => ({
-    //       ...doc.data(),
-    //       id: doc.id
-    //     })))
-    // })
-    // return getPosts;
-
-  }, []);
-
-  // const deletePost = async (id) => {
-  //   const postDoc = doc(db, "posts", id)
-  //   await deleteDoc(postDoc)
-  // }
 
   return (
     <div className="forum-mainpage">
       <div className="forum-header">
         <h1 className="forum-title"> Forum Page </h1>
         <Link to="./PostCreate">Create Post</Link>
+        <DropDownFilter
+          chosen={chosen}
+          setChosen={setChosen} />
         <SearchBar
           placeholder="Search post..."
           handleFilter={handleFilter}
@@ -81,16 +74,11 @@ function ForumHomePage({ isAuth }) {
                 <Time comment={post} />
                 <h1 className="posts-title">{post.values.title}</h1>
               </Link>
-              {/* {isAuth && post.author.id === auth.currentUser.uid && ( */}
-              {/* <div className="post-delete">
-                <button onClick={() => deletePost(post.id)}>X</button>
-              </div> }
-              {)} */}
             </div>
           </div>
         )
       })) :
-        postList.map((post) => {
+        list.map((post) => {
           return (
             <div className="post" key={post.id}>
               {""}
@@ -103,11 +91,6 @@ function ForumHomePage({ isAuth }) {
                   <Time comment={post} />
                   <h1 className="posts-title">{post.values.title}</h1>
                 </Link>
-                {/* {isAuth && post.author.id === auth.currentUser.uid && ( */}
-                {/* <div className="post-delete">
-                <button onClick={() => deletePost(post.id)}>X</button>
-              </div> }
-              {)} */}
               </div>
             </div>
           )

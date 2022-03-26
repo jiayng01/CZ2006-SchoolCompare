@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../../PagesCSS/Forum/PostCreate.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FormTextError from "../../Components/FormTextError";
-import { addDoc, collection, Timestamp, getDownloadURL } from "firebase/firestore";
-import { db, auth, storage } from "../../Firebase";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { Timestamp } from "firebase/firestore";
+import { auth, storage } from "../../Firebase";
 import { ref } from "firebase/storage";
+import { useSubmit as onSubmit } from "./PostController"
 // import ProgressBar from "./ProgressBar";
 
 // TODO: API for onSubmit method
@@ -30,27 +29,6 @@ function PostCreate({ isAuth }) {
     query: Yup.string().required("A desciption of the query is required!"),
   });
 
-  const postsCollectionRef = collection(db, "posts");
-  const navigate = useNavigate();
-
-  const onSubmit = async (values) => {
-    // Controller Function
-    //const username = !values.toggle ? auth.currentUser.displayName: "User" + auth.currentUser.uid;
-    await addDoc(postsCollectionRef, {
-      values,
-      author: {
-        name: "test",
-        id: 123, //auth.currentUser.uid,
-      }
-    }).then(() => {
-      toast("Succesfully Posted!", { type: "success" });
-      navigate("/Forum");
-    }).catch(err => {
-      toast("Post upload failed!", { type: "error" })
-      console.log(err)
-    })
-  };
-
   // useEffect(() => {
   //   if (!isAuth) {
   //     navigate("/login")
@@ -58,9 +36,9 @@ function PostCreate({ isAuth }) {
   // }, [])
 
   return (
-    <div className="pcContainer">
+    <div className="pc-container">
       <p className="pc-forum">Forum</p>
-      <p className="pc-sent">Post your questions here!</p>
+      <p className="pc-title">Post your questions here!</p>
       <hr color="black" size="1.2" width="320px" style={{ margin: "auto" }} />
       <Formik
         initialValues={initialValues}
