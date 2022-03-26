@@ -30,7 +30,7 @@ function SearchBar({ placeholder, handleFilter, filteredPost, setFilteredPost, t
           {filteredPost.slice(0, 5).map((post) => {
             return (
               <Link to={`./Post/${post.values.title.trim().replace(/\s+/g, '-')}/${post.id}`}>
-                <p>{post.values.title}</p>
+                <p id={post.id}>{post.values.title}</p>
               </Link>
             )
           }

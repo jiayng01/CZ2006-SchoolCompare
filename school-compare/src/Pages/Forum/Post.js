@@ -1,31 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
-import { auth, db } from "../../Firebase"
-import { doc, onSnapshot } from "firebase/firestore"
+import { auth } from '../../Firebase';
 import "../../PagesCSS/Forum/Post.css";
 import Comments from "./Comments"
 import Time from "../../Components/DatePosted"
+import { useGetPost } from "./PostController"
 
-// TODO: Post Edit with img
-// TODO: Auth signed in users to comment
+// TODO: Post Edit with img ?
 
 function Post() {
   const { postId } = useParams();
-  const [post, setPost] = useState([]);
-  const postDocRef = doc(db, "posts", postId)
-
-
-  useEffect(() => {
-    // Controller Function
-    const getSpecificPost = onSnapshot(postDocRef, (doc) => {
-      setPost([{
-        ...doc.data(),
-        id: doc.id
-      }])
-    })
-    return getSpecificPost;
-
-  }, []);
+  const post = useGetPost(postId)
 
   return (
     <div>

@@ -22,7 +22,7 @@ function Comment({ comment, replies, getReplies, isAuth, activeComment, setActiv
         activeComment.id === comment.id &&
         activeComment.type === "replying";
     const parentId = comment.id
-    //const postId = comment.values.postId
+    const postId = comment.values.postId
 
     return (
         <div className='comment'>
@@ -30,10 +30,14 @@ function Comment({ comment, replies, getReplies, isAuth, activeComment, setActiv
                 {/* <img /> */}
             </div>
             <div className='comment-right-part'>
+
                 <div className='comment-content'>
+                    {/*Author*/}
                     <div className='comment-author'>{comment.author.name}</div>
                     <Time comment={comment} />
                 </div>
+
+                {/* Edit Comment or comment body */}
                 {!isEditing ?
                     <div className='comment-text'>
                         {comment.values.body}
@@ -42,10 +46,15 @@ function Comment({ comment, replies, getReplies, isAuth, activeComment, setActiv
                         submitLabel='Update'
                         hasCancelButton
                         initialText={comment.values.body}
-                        handleSubmit={(text) => updateComment(text, comment.id)}
+                        handleSubmit={(text) => {
+                            updateComment(text, comment.id)
+                            setActiveComment(null)
+                        }}
                         handleCancel={() => setActiveComment(null)}
-                    />}
+                    />
+                }
 
+                {/* Comment Actions*/}
                 <div className='comment-actions'>
                     <div
                         className='comment-action'
@@ -58,12 +67,17 @@ function Comment({ comment, replies, getReplies, isAuth, activeComment, setActiv
                         Edit
                     </div>
                 </div>
+
+
+                {/* To Reply*/}
                 {isReplying && (
                     <CommentText
                         submitLabel="Reply"
-                        handleSubmit={(text) => addComment(text, parentId)}
+                        handleSubmit={(text) => addComment(text, postId, parentId)}
                     />
                 )}
+
+                {/* Nested Replies*/}
                 {replies.length > 0 && (
                     <div className='replies'>
                         {replies.map((reply) => (
