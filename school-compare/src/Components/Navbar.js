@@ -59,10 +59,10 @@ function Navbar() {
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               Favourites
+              <span className="navbar-badge">
+                {favouritesCtx.totalFavourites}
+              </span>
             </NavLink>
-            <span className="navbar-badge">
-              {favouritesCtx.totalFavourites}
-            </span>
           </li>
 
           {/* To Forum page */}
@@ -149,6 +149,9 @@ function Navbar() {
                         isActive ? activeStyle : undefined
                       }
                     >
+                      <span className="navbar-badge">
+                        {favouritesCtx.totalFavourites}
+                      </span>
                       Favourites
                     </NavLink>
                   </li>

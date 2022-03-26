@@ -85,11 +85,9 @@ export default App;*/
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  auth,
-  registerWithEmailAndPassword,
-} from "../Firebase";
+import { auth, registerWithEmailAndPassword } from "../Firebase";
 import "../PagesCSS/SignUp.css";
+import BackgroundParticle from "../Components/BackgroundParticle";
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -104,8 +102,10 @@ function Register() {
     if (loading) return;
     if (user) navigate("/dashboard", { replace: true });
   }, [user, loading]);
+
   return (
     <div className="register">
+      <BackgroundParticle />
       <div className="register__container">
         <input
           type="text"
@@ -132,7 +132,11 @@ function Register() {
           Register
         </button>
         <div>
-          Already have an account? <Link to="/">Login</Link> now.
+          Already have an account?{" "}
+          <Link to="/login" className="login__now">
+            Login
+          </Link>{" "}
+          now.
         </div>
       </div>
     </div>

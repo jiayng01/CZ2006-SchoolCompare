@@ -1,25 +1,69 @@
 .dashboard {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 20rem;
+  margin: auto;
+  margin-top: 8%;
+}
+.dashboard__container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #fcbfaa;
+  background-image: linear-gradient(315deg, #fcbfaa 0%, #f8e4c8 74%);
+  padding: 50px 30px;
+  border-radius: 10px;
+  border: 2px solid #f7d08a;
+}
+
+.dashboard-details {
+  font-size: 20px;
+  border-bottom: 2px solid #6a4bf5;
+  background-color: #e4defd;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px;
+  width: fit-content;
+  margin: auto;
+}
+
+.dashboard__btn {
+  padding: 10px;
+  font-size: 18px;
+  margin-top: 10px;
+  border: none;
+  color: white;
+  background-color: #ee8e6b;
+  background-image: linear-gradient(315deg, #ee8e6b 0%, #ef6da0 74%);
+  border-radius: 5px;
+}
+.dashboard div {
+  margin-top: 7px;
+}
+
+@media screen and (max-width: 1000px) {
+  .dashboard {
+    width: 25rem;
+    margin: auto;
+    margin-top: 10%;
   }
+
   .dashboard__container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    background-color: #dcdcdc;
-    padding: 30px;
+    padding-top: 20%;
+    padding-bottom: 20%;
   }
-  .dashboard__btn {
-    padding: 10px;
-    font-size: 18px;
-    margin-top: 10px;
-    border: none;
-    color: white;
-    background-color: black;
+}
+
+@media screen and (max-width: 700px) {
+  .dashboard {
+    width: 19rem;
+    margin: auto;
+    margin-top: 20%;
   }
-  .dashboard div {
-    margin-top: 7px;
+}
+
+@media screen and (max-width: 300px) {
+  .dashboard {
+    width: 15rem;
+    margin: auto;
+    margin-top: 20%;
   }
+}

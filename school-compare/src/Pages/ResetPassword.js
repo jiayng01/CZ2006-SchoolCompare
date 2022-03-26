@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { auth, sendPasswordReset } from "../Firebase";
 import "../PagesCSS/Reset.css";
+import BackgroundParticle from "../Components/BackgroundParticle";
 function Reset() {
   const [email, setEmail] = useState("");
   const [user, loading, error] = useAuthState(auth);
@@ -12,8 +13,10 @@ function Reset() {
     if (loading) return;
     if (user) navigate("/dashboard");
   }, [user, loading]);
+
   return (
     <div className="reset">
+      <BackgroundParticle />
       <div className="reset__container">
         <input
           type="text"
@@ -22,14 +25,15 @@ function Reset() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
         />
-        <button
-          className="reset__btn"
-          onClick={() => sendPasswordReset(email)}
-        >
+        <button className="reset__btn" onClick={() => sendPasswordReset(email)}>
           Send password reset email
         </button>
         <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
+          Don't have an account?{" "}
+          <Link to="/SignUp" className="register__now">
+            Register
+          </Link>{" "}
+          now.
         </div>
       </div>
     </div>

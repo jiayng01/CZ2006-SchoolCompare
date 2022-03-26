@@ -1,33 +1,84 @@
+#tsparticles {
+  position: absolute;
+}
+
 .register {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 20rem;
+  margin: auto;
+  margin-top: 8%;
+}
+.register__container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #e2d5e6;
+  background-image: linear-gradient(315deg, #f4d2ff 0%, #b8d0e2 74%);
+  padding: 50px 30px;
+  border-radius: 10px;
+  border: 2px solid #ad9ff3;
+}
+.register__textBox {
+  border-radius: 5px;
+  border: 1px solid #cfc7f8;
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.register__btn {
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border: none;
+  color: white;
+  background-color: #ee8e6b;
+  background-image: linear-gradient(315deg, #ee8e6b 0%, #ef6da0 74%);
+}
+.register__google {
+  background-color: #4285f4;
+}
+.register div {
+  margin-top: 7px;
+}
+
+.login__now {
+  color: crimson;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.login__now:hover {
+  background-color: transparent;
+  border-bottom: 4px solid rgb(182, 20, 133);
+  color: crimson;
+}
+
+@media screen and (max-width: 1000px) {
+  .register {
+    width: 25rem;
+    margin: auto;
+    margin-top: 10%;
   }
+
   .register__container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    background-color: #dcdcdc;
-    padding: 30px;
+    padding-top: 20%;
+    padding-bottom: 20%;
   }
-  .register__textBox {
-    padding: 10px;
-    font-size: 18px;
-    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  .register {
+    width: 19rem;
+    margin: auto;
+    margin-top: 20%;
   }
-  .register__btn {
-    padding: 10px;
-    font-size: 18px;
-    margin-bottom: 10px;
-    border: none;
-    color: white;
-    background-color: black;
+}
+
+@media screen and (max-width: 300px) {
+  .register {
+    width: 15rem;
+    margin: auto;
+    margin-top: 20%;
   }
-  .register__google {
-    background-color: #4285f4;
-  }
-  .register div {
-    margin-top: 7px;
-  }
+}

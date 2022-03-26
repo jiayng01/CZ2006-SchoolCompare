@@ -28,9 +28,10 @@
   border-bottom: 1px solid black;
   width: fit-content;
   height: 2rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
   margin: auto;
+  font-size: 18px;
 }
 
 .cut-off-entry {

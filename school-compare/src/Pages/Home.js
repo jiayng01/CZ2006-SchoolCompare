@@ -34,7 +34,7 @@ function Home() {
             for future reference!
           </p>
         </div>
-        <div>
+        <div className="home-img2">
           <img src={pic2} alt="Search" className="home-img2" />
         </div>
       </div>

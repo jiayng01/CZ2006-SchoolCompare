@@ -86,6 +86,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth, logInWithEmailAndPassword } from "../Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "../PagesCSS/Login.css";
+import BackgroundParticle from "../Components/BackgroundParticle";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -98,8 +100,10 @@ function Login() {
     }
     if (user) navigate("/dashboard");
   }, [user, loading]);
+
   return (
     <div className="login">
+      <BackgroundParticle />
       <div className="login__container">
         <input
           type="text"
@@ -122,10 +126,16 @@ function Login() {
           Login
         </button>
         <div>
-          <Link to="/reset">Forgot Password</Link>
+          <Link to="/reset" className="forget__password">
+            Forgot Password
+          </Link>
         </div>
         <div>
-          Don't have an account? <Link to="/SignUp">Register</Link> now.
+          Don't have an account?{" "}
+          <Link to="/SignUp" className="sign__up">
+            Register
+          </Link>{" "}
+          now.
         </div>
       </div>
     </div>
