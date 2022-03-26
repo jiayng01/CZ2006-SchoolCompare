@@ -6,7 +6,6 @@ import "../../PagesCSS/Forum/ForumMainPage.css"
 import Time from "../../Components/DatePosted"
 import SearchBar from "../../Components/SearchBar";
 // TODO: Pagination of the posts
-// TODO: Secure routing to individual posts
 // TODO: Auth signed in users to create posts, if 
 // not signed in redirect to login page
 // TODO: Drop down bar for sorting by activity and latest post

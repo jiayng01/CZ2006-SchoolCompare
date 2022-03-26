@@ -1,3 +1,4 @@
+
 .posts-container {
 	font-family: "Saira Condensed", sans-serif;
 	font-size: 24px;
@@ -125,79 +126,6 @@ a {
 	margin-top: 20px;
   }
 
-.search-input {
-	margin-top: 105px;
-	display: flex;
-  }
-  
-.search input {
-	background-color: white;
-	border: 0;
-	border-radius: 2px;
-	border-top-right-radius: 0px;
-	border-bottom-right-radius: 0px;
-	font-size: 15px;
-	padding: 15px;
-	height: 25px;
-	width: 200px;
-	border-radius: 1rem;
-  }
-  
-.search-icon {
-	height: 30px;
-	width: 40px;
-	margin-top: 10px;
-	background-color: white;
-	display: grid;
-	place-items: center;
-	border-radius: 1rem;
-	margin-left: -50px;
-	
-  }
-  
-input:focus {
-	outline: none;
-  }
-.search-icon svg {
-	font-size: 35px;
-  }
-  
-.data-result {
-	margin-top: 5px;
-	width: 200px;
-	height: 200px;
-	background-color: white;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-	overflow: hidden;
-	overflow-y: auto;
-  }
-  
-.data-result::-webkit-scrollbar {
-	display: none;
-  }
-  
-.data-result .data-item {
-	width: 100%;
-	height: 50px;
-	display: flex;
-	align-items: center;
-	color: black;
-  }
-  
-.data-item p {
-	margin-left: 10px;
-  }
-a {
-	text-decoration: none;
-  }
-
-a:hover {
-	background-color: lightgrey;
-  }
-  
-#clearBtn {
-	cursor: pointer;
-  } 
 /* .comments {
 	margin-top: 20px;
   }

@@ -111,7 +111,7 @@ function App() {
             path="forum/postCreate"
             element={<PostCreate /*isAuth={isAuth}*/ />} />
           <Route
-            path="forum/Post/:title/:id"
+            path="forum/Post/:title/:postId"
             element={<Post /*isAuth={isAuth}*/ />} />
         </Route>
         <Route path="feedback" element={<Feedback />} />

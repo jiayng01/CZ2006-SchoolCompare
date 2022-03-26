@@ -3,7 +3,6 @@ import Time from "../../Components/DatePosted"
 import { auth, db } from "../../Firebase"
 import { toast } from "react-toastify";
 import CommentText from "./CommentText"
-import { createComment } from './CommentController';
 
 function Comment({ comment, replies, getReplies, isAuth, activeComment, setActiveComment, updateComment, addComment }) {
 

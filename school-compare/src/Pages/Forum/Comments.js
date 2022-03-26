@@ -2,16 +2,31 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Comment from "./CommentBlock"
 import CommentText from "./CommentText"
-import { createComment as createCommentApi, getCommentList as getCommentListApi, updateComment as updateCommentApi } from "./CommentController"
 import { toast } from "react-toastify";
+import { doc, addDoc, collection, onSnapshot, orderBy, query, Timestamp, updateDoc } from "firebase/firestore"
+import { auth, db } from "../../Firebase"
 
 function Comments(isAuth) {
-    const { id } = useParams();
+    const { postId } = useParams();
     const [commentList, setCommentList] = useState([]);
     const [activeComment, setActiveComment] = useState(null);
 
-    const addComment = (text, parentId = null) => {
-        createCommentApi(text, parentId, id).then(() => {
+    // Controller Functions
+
+    const addComment = async (body, parentId = null) => {
+        await addDoc(collection(db, "comments"), {
+            author: {
+                name: "User1",
+                id: 123
+            },
+            values: {
+                body,
+                createdAt: Timestamp.now().toDate(),
+                parentId,
+                postId
+
+            }
+        }).then(() => {
             toast("Succesfully Posted!", { type: "success" });
         }).catch(error => {
             toast("Comment upload failed!", { type: "error" })
@@ -19,8 +34,10 @@ function Comments(isAuth) {
         })
     }
 
-    const updateComment = (text, commentId) => {
-        updateCommentApi(text, commentId).then(() => {
+    const updateComment = async (text, commentId) => {
+        await updateDoc(doc(db, "comments", commentId), {
+            "values.body": text
+        }).then(() => {
             toast("Succesfully updated!", { type: "success" });
         }).catch(error => {
             toast("Comment update failed!", { type: "error" })
@@ -39,8 +56,17 @@ function Comments(isAuth) {
     }
 
     useEffect(() => {
-        getCommentListApi(id, setCommentList)
-        return getCommentListApi;
+        const getCommentList = onSnapshot(query(collection(db, "comments"),
+            orderBy("values.createdAt", "desc")), (snapshot) => {
+                setCommentList(
+                    snapshot.docs.filter((doc) => (
+                        doc.data().values.postId === postId))
+                        .map((doc) => ({
+                            ...doc.data(),
+                            id: doc.id,
+                        })))
+            })
+        return getCommentList;
     }, []);
 
     return (

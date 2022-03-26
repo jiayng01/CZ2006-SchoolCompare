@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { auth, db } from "../../Firebase"
-import { doc, getDocsFromCache, onSnapshot } from "firebase/firestore"
+import { doc, onSnapshot } from "firebase/firestore"
 import "../../PagesCSS/Forum/Post.css";
 import Comments from "./Comments"
 import Time from "../../Components/DatePosted"
@@ -10,12 +10,13 @@ import Time from "../../Components/DatePosted"
 // TODO: Auth signed in users to comment
 
 function Post() {
-  const { id } = useParams();
+  const { postId } = useParams();
   const [post, setPost] = useState([]);
-  const postDocRef = doc(db, "posts", id)
+  const postDocRef = doc(db, "posts", postId)
+
 
   useEffect(() => {
-
+    // Controller Function
     const getSpecificPost = onSnapshot(postDocRef, (doc) => {
       setPost([{
         ...doc.data(),

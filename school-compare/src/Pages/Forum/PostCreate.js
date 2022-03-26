@@ -34,6 +34,7 @@ function PostCreate({ isAuth }) {
   const navigate = useNavigate();
 
   const onSubmit = async (values) => {
+    // Controller Function
     //const username = !values.toggle ? auth.currentUser.displayName: "User" + auth.currentUser.uid;
     await addDoc(postsCollectionRef, {
       values,
@@ -48,8 +49,6 @@ function PostCreate({ isAuth }) {
       toast("Post upload failed!", { type: "error" })
       console.log(err)
     })
-
-
   };
 
   // useEffect(() => {
