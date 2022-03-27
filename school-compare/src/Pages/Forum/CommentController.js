@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { collection, query, onSnapshot, orderBy, addDoc, Timestamp, updateDoc, doc } from "firebase/firestore"
-import { db } from "../../Firebase"
+import { collection, query, onSnapshot, orderBy, addDoc, Timestamp, updateDoc, doc, where, getDocs } from "firebase/firestore"
+import { db, auth } from "../../Firebase"
 import { toast } from 'react-toastify';
-
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function useGetCommentList(postId) {
 
@@ -25,11 +25,14 @@ function useGetCommentList(postId) {
     return commentList;
 }
 
-const useAddComment = async (body, postId, parentId = null) => {
+async function useAddComment(body, postId, parentId = null) {
+
+    const q = query(collection(db, "users"), where("uid", "==", `${auth.currentUser.uid}`));
+    const doc = await getDocs(q);
     await addDoc(collection(db, "comments"), {
         author: {
-            name: "User1",
-            uid: "123"
+            name: doc.docs[0].data().name,
+            uid: auth.currentUser.uid
         },
         values: {
             body,

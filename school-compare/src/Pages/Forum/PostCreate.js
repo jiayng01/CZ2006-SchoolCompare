@@ -3,37 +3,52 @@ import "../../PagesCSS/Forum/PostCreate.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FormTextError from "../../Components/FormTextError";
-import { Timestamp } from "firebase/firestore";
-import { auth, storage } from "../../Firebase";
+import { addDoc, collection, Timestamp, getDocs, doc, where, query, } from "firebase/firestore";
+import { auth, db, storage } from "../../Firebase";
 import { ref } from "firebase/storage";
-import { useSubmit as onSubmit } from "./PostController"
-// import ProgressBar from "./ProgressBar";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-// TODO: API for onSubmit method
+// import ProgressBar from "./ProgressBar";
 // TODO: Word Limit for query Field
 // TODO: Image attachment
-// TODO: secure routing to forum main page
+// TODO: Anonymous name
 
-function PostCreate({ isAuth }) {
+function PostCreate() {
 
   const initialValues = {
-    checkbox: false,
+    toggle: false,
     title: "",
     query: "",
     image: "",
     createdAt: Timestamp.now().toDate(),
   };
-
   const validationSchema = Yup.object({
     title: Yup.string().required("A title is required!"),
     query: Yup.string().required("A desciption of the query is required!"),
   });
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (!isAuth) {
-  //     navigate("/login")
-  //   }
-  // }, [])
+
+  async function onSubmit(values) {
+
+    const q = query(collection(db, "users"), where("uid", "==", `${auth.currentUser.uid}`));
+    const doc = await getDocs(q);
+    const username = !values.toggle ? doc.docs[0].data().name : "Anonymous";
+    await addDoc(collection(db, "posts"), {
+      values,
+      author: {
+        name: username,
+        uid: auth.currentUser.uid
+      }
+    }).then(() => {
+      toast("Succesfully Posted!", { type: "success" });
+      navigate("/Forum");
+    }).catch(err => {
+      toast("Post upload failed!", { type: "error" })
+      console.log(err)
+    })
+  };
 
   return (
     <div className="pc-container">
@@ -78,8 +93,7 @@ function PostCreate({ isAuth }) {
               <label>
                 <Field
                   type="checkbox"
-                  name="checkbox"
-                  id="checkbox"
+                  name="toggle"
                 />
                 Post anonymously
               </label>

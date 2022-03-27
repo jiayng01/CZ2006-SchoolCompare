@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import { useAuth } from '../../Firebase';
 
 function CommentText({ handleSubmit, submitLabel, hasCancelButton = false, initialText = '', handleCancel, postId }) {
 
     // TODO: Authentication
-
+    // TODO: If empty field and submit -> error
+    const [user, isAuth] = useAuth()
     const [text, setText] = useState(initialText);
-    const isTextAreaDisabled = text.length === 0;
+    const isTextAreaDisabled = text.length === 0 && !isAuth;
 
     const onSubmit = event => {
         event.preventDefault()
@@ -22,7 +24,8 @@ function CommentText({ handleSubmit, submitLabel, hasCancelButton = false, initi
                 className='comment-form-textarea'
                 value={text}
                 onChange={onChange}
-                placeholder='what are your thoughts?' />
+                placeholder='what are your thoughts?'
+                disabled={!isAuth} />
             <button
                 className='comment-button'
                 disabled={isTextAreaDisabled}>

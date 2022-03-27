@@ -1,18 +1,18 @@
 import React from 'react'
 import Time from "../../Components/DatePosted"
-import { auth, db } from "../../Firebase"
-import { toast } from "react-toastify";
+import { auth, db, useAuth } from "../../Firebase"
 import CommentText from "./CommentText"
+import { useNavigate } from 'react-router-dom';
 
-function Comment({ comment, replies, getReplies, isAuth, activeComment, setActiveComment, updateComment, addComment }) {
+
+function Comment({ comment, replies, getReplies, activeComment, setActiveComment, updateComment, addComment }) {
 
     // TODO: Authentication C & U operation
     // TODO: Image + CSS
-
+    const [user, isAuth] = useAuth()
     const editTime = 300000;
-    const timePassed = new Date() - new Date(comment.createdAt) > editTime
-    // const canReply = isAuth;
-    // const canEdit = canReply && comment.author.id === auth.currentUser.uid && !timePassed
+    const timePassed = (new Date() - new Date(comment.createdAt)) > editTime
+    const canEdit = isAuth && comment.author.uid === user.uid && !timePassed
     const isEditing =
         activeComment &&
         activeComment.id === comment.id &&
@@ -23,7 +23,7 @@ function Comment({ comment, replies, getReplies, isAuth, activeComment, setActiv
         activeComment.type === "replying";
     const parentId = comment.id
     const postId = comment.values.postId
-
+    const navigate = useNavigate();
     return (
         <div className='comment'>
             <div className='comment-image-container'>
@@ -58,14 +58,16 @@ function Comment({ comment, replies, getReplies, isAuth, activeComment, setActiv
                 <div className='comment-actions'>
                     <div
                         className='comment-action'
-                        onClick={() => setActiveComment({ id: comment.id, type: 'replying' })} >
+                        onClick={() => isAuth ? setActiveComment({ id: comment.id, type: 'replying' }) : navigate("/login")} >
                         Reply
                     </div>
-                    <div
-                        className='comment-action'
-                        onClick={() => setActiveComment({ id: comment.id, type: 'editing' })}>
-                        Edit
-                    </div>
+                    {canEdit && (
+                        <div
+                            className='comment-action'
+                            onClick={() => setActiveComment({ id: comment.id, type: 'editing' })}>
+                            Edit
+                        </div>
+                    )}
                 </div>
 
 

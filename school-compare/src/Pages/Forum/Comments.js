@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Comment from "./CommentBlock"
 import CommentText from "./CommentText"
-import { auth } from '../../Firebase'
+import { auth, useAuth } from '../../Firebase'
 import { useGetCommentList, useAddComment, useUpdateComment } from './CommentController';
 
-function Comments({ isAuth }) {
+function Comments() {
     const { postId } = useParams();
     const [activeComment, setActiveComment] = useState(null);
     const commentList = useGetCommentList(postId)
@@ -22,7 +22,7 @@ function Comments({ isAuth }) {
 
     return (
         <div className='comments'>
-            <CommentText submitLabel='Reply' handleSubmit={useAddComment} postId={postId} />
+            <CommentText submitLabel='Comment' handleSubmit={useAddComment} postId={postId} />
             <div className='comments-container'>
                 <h3 className='comments-title'> Comments </h3>
                 {rootComments.map((comments) => {
@@ -31,11 +31,11 @@ function Comments({ isAuth }) {
                         comment={comments}
                         replies={getReplies(comments.id)}
                         getReplies={getReplies}
-                        isAuth={isAuth}
                         activeComment={activeComment}
                         setActiveComment={setActiveComment}
                         updateComment={useUpdateComment}
                         addComment={useAddComment}
+
                     />
                 })}
             </div>

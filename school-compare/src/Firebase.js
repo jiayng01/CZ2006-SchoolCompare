@@ -19,9 +19,9 @@ import {
   signOut,
   onAuthStateChanged
 } from "firebase/auth";
-// import "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { useState, useEffect } from "react";
+
+
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -77,13 +77,34 @@ const logout = () => {
   signOut(auth);
 };
 
+function useAuth() {
+  const [currentUser, setCurrentUser] = useState();
+  const [isAuth, setIsAuth] = useState(false)
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, user => {
+      if (user) {
+        setCurrentUser(user)
+        setIsAuth(true)
+      }
+      else {
+        setIsAuth(false)
+      }
+    })
+    return unsub;
+  }, [])
+  return [currentUser, isAuth]
+}
+
 export const storage = getStorage(app);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+
 export {
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  useAuth
 };
 export default app;

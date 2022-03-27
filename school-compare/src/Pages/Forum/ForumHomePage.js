@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { auth } from "../../Firebase"
+import { auth, useAuth } from "../../Firebase"
 import "../../PagesCSS/Forum/ForumMainPage.css"
 import Time from "../../Components/DatePosted"
 import SearchBar from "../../Components/SearchBar";
 import DropDownFilter from "./DropDownFilter";
 import { useGetPostsReplies } from "./PostController"
+
 // TODO: Pagination of the posts
-// TODO: Auth signed in users to create posts, if 
-// not signed in redirect to login page
+// TODO: Keep track of signed in
 // TODO: Edit post ?
 
-function ForumHomePage({ isAuth }) {
+function ForumHomePage() {
 
 
   const [filteredPost, setFilteredPost] = useState([]);
@@ -20,6 +20,7 @@ function ForumHomePage({ isAuth }) {
   const fullList = useGetPostsReplies();
   const replyList = fullList.replyList;
   const postList = fullList.postList;
+  const [user, isAuth] = useAuth();
 
   const getRepliesNo = (post) => {
     return replyList.filter((reply) => reply.values.postId === post.id).length
@@ -49,7 +50,10 @@ function ForumHomePage({ isAuth }) {
     <div className="forum-mainpage">
       <div className="forum-header">
         <h1 className="forum-title"> Forum Page </h1>
-        <Link to="./PostCreate">Create Post</Link>
+        <Link
+          to={isAuth ? "./PostCreate" : "../login"}>
+          Create Post
+        </Link>
         <DropDownFilter
           chosen={chosen}
           setChosen={setChosen} />

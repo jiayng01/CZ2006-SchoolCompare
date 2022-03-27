@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { addDoc, collection, doc, getDocs, onSnapshot, orderBy, query } from "firebase/firestore"
-import { auth, db } from "../../Firebase"
+import { addDoc, collection, doc, getDocs, onSnapshot, orderBy, query, where } from "firebase/firestore"
+import { db, auth } from "../../Firebase"
+import { Navigate, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 
 function useGetPost(postId) {
     const [post, setPost] = useState([]);
@@ -30,6 +30,7 @@ function useGetPostsReplies() {
                 ...doc.data(),
                 id: doc.id
             })))
+            return getPosts;
         }
         const getReplies = async () => {
             const querySnapshot = await getDocs(collection(db, "comments"));
@@ -37,29 +38,11 @@ function useGetPostsReplies() {
                 ...doc.data()
             })))
         }
-        getPosts();
         getReplies();
-
+        getPosts();
     }, []);
     return { postList, replyList };
 }
 
-const useSubmit = async (values) => {
-    const navigate = useNavigate();
-    //const username = !values.toggle ? auth.currentUser.displayName: "User" + auth.currentUser.uid;
-    await addDoc(collection(db, "posts"), {
-        values,
-        author: {
-            name: "test",
-            uid: 123, //auth.currentUser.uid,
-        }
-    }).then(() => {
-        toast("Succesfully Posted!", { type: "success" });
-        navigate("/Forum");
-    }).catch(err => {
-        toast("Post upload failed!", { type: "error" })
-        console.log(err)
-    })
-};
 
-export { useGetPost, useGetPostsReplies, useSubmit }
+export { useGetPost, useGetPostsReplies }

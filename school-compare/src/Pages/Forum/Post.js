@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { auth } from '../../Firebase';
+import { auth, useAuth } from '../../Firebase';
 import "../../PagesCSS/Forum/Post.css";
 import Comments from "./Comments"
 import Time from "../../Components/DatePosted"
