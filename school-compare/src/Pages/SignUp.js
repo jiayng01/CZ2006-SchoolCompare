@@ -92,17 +92,17 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [user, loading, error] = useAuthState(auth);
-  const[isLoading, setIsLoading] = useState(false);
+  const [user, loading /*, error*/] = useAuthState(auth);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const register = () => {
     if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password, setIsLoading);
   };
   useEffect(() => {
-    if (loading||isLoading) return;
+    if (loading || isLoading) return;
     if (user) navigate("/dashboard", { replace: true });
-  }, [user, loading, isLoading]);
+  }, [user, loading, isLoading, navigate]);
 
   return (
     <div className="register">

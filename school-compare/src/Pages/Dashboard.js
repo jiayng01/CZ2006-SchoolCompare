@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../PagesCSS/Dashboard/Dashboard.css";
 import avatar from "../PagesCSS/Dashboard/avatar.png";
 import {
-  auth,
-  db,
+  auth, //db,
   logout,
   updateNamePhoto,
   updateUserEmail,
@@ -13,7 +12,7 @@ import {
 } from "../Firebase";
 import { toast } from "react-toastify";
 function Dashboard() {
-  const [currentUser, isLoading, err] = useAuthState(auth);
+  const [currentUser, isLoading /* , err*/] = useAuthState(auth);
   const [name, setName] = useState("name");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -67,7 +66,7 @@ function Dashboard() {
       }
     }
     return () => (isSubscribed = false);
-  }, [currentUser, isLoading]);
+  }, [currentUser, isLoading, navigate]);
 
   function handleChangePhoto(e) {
     if (e.target.files[0]) {
@@ -82,7 +81,7 @@ function Dashboard() {
     console.log(loading, error);
     if (!loading && !error) {
       setError(false);
-      if (photoURL == avatar) setPhotoURL(null);
+      if (photoURL === avatar) setPhotoURL(null);
       updateNamePhoto(name, photoURL, setLoading);
     }
   }
@@ -117,12 +116,12 @@ function Dashboard() {
         <span className="dashboard-details">Dashboard</span>
         {/* <div>{name}</div>
         <div>{currentUser?.email}</div> */}
-        <button className="dashboard__btn" onClick={logout}>
+        <button className="dashboard-logout-btn" onClick={logout}>
           Logout
         </button>
 
         <div>
-          <input type="file" onChange={handleChangePhoto} />
+          <input type="file" onChange={handleChangePhoto} className="dashboard-attachment"/>
           <img src={photo} alt="Avatar" className="dashboard-img" />
         </div>
 
@@ -131,21 +130,23 @@ function Dashboard() {
           value={name == null ? "" : name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Full Name"
+          className="dashboard-name"
         />
         <input
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
+          className="dashboard-email"
         />
 
-        <button disabled={loading} onClick={handleSave}>
+        <button disabled={loading} onClick={handleSave} className="dashboard-buttons">
           Save changes
         </button>
-        <button disabled={loading} onClick={handleCancel}>
+        <button disabled={loading} onClick={handleCancel} className="dashboard-buttons">
           Cancel
         </button>
-        <button disabled={loading} onClick={handleDelete}>
+        <button disabled={loading} onClick={handleDelete} className="dashboard-buttons">
           Delete Account
         </button>
       </div>

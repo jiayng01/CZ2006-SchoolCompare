@@ -21,7 +21,8 @@ import {
   updateProfile,
   updateEmail,
 } from "firebase/auth";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+// import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
@@ -53,9 +54,13 @@ const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 
-const registerWithEmailAndPassword = async (name, email, password, setIsLoading) => {
+const registerWithEmailAndPassword = async (
+  name,
+  email,
+  password,
+  setIsLoading
+) => {
   try {
-
     setIsLoading(true);
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
@@ -148,7 +153,7 @@ async function updateNamePhoto(newName, file, setLoading) {
   setLoading(true);
   const fileRef = ref(storage, "/profilePics/" + user.uid);
 
-  const snapshot = await uploadBytes(fileRef, file);
+  // const snapshot = await uploadBytes(fileRef, file);
   const photoURL = await getDownloadURL(fileRef);
 
   const q = query(collection(db, "users"), where("uid", "==", user.uid));

@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./Components/Navbar";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Schools from "./Pages/Schools/SchoolsMainPage";
 import Favourites from "./Pages/Favourites";
@@ -107,12 +107,8 @@ function App() {
         <Route path="forum" element={<Forum />} />
         <Route>
           {""}
-          <Route
-            path="forum/postCreate"
-            element={<PostCreate />} />
-          <Route
-            path="forum/Post/:title/:postId"
-            element={<Post />} />
+          <Route path="forum/postCreate" element={<PostCreate />} />
+          <Route path="forum/Post/:title/:postId" element={<Post />} />
         </Route>
         <Route path="feedback" element={<Feedback />} />
         <Route path="login" element={<Login />} />

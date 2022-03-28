@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "../ComponentsCSS/Navbar.css";
 
-import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +21,7 @@ let activeStyle = {
 function Navbar() {
   const [expandNavBar, setExpandNavBar] = useState(false);
   const favouritesCtx = useContext(FavouritesContext);
-  const [currentUser, isAuth] = useAuth();
+  const [isAuth] = useAuth();
 
   return (
     <nav className="navbar">
@@ -90,46 +90,48 @@ function Navbar() {
           </li>
         </div>
 
-        {/* To Dashboard page */}
-        <li className="navbar-list dashboard-button">
-          <NavLink
-            className="navbar-items dashboard-button"
-            to="/dashboard"
-            style={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Dashboard
-          </NavLink>
-        </li>
-        {!isAuth && (
-          <>
-            {/* To Login page */}
-            <li className="navbar-list login-button">
-              <NavLink
-                className="navbar-items login-button"
-                to="/login"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                Log In
-              </NavLink>
-            </li>
-          </>
-        )}
+        <div className="navbar-right-buttons">
+          {/* To Dashboard page */}
+          <li className="navbar-list">
+            <NavLink
+              className="navbar-items"
+              to="/dashboard"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Dashboard
+            </NavLink>
+          </li>
+          {!isAuth && (
+            <>
+              {/* To Login page */}
+              <li className="navbar-list">
+                <NavLink
+                  className="navbar-items"
+                  to="/login"
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                >
+                  Log In
+                </NavLink>
+              </li>
+            </>
+          )}
 
-        {isAuth && (
-          <>
-            {/* To Logout */}
-            <li className="navbar-list login-button">
-              <NavLink
-                className="navbar-items login-button"
-                to="/"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-                onClick={logout}
-              >
-                Log Out
-              </NavLink>
-            </li>
-          </>
-        )}
+          {isAuth && (
+            <>
+              {/* To Logout */}
+              <li className="navbar-list login-button">
+                <NavLink
+                  className="navbar-items login-button"
+                  to="/"
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                  onClick={logout}
+                >
+                  Log Out
+                </NavLink>
+              </li>
+            </>
+          )}
+        </div>
 
         <div
           className="hamburger-menu"
@@ -214,18 +216,52 @@ function Navbar() {
                     </NavLink>
                   </li>
 
-                  {/* To Login page */}
+                  {/* To Dashboard page */}
                   <li className="navbar-list-mobile">
                     <NavLink
                       className="navbar-items-mobile"
-                      to="/login"
+                      to="/dashboard"
                       style={({ isActive }) =>
                         isActive ? activeStyle : undefined
                       }
                     >
-                      Log in
+                      Dashboard
                     </NavLink>
                   </li>
+                  {!isAuth && (
+                    <>
+                      {/* To Login page */}
+                      <li className="navbar-list-mobile">
+                        <NavLink
+                          className="navbar-items-mobile"
+                          to="/login"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                        >
+                          Log In
+                        </NavLink>
+                      </li>
+                    </>
+                  )}
+
+                  {isAuth && (
+                    <>
+                      {/* To Logout */}
+                      <li className="navbar-list-mobile">
+                        <NavLink
+                          className="navbar-items-mobile"
+                          to="/"
+                          style={({ isActive }) =>
+                            isActive ? activeStyle : undefined
+                          }
+                          onClick={logout}
+                        >
+                          Log Out
+                        </NavLink>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </nav>
             </>
