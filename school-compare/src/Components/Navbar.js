@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "../ComponentsCSS/Navbar.css";
 
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { useState, useContext } from "react";
 import FavouritesContext from "../Contexts/FavouritesContext";
+import { useAuth, logout } from "../Firebase";
 
 // Change the inline-style on selecting the respective tabs
 let activeStyle = {
@@ -20,6 +21,7 @@ let activeStyle = {
 function Navbar() {
   const [expandNavBar, setExpandNavBar] = useState(false);
   const favouritesCtx = useContext(FavouritesContext);
+  const [currentUser, isAuth] = useAuth();
 
   return (
     <nav className="navbar">
@@ -88,16 +90,46 @@ function Navbar() {
           </li>
         </div>
 
-        {/* To Login page */}
-        <li className="navbar-list login-button">
+        {/* To Dashboard page */}
+        <li className="navbar-list dashboard-button">
           <NavLink
-            className="navbar-items login-button"
-            to="/login"
+            className="navbar-items dashboard-button"
+            to="/dashboard"
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Log in
+            Dashboard
           </NavLink>
         </li>
+        {!isAuth && (
+          <>
+            {/* To Login page */}
+            <li className="navbar-list login-button">
+              <NavLink
+                className="navbar-items login-button"
+                to="/login"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              >
+                Log In
+              </NavLink>
+            </li>
+          </>
+        )}
+
+        {isAuth && (
+          <>
+            {/* To Logout */}
+            <li className="navbar-list login-button">
+              <NavLink
+                className="navbar-items login-button"
+                to="/"
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                onClick={logout}
+              >
+                Log Out
+              </NavLink>
+            </li>
+          </>
+        )}
 
         <div
           className="hamburger-menu"

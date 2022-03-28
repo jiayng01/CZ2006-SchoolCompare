@@ -118,7 +118,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
         <Route exact path="/reset" element={<Reset />} />
-        <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route path="dashboard" element={<Dashboard />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </>
