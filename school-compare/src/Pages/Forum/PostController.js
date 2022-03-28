@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { addDoc, collection, doc, getDocs, onSnapshot, orderBy, query, where } from "firebase/firestore"
 import { db, auth } from "../../Firebase"
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function useGetPost(postId) {
@@ -38,8 +38,8 @@ function useGetPostsReplies() {
                 ...doc.data()
             })))
         }
-        getReplies();
         getPosts();
+        getReplies();
     }, []);
     return { postList, replyList };
 }

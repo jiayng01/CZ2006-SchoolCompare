@@ -9,7 +9,7 @@ function Comments() {
     const { postId } = useParams();
     const [activeComment, setActiveComment] = useState(null);
     const commentList = useGetCommentList(postId)
-    // TODO: Authentication
+    // TODO: CSS
 
     const rootComments = commentList.filter((doc) =>
         doc.values.parentId === null

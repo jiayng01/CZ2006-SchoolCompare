@@ -6,7 +6,8 @@ import Comments from "./Comments"
 import Time from "../../Components/DatePosted"
 import { useGetPost } from "./PostController"
 
-// TODO: Post Edit with img ?
+// TODO: Post Edit with img ? or just place attachments at the bottom 
+// TODO: CSS
 
 function Post() {
   const { postId } = useParams();
@@ -18,7 +19,7 @@ function Post() {
         return (
           <div key={details.id}>
             <h3 className="post-user" >{details.author.name}</h3>
-            <Time comment={details} />
+            <Time content={details} />
             <div className='post-container' >
               <h1 className="post-title" >{details.values.title}</h1>
               <p className="post-query" >{details.values.query}</p>

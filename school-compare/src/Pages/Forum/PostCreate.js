@@ -10,9 +10,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 // import ProgressBar from "./ProgressBar";
-// TODO: Word Limit for query Field
-// TODO: Image attachment
+// TODO: Word Limit for query Field?
+// TODO: Multiple Image attachments
 // TODO: Anonymous name
+// TODO: CSS
 
 function PostCreate() {
 

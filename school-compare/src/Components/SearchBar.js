@@ -2,7 +2,7 @@ import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
-import '../ComponentsCSS/SearchBar.css'
+import "../ComponentsCSS/SearchBar.css"
 
 function SearchBar({ placeholder, handleFilter, filteredPost, setFilteredPost, textEntered, setTextEntered }) {
 
@@ -13,17 +13,17 @@ function SearchBar({ placeholder, handleFilter, filteredPost, setFilteredPost, t
 
   return (
     <div className='search'>
-      <div className='search-input'>
-        <input
-          type='text'
-          placeholder={placeholder}
-          onChange={(e) => handleFilter(e, filteredPost)}
-          value={textEntered} />
+      <div className='search-container'>
         <div className='search-icon'>
           {filteredPost.length === 0 ?
             <SearchIcon /> :
             <CloseIcon id='clearBtn' onClick={clearInput} />}
         </div>
+        <input
+          type='text'
+          placeholder={placeholder}
+          onChange={(e) => handleFilter(e, filteredPost)}
+          value={textEntered} />
       </div>
       {filteredPost.length !== 0 && (
         <div className='data-result'>

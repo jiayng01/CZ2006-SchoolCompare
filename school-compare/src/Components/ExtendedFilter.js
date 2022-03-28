@@ -1,26 +1,29 @@
 import React from "react";
-import "../../ComponentsCSS/Dropdown.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import "../ComponentsCSS/ExtendedFilter.css"
+
+// TODO: CSS (Combine with search bar)
 
 function DropDownFilter({ chosen, setChosen }) {
     const [open, setOpen] = useState(false);
     return (
-        <div className="dropdown-container">
+
+        <div className="btn-dropdown-container">
             <div
-                className="dropdown-button"
+                className="btn-dropdown-selection"
                 onClick={() => {
                     setOpen(!open)
                 }}
             >
-                {chosen}
-                <FontAwesomeIcon className="fa-chevron-down" icon={faChevronDown} />
+                <p className="btn-dropdown-chosen">{chosen}</p>
+                <FontAwesomeIcon className="fa-chevron-downs" icon={faChevronDown} />
             </div>
             {open && (
-                <div className="dropdown-content">
-                    <li className="dropdown-item">
-                        <p className="dropdown-item"
+                <div className="btn-dropdown-content">
+                    <li className="btn-dropdown-item" >
+                        <p className="btn-dropdown-item"
                             onClick={() => {
                                 setChosen("Latest")
                                 setOpen(!open)
@@ -28,8 +31,8 @@ function DropDownFilter({ chosen, setChosen }) {
                             Latest
                         </p>
                     </li>
-                    <li className="dropdown-item">
-                        <p className="dropdown-item"
+                    <li className="btn-dropdown-item">
+                        <p className="btn-dropdown-item"
                             onClick={() => {
                                 setChosen("Oldest")
                                 setOpen(!open)
@@ -37,8 +40,8 @@ function DropDownFilter({ chosen, setChosen }) {
                             Oldest
                         </p>
                     </li>
-                    <li className="dropdown-item">
-                        <p className="dropdown-item"
+                    <li className="btn-dropdown-item">
+                        <p className="btn-dropdown-item"
                             onClick={() => {
                                 setChosen("Activity")
                                 setOpen(!open)

@@ -3,20 +3,20 @@ import { useAuth } from '../../Firebase';
 
 function CommentText({ handleSubmit, submitLabel, hasCancelButton = false, initialText = '', handleCancel, postId }) {
 
-    // TODO: Authentication
-    // TODO: If empty field and submit -> error
-    const [user, isAuth] = useAuth()
-    const [text, setText] = useState(initialText);
-    const isTextAreaDisabled = text.length === 0 && !isAuth;
+    // TODO: CSS
 
-    const onSubmit = event => {
+    const [user, isAuth] = useAuth();
+    const [text, setText] = useState(initialText);
+    const isTextAreaDisabled = !isAuth ? true : text.length === 0 ? true : false
+    const onSubmit = (event) => {
         event.preventDefault()
         handleSubmit(text, postId);
         setText("")
     }
-    const onChange = event => {
+    const onChange = (event) => {
         setText(event.target.value)
     }
+
 
     return (
         <form onSubmit={onSubmit}>

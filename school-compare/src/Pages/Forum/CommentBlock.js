@@ -7,11 +7,10 @@ import { useNavigate } from 'react-router-dom';
 
 function Comment({ comment, replies, getReplies, activeComment, setActiveComment, updateComment, addComment }) {
 
-    // TODO: Authentication C & U operation
-    // TODO: Image + CSS
+    // TODO: User Image + CSS
     const [user, isAuth] = useAuth()
     const editTime = 300000;
-    const timePassed = (new Date() - new Date(comment.createdAt)) > editTime
+    const timePassed = (new Date() - comment.values.createdAt.toDate()) > editTime
     const canEdit = isAuth && comment.author.uid === user.uid && !timePassed
     const isEditing =
         activeComment &&
@@ -34,7 +33,7 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
                 <div className='comment-content'>
                     {/*Author*/}
                     <div className='comment-author'>{comment.author.name}</div>
-                    <Time comment={comment} />
+                    <Time content={comment} />
                 </div>
 
                 {/* Edit Comment or comment body */}

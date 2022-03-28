@@ -1,35 +1,40 @@
 import React from 'react'
 
-function DatePosted({ comment }) {
+function DatePosted({ content }) {
     const current = new Date();
-    const date = current.getDate();
-    const month = current.getMonth();
-    const year = current.getFullYear();
-    const hour = current.getHours();
-    const min = current.getMinutes();
-    const commentDate = comment.values.createdAt.toDate();
+    const time = current.getTime();
+    // const month = current.getMonth();
+    // const year = current.getFullYear();
+    // const hour = current.getHours();
+    // const min = current.getMinutes();
+    const contentDate = content.values.createdAt.toDate();
+    const timeDifference = (time - contentDate.getTime()) / 1000;
 
     return (
-        <div>
-            {year > commentDate.getFullYear() ?
+        <div className='time-ago'>
+            {timeDifference > 31536000 ?
                 <div>
-                    {year - commentDate.getFullYear()}y
+                    {Math.floor(timeDifference / 31536000)}y ago
                 </div> :
-                month > commentDate.getMonth() ?
+                timeDifference > 2628288 ?
                     <div>
-                        {month - commentDate.getMonth()}mth
+                        {Math.floor(timeDifference / 2628288)}mth ago
                     </div> :
-                    date > commentDate.getDate() ?
+                    timeDifference > 86400 ?
                         <div>
-                            {date - commentDate.getDate()}d
+                            {Math.floor(timeDifference / 86400)}d ago
                         </div> :
-                        hour > commentDate.getHours() ?
+                        timeDifference > 3600 ?
                             <div>
-                                {hour - commentDate.getHours()}hr
+                                {Math.floor(timeDifference / 3600)}hr ago
                             </div> :
-                            <div>
-                                {min - commentDate.getMinutes()}min
-                            </div>
+                            timeDifference > 60 ?
+                                <div>
+                                    {Math.floor(timeDifference / 60)}min ago
+                                </div> :
+                                <div>
+                                    {Math.floor(timeDifference)}s
+                                </div>
             }
         </div>
     )
