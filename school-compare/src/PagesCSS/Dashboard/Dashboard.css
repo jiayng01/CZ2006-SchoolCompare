@@ -39,6 +39,11 @@
   margin-top: 7px;
 }
 
+.dashboard-img{
+  width:200px;
+  clip-path: circle(50%);
+}
+
 @media screen and (max-width: 1000px) {
   .dashboard {
     width: 25rem;
