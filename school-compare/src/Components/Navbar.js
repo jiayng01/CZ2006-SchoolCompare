@@ -114,11 +114,22 @@ function Navbar() {
                 >
                   Log In
                 </NavLink>
+                <li className="navbar-list">
+                  <img
+                    src={avatar}
+                    alt="avatar"
+                    className="navbar-list navbar-avatar"
+                  />
+                </li>
               </li>
 
-              <li className="navbar-list">
-                <img src={avatar} alt="avatar" className="navbar-avatar" />
-              </li>
+              {/* <li className="navbar-list">
+                <img
+                  src={avatar}
+                  alt="avatar"
+                  className="navbar-list navbar-avatar"
+                />
+              </li> */}
             </>
           )}
 

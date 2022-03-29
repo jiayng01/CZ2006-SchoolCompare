@@ -57,8 +57,9 @@
 }
 
 .navbar-avatar {
-  width: 30px;
-  height: 30px;
+  position: absolute;
+  bottom: 10px;
+  width: 32px;
   border-radius: 50%;
   overflow: "hidden";
   border: solid;
@@ -121,7 +122,8 @@
 }
 
 /*Responsive CSS*/
-@media screen and (min-width: 1000px) {
+
+@media screen and (min-width: 1200px) {
   .hamburger-menu {
     display: none;
   }
@@ -134,9 +136,22 @@
     justify-content: center;
     align-items: center;
   }
+
+  .navbar-avatar {
+    position: absolute;
+    bottom: 10px;
+    width: 28px;
+    border-radius: 50%;
+    overflow: "hidden";
+    border: solid;
+    border-width: 3px;
+    vertical-align: middle;
+    border-color: #faf9f6;
+    margin-left: 1.2rem;
+  }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   .navbar-items {
     display: none;
   }
