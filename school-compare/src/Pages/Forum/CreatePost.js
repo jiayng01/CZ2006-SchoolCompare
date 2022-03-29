@@ -1,68 +1,59 @@
-import React, { useEffect } from "react";
-import "../../PagesCSS/Forum/PostCreate.css";
+import React from "react";
+import "../../PagesCSS/Forum/CreatePost.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FormTextError from "../../Components/FormTextError";
-import { addDoc, collection, Timestamp, getDownloadURL } from "firebase/firestore";
-import { db, auth, storage } from "../../Firebase";
+import { addDoc, collection, Timestamp, getDocs, doc, where, query, } from "firebase/firestore";
+import { auth, db, storage } from "../../Firebase";
+
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import { ref } from "firebase/storage";
-// import ProgressBar from "../../Components/ProgressBar";
+import { toast } from "react-toastify";
 
-// TODO: API for onSubmit method
-// TODO: Word Limit for query Field
-// TODO: Image attachment
-// TODO: secure routing
+// import ProgressBar from "./ProgressBar";
+// TODO: Multiple Image attachments
+// TODO: CSS
 
-function PostCreate({ isAuth }) {
+function CreatePost() {
 
   const initialValues = {
-    checkbox: false,
+    toggle: false,
     title: "",
     query: "",
-    image: "",
+    imageUrl: "",
     createdAt: Timestamp.now().toDate(),
   };
-
   const validationSchema = Yup.object({
     title: Yup.string().required("A title is required!"),
     query: Yup.string().required("A desciption of the query is required!"),
   });
-
-  const postsCollectionRef = collection(db, "posts");
   const navigate = useNavigate();
 
-  const onSubmit = async(values) => {
-    //const username = !values.toggle ? auth.currentUser.displayName: "User" + auth.currentUser.uid;
-    await addDoc(postsCollectionRef, {
+
+  async function onSubmit(values) {
+
+    const q = query(collection(db, "users"), where("uid", "==", `${auth.currentUser.uid}`));
+    const doc = await getDocs(q);
+    const username = !values.toggle ? doc.docs[0].data().name : "Anonymous";
+    await addDoc(collection(db, "posts"), {
       values,
       author: {
-        name: "test",
-        id: 123, //auth.currentUser.uid,
+        name: username,
+        uid: auth.currentUser.uid
       }
     }).then(() => {
       toast("Succesfully Posted!", { type: "success" });
       navigate("/Forum");
     }).catch(err => {
       toast("Post upload failed!", { type: "error" })
+      console.log(err)
     })
-
-
   };
 
-  // useEffect(() => {
-  //   if (!isAuth) {
-  //     navigate("/login")
-  //   }
-  // }, [])
-
-
   return (
-    <div className="pcContainer">
+    <div className="pc-container">
       <p className="pc-forum">Forum</p>
-      <p className="pc-sent">Post your questions here!</p>
-      <hr color="black" size="1.2" width="320px" style={{ margin: "auto" }}/>
+      <p className="pc-title">Post your questions here!</p>
+      <hr color="black" size="1.2" width="320px" style={{ margin: "auto" }} />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -99,7 +90,10 @@ function PostCreate({ isAuth }) {
             {/* checkbox */}
             <div className="form-control-checkbox">
               <label>
-                <Field type="checkbox" name="checkbox" id="checkbox" />
+                <Field
+                  type="checkbox"
+                  name="toggle"
+                />
                 Post anonymously
               </label>
             </div>
@@ -125,4 +119,4 @@ function PostCreate({ isAuth }) {
   );
 }
 
-export default PostCreate;
+export default CreatePost;

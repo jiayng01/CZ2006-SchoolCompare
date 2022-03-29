@@ -1,4 +1,4 @@
-.pcContainer {
+.pc-container {
   font-family: "Saira Condensed", sans-serif;
   background-color: #ffd9d9;
   height: 36rem;
@@ -20,7 +20,7 @@
   color: #0c7187;
 }
 
-.pc-sent {
+.pc-title {
   text-align: center;
   font-size: 20px;
 }
@@ -34,10 +34,8 @@
 }
 
 .form-control-checkbox {
-  display: grid;
-  justify-content: left;
-  margin-left: 20px;
-  padding-bottom: 10px;
+
+
 }
 
 .pc-label {
@@ -88,7 +86,7 @@
 
 
 @media screen and (max-width: 1000px) {
-  .pcContainer {
+  .pc-container {
     width: auto;
     height: auto;
     margin: 6rem 5rem 0 5rem;
@@ -123,7 +121,7 @@
 }
 
 @media screen and (max-width: 700px) {
-  .pcContainer {
+  .pc-container {
     width: auto;
     height: auto;
     margin-left: 2rem;
@@ -156,7 +154,7 @@
 }
 
 @media screen and (max-width: 300px) {
-  .pcContainer {
+  .pc-container {
     width: auto;
     height: auto;
     margin-top: 0;

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+.forum-mainpage{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+    text-align: center;
+	flex-direction: column;
+	font-family: 'Quicksand', serif;
+}
+.forum-header{
+	display:flex;
+	flex-direction: row;
+	margin: 1.2rem;
+	gap: 40rem;
+}
+
+.search-input-with-dropdown{
+	display:flex;
+	position: relative;
+	height: 35px;
+	border-radius: 8px;
+	background: #FFFFFF;
+}
+
+.vertical-divider{
+	width: 2px;
+    height: 50%;
+    margin-right: 24px;
+    background: #e7e7e9;
+	align-self: center;
+	
+}
+
+.forum-create-post{
+	background-color: #ED9797;
+	border-radius: 8px;
+	position: sticky;
+	padding-top: 5px;
+	width: 10rem;
+	color: black;
+	
+}

@@ -21,12 +21,12 @@
 }
 
 .navbar-badge {
-  background-color: #713E5A;
+  background-color: #713e5a;
   color: white;
   border-radius: 15px;
   padding: 0 0.5rem 0.1rem 0.4rem;
   position: relative;
-  right: 1.5rem;
+  left: 0.2rem;
   bottom: 0.3rem;
   font-size: 14px;
 }
@@ -51,12 +51,10 @@
   border-radius: 0.2rem;
 }
 
-.login-button {
+.navbar-right-buttons {
   margin-left: auto;
-  margin-right: 0;
-  padding-left: 5px;
-  padding-right: 5px;
 }
+
 .fa-book-icon {
   padding: 0 0.5rem 0 0.5rem;
   color: aliceblue;
@@ -117,5 +115,39 @@
 @media screen and (max-width: 1000px) {
   .navbar-items {
     display: none;
+  }
+  .navbar-items-mobile:hover {
+    background-color: transparent;
+  }
+  .navbar-badge {
+    position: relative;
+    left: 0rem;
+    bottom: 0.3rem;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .navbar-items {
+    display: none;
+  }
+  .navbar-items-mobile:hover {
+    background-color: transparent;
+  }
+  .navbar-badge {
+    position: relative;
+    left: 0rem;
+    bottom: 0.3rem;
+  }
+  .mobile-container {
+    justify-content: left;
+    text-align: start;
+  }
+
+  .navbar-mobile {
+    text-align: center;
+  }
+
+  .fa-cross-icon {
+    margin-left: 34px;
   }
 }
