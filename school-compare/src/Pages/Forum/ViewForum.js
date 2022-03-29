@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth, useAuth } from "../../Firebase";
-import "../../PagesCSS/Forum/ForumMainPage.css";
-import Time from "../../Components/DatePosted";
-import SearchBar from "../../Components/SearchBar";
-import DropDownFilter from "../../Components/ExtendedFilter";
+import "../../PagesCSS/Forum/Forum.css";
+import Time from "./DatePosted";
+import SearchBar from "./SearchBar";
+import FilterPost from "./FilterPost";
 import { useGetPostsReplies } from "./PostController"
-import Card from "./Card"
+import Card from "./PostCard"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-// TODO: Pagination of the posts
-// TODO: Edit post ?
-// TODO: CSS
 
-function ForumHomePage() {
+// TODO: Pagination of the posts
+// TODO: Fix moving components due to changing filters
+// TODO: CSS responsive
+
+function ViewForum() {
   const [filteredPost, setFilteredPost] = useState([]);
   const [textEntered, setTextEntered] = useState("");
   const [chosen, setChosen] = useState("Latest");
-  const fullList = useGetPostsReplies();
-  const replyList = fullList.replyList;
-  const postList = fullList.postList;
-  const [user, isAuth] = useAuth();
+  const [postList, replyList] = useGetPostsReplies();
+  const user = useAuth();
 
   const getRepliesNo = (post) => {
     return replyList.filter((reply) => reply.values.postId === post.id).length
@@ -56,7 +55,7 @@ function ForumHomePage() {
       <h1 className="forum-title"> Forum Page </h1>
       <div className='forum-header'>
         <Link className="forum-create-post"
-          to={isAuth ? "./PostCreate" : "../login"}>
+          to={user ? "./PostCreate" : "../login"}>
           Create Post
         </Link>
         <div className="search-input-with-dropdown">
@@ -67,8 +66,8 @@ function ForumHomePage() {
             setFilteredPost={setFilteredPost}
             textEntered={textEntered}
             setTextEntered={setTextEntered} />
-          <div class="vertical-divider"></div>
-          <DropDownFilter
+          <div className="vertical-divider"></div>
+          <FilterPost
             chosen={chosen}
             setChosen={setChosen} />
         </div>
@@ -108,4 +107,4 @@ function ForumHomePage() {
   );
 }
 
-export default ForumHomePage;
+export default ViewForum;

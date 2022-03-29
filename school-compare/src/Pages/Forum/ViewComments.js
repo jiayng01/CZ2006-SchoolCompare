@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Comment from "./CommentBlock"
-import CommentText from "./CommentText"
+import Comment from "./Comment"
+import CommentText from "./AddComment"
 import { auth, useAuth } from '../../Firebase'
 import { useGetCommentList, useAddComment, useUpdateComment } from './CommentController';
 
-function Comments() {
+function ViewComments() {
     const { postId } = useParams();
     const [activeComment, setActiveComment] = useState(null);
     const commentList = useGetCommentList(postId)
-    // TODO: CSS
+
+    // TODO: Responsive CSS
 
     const rootComments = commentList.filter((doc) =>
         doc.values.parentId === null
@@ -43,4 +44,4 @@ function Comments() {
     );
 }
 
-export default Comments
+export default ViewComments

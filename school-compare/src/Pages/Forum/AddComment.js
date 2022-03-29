@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../Firebase';
 
-function CommentText({ handleSubmit, submitLabel, hasCancelButton = false, initialText = '', handleCancel, postId }) {
+function AddComment({ handleSubmit, submitLabel, hasCancelButton = false, initialText = '', handleCancel, postId }) {
 
     // TODO: CSS
 
-    const [user, isAuth] = useAuth();
+    const user = useAuth();
     const [text, setText] = useState(initialText);
-    const isTextAreaDisabled = !isAuth ? true : text.length === 0 ? true : false
+    const isTextAreaDisabled = !user ? true : text.length === 0 ? true : false
     const onSubmit = (event) => {
         event.preventDefault()
         handleSubmit(text, postId);
@@ -25,7 +25,7 @@ function CommentText({ handleSubmit, submitLabel, hasCancelButton = false, initi
                 value={text}
                 onChange={onChange}
                 placeholder='what are your thoughts?'
-                disabled={!isAuth} />
+                disabled={!user} />
             <button
                 className='comment-button'
                 disabled={isTextAreaDisabled}>
@@ -42,4 +42,4 @@ function CommentText({ handleSubmit, submitLabel, hasCancelButton = false, initi
     )
 }
 
-export default CommentText
+export default AddComment

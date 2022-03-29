@@ -1,17 +1,17 @@
 import React from 'react'
-import Time from "../../Components/DatePosted"
-import { auth, db, useAuth } from "../../Firebase"
-import CommentText from "./CommentText"
+import Time from "./DatePosted"
+import { useAuth } from "../../Firebase"
+import AddComment from "./AddComment"
 import { useNavigate } from 'react-router-dom';
 
 
 function Comment({ comment, replies, getReplies, activeComment, setActiveComment, updateComment, addComment }) {
 
     // TODO: User Image + CSS
-    const [user, isAuth] = useAuth()
+    const user = useAuth()
     const editTime = 300000;
     const timePassed = (new Date() - comment.values.createdAt.toDate()) > editTime
-    const canEdit = isAuth && comment.author.uid === user.uid && !timePassed
+    const canEdit = user && comment.author.uid === user.uid && !timePassed
     const isEditing =
         activeComment &&
         activeComment.id === comment.id &&
@@ -41,7 +41,7 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
                     <div className='comment-text'>
                         {comment.values.body}
                     </div> :
-                    <CommentText
+                    <AddComment
                         submitLabel='Update'
                         hasCancelButton
                         initialText={comment.values.body}
@@ -57,7 +57,7 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
                 <div className='comment-actions'>
                     <div
                         className='comment-action'
-                        onClick={() => isAuth ? setActiveComment({ id: comment.id, type: 'replying' }) : navigate("/login")} >
+                        onClick={() => user ? setActiveComment({ id: comment.id, type: 'replying' }) : navigate("/login")} >
                         Reply
                     </div>
                     {canEdit && (
@@ -72,7 +72,7 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
 
                 {/* To Reply*/}
                 {isReplying && (
-                    <CommentText
+                    <AddComment
                         submitLabel="Reply"
                         handleSubmit={(text) => addComment(text, postId, parentId)}
                     />
@@ -87,7 +87,6 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
                                 comment={reply}
                                 replies={getReplies(reply.id)}
                                 getReplies={getReplies}
-                                isAuth={isAuth}
                                 activeComment={activeComment}
                                 setActiveComment={setActiveComment}
                                 updateComment={updateComment}

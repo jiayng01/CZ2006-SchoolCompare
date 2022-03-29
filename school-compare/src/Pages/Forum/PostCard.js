@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import "../../ComponentsCSS/Card.css"
 
-function Card({ content }) {
+function PostCard({ content }) {
     return (
         <Link to={`./post/${content.values.title.trim().replace(/\s+/g, '-')}/${content.id}`}>
             <div className="card-container">
@@ -16,4 +16,4 @@ function Card({ content }) {
     )
 }
 
-export default Card
+export default PostCard
