@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "../ComponentsCSS/Navbar.css";
+import avatar from "../PagesCSS/Dashboard/avatar.png";
 
 import { NavLink } from "react-router-dom";
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
@@ -21,6 +22,7 @@ let activeStyle = {
 function Navbar() {
   const [expandNavBar, setExpandNavBar] = useState(false);
   const favouritesCtx = useContext(FavouritesContext);
+
   const user = useAuth();
 
   return (
@@ -113,21 +115,33 @@ function Navbar() {
                   Log In
                 </NavLink>
               </li>
+
+              <li className="navbar-list">
+                <img src={avatar} alt="avatar" className="navbar-avatar" />
+              </li>
             </>
           )}
 
           {user && (
             <>
               {/* To Logout */}
-              <li className="navbar-list login-button">
+              <li className="navbar-list">
                 <NavLink
-                  className="navbar-items login-button"
+                  className="navbar-items"
                   to="/"
                   style={({ isActive }) => (isActive ? activeStyle : undefined)}
                   onClick={logout}
                 >
                   Log Out
                 </NavLink>
+              </li>
+
+              <li className="navbar-list">
+                <img
+                  src={currentUser.photoURL ? currentUser.photoURL : avatar}
+                  alt="avatar"
+                  className="navbar-avatar"
+                />
               </li>
             </>
           )}
@@ -242,6 +256,13 @@ function Navbar() {
                           Log In
                         </NavLink>
                       </li>
+                      <li className="navbar-list-mobile">
+                        <img
+                          src={avatar}
+                          alt="avatar"
+                          className="navbar-avatar-mobile"
+                        />
+                      </li>
                     </>
                   )}
 
@@ -259,6 +280,15 @@ function Navbar() {
                         >
                           Log Out
                         </NavLink>
+                      </li>
+                      <li className="navbar-list-mobile">
+                        <img
+                          src={
+                            currentUser.photoURL ? currentUser.photoURL : avatar
+                          }
+                          alt="avatar"
+                          className="navbar-avatar-mobile"
+                        />
                       </li>
                     </>
                   )}

@@ -53,6 +53,19 @@
 
 .navbar-right-buttons {
   margin-left: auto;
+  margin-right: 8%;
+}
+
+.navbar-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: "hidden";
+  border: solid;
+  border-width: 3px;
+  vertical-align: middle;
+  border-color: #faf9f6;
+  margin-left: 1.2rem;
 }
 
 .fa-book-icon {
@@ -96,6 +109,17 @@
   border-radius: 0.2rem;
 }
 
+.navbar-avatar-mobile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: "hidden";
+  border: solid;
+  border-width: 3px;
+  border-color: #faf9f6;
+  margin-top: 0.5rem;
+}
+
 /*Responsive CSS*/
 @media screen and (min-width: 1000px) {
   .hamburger-menu {
@@ -110,6 +134,7 @@
     justify-content: center;
     align-items: center;
   }
+
 }
 
 @media screen and (max-width: 1000px) {
@@ -123,6 +148,9 @@
     position: relative;
     left: 0rem;
     bottom: 0.3rem;
+  }
+  .navbar-avatar{
+    display: none;
   }
 }
 

@@ -129,7 +129,7 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button className="register__btn" onClick={register}>
+        <button className="register__btn" onClick={register} disabled={isLoading||loading}>
           Register
         </button>
         <div>

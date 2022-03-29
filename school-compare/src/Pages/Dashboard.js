@@ -81,8 +81,12 @@ function Dashboard() {
     console.log(loading, error);
     if (!loading && !error) {
       setError(false);
-      if (photoURL === avatar) setPhotoURL(null);
+      if (photoURL === avatar) {
+        console.log("photoURL = avatar");
+        setPhotoURL(avatar);
+      }
       updateNamePhoto(name, photoURL, setLoading);
+      console.log("Saved name and photo");
     }
   }
 
@@ -121,7 +125,11 @@ function Dashboard() {
         </button>
 
         <div>
-          <input type="file" onChange={handleChangePhoto} className="dashboard-attachment"/>
+          <input
+            type="file"
+            onChange={handleChangePhoto}
+            className="dashboard-attachment"
+          />
           <img src={photo} alt="Avatar" className="dashboard-img" />
         </div>
 
@@ -140,13 +148,25 @@ function Dashboard() {
           className="dashboard-email"
         />
 
-        <button disabled={loading} onClick={handleSave} className="dashboard-buttons">
+        <button
+          disabled={loading}
+          onClick={handleSave}
+          className="dashboard-buttons"
+        >
           Save changes
         </button>
-        <button disabled={loading} onClick={handleCancel} className="dashboard-buttons">
+        <button
+          disabled={loading}
+          onClick={handleCancel}
+          className="dashboard-buttons"
+        >
           Cancel
         </button>
-        <button disabled={loading} onClick={handleDelete} className="dashboard-buttons">
+        <button
+          disabled={loading}
+          onClick={handleDelete}
+          className="dashboard-buttons"
+        >
           Delete Account
         </button>
       </div>
