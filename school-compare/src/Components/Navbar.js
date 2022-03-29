@@ -22,7 +22,8 @@ let activeStyle = {
 function Navbar() {
   const [expandNavBar, setExpandNavBar] = useState(false);
   const favouritesCtx = useContext(FavouritesContext);
-  const [currentUser, isAuth] = useAuth();
+
+  const user = useAuth();
 
   return (
     <nav className="navbar">
@@ -102,7 +103,7 @@ function Navbar() {
               Dashboard
             </NavLink>
           </li>
-          {!isAuth && (
+          {!user && (
             <>
               {/* To Login page */}
               <li className="navbar-list">
@@ -121,7 +122,7 @@ function Navbar() {
             </>
           )}
 
-          {isAuth && (
+          {user && (
             <>
               {/* To Logout */}
               <li className="navbar-list">
@@ -241,7 +242,7 @@ function Navbar() {
                       Dashboard
                     </NavLink>
                   </li>
-                  {!isAuth && (
+                  {!user && (
                     <>
                       {/* To Login page */}
                       <li className="navbar-list-mobile">
@@ -265,7 +266,7 @@ function Navbar() {
                     </>
                   )}
 
-                  {isAuth && (
+                  {user && (
                     <>
                       {/* To Logout */}
                       <li className="navbar-list-mobile">

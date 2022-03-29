@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { addDoc, collection, doc, getDocs, onSnapshot, orderBy, query, where } from "firebase/firestore"
-import { db, auth } from "../../Firebase"
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { collection, doc, getDocs, onSnapshot, orderBy, query } from "firebase/firestore"
+import { ref } from "firebase/storage";
+import { db } from "../../Firebase"
+
 
 function useGetPost(postId) {
     const [post, setPost] = useState([]);
@@ -41,7 +41,7 @@ function useGetPostsReplies() {
         getPosts();
         getReplies();
     }, []);
-    return { postList, replyList };
+    return [postList, replyList];
 }
 
 

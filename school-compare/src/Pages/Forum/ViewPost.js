@@ -1,15 +1,14 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { auth, useAuth } from '../../Firebase';
 import "../../PagesCSS/Forum/Post.css";
-import Comments from "./Comments"
-import Time from "../../Components/DatePosted"
+import Comments from "./ViewComments"
+import Time from "./DatePosted"
 import { useGetPost } from "./PostController"
 
 // TODO: Post Edit with img ? or just place attachments at the bottom 
-// TODO: CSS
+// TODO: Responsive CSS
 
-function Post() {
+function ViewPost() {
   const { postId } = useParams();
   const post = useGetPost(postId)
 
@@ -34,4 +33,4 @@ function Post() {
   );
 }
 
-export default Post
+export default ViewPost

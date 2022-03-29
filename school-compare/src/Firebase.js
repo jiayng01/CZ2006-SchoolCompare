@@ -34,7 +34,7 @@ const firebaseConfig = {
   storageBucket: "school-compare-cffbf.appspot.com",
   messagingSenderId: "788961608159",
   appId: "1:788961608159:web:d63d54c0a1486aadb6446a",
-  measurementId: "G-MX9P8H41WD",
+
 };
 
 // Initialize Firebase
@@ -101,20 +101,21 @@ const logout = () => {
 
 function useAuth() {
   const [currentUser, setCurrentUser] = useState();
-  const [isAuth, setIsAuth] = useState(false);
+  //const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
-        setIsAuth(true);
+        //setIsAuth(true);
       } else {
-        setIsAuth(false);
+        //setIsAuth(false);
+        setCurrentUser(false);
       }
     });
     return unsub;
   }, []);
-  return [currentUser, isAuth];
+  return currentUser;
 }
 
 async function updateUserEmail(newEmail, setError, setLoading) {

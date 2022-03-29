@@ -11,9 +11,9 @@ import Reset from "./Pages/ResetPassword";
 import Dashboard from "./Pages/Dashboard";
 import Error from "./Pages/Error";
 
-import Forum from "./Pages/Forum/ForumHomePage";
-import PostCreate from "./Pages/Forum/PostCreate";
-import Post from "./Pages/Forum/Post";
+import Forum from "./Pages/Forum/ViewForum";
+import PostCreate from "./Pages/Forum/CreatePost";
+import Post from "./Pages/Forum/ViewPost";
 
 /* General Page */
 import Primary from "./Pages/Schools/Primary/Primary";

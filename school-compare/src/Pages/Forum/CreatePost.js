@@ -1,27 +1,25 @@
 import React from "react";
-import "../../PagesCSS/Forum/PostCreate.css";
+import "../../PagesCSS/Forum/CreatePost.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FormTextError from "../../Components/FormTextError";
 import { addDoc, collection, Timestamp, getDocs, doc, where, query, } from "firebase/firestore";
 import { auth, db, storage } from "../../Firebase";
-import { ref } from "firebase/storage";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 // import ProgressBar from "./ProgressBar";
-// TODO: Word Limit for query Field?
 // TODO: Multiple Image attachments
-// TODO: Anonymous name
 // TODO: CSS
 
-function PostCreate() {
+function CreatePost() {
 
   const initialValues = {
     toggle: false,
     title: "",
     query: "",
-    image: "",
+    imageUrl: "",
     createdAt: Timestamp.now().toDate(),
   };
   const validationSchema = Yup.object({
@@ -121,4 +119,4 @@ function PostCreate() {
   );
 }
 
-export default PostCreate;
+export default CreatePost;

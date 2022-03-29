@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { collection, query, onSnapshot, orderBy, addDoc, Timestamp, updateDoc, doc, where, getDocs } from "firebase/firestore"
 import { db, auth } from "../../Firebase"
 import { toast } from 'react-toastify';
-import { useAuthState } from 'react-firebase-hooks/auth';
 
 function useGetCommentList(postId) {
 

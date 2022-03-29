@@ -2,11 +2,9 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import "../ComponentsCSS/ExtendedFilter.css"
+import "../../PagesCSS/Forum/FilterPost.css"
 
-// TODO: CSS (Combine with search bar)
-
-function DropDownFilter({ chosen, setChosen }) {
+function FilterPost({ chosen, setChosen }) {
     const [open, setOpen] = useState(false);
     return (
 
@@ -56,4 +54,4 @@ function DropDownFilter({ chosen, setChosen }) {
     );
 }
 
-export default DropDownFilter;
+export default FilterPost;
