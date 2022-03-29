@@ -134,7 +134,6 @@
     justify-content: center;
     align-items: center;
   }
-
 }
 
 @media screen and (max-width: 1000px) {
@@ -149,12 +148,12 @@
     left: 0rem;
     bottom: 0.3rem;
   }
-  .navbar-avatar{
+  .navbar-avatar {
     display: none;
   }
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 700px) {
   .navbar-items {
     display: none;
   }
@@ -166,16 +165,24 @@
     left: 0rem;
     bottom: 0.3rem;
   }
-  .mobile-container {
-    justify-content: left;
-    text-align: start;
-  }
 
   .navbar-mobile {
-    text-align: center;
+    text-align: end;
   }
 
   .fa-cross-icon {
-    margin-left: 34px;
+    margin-left: 78px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .navbar-mobile {
+    position: relative;
+    right: 2rem;
+  }
+
+  .fa-cross-icon {
+    position: relative;
+    right: 2.4rem;
   }
 }

@@ -283,9 +283,7 @@ function Navbar() {
                       </li>
                       <li className="navbar-list-mobile">
                         <img
-                          src={
-                            user.photoURL ? user.photoURL : avatar
-                          }
+                          src={user.photoURL ? user.photoURL : avatar}
                           alt="avatar"
                           className="navbar-avatar-mobile"
                         />
