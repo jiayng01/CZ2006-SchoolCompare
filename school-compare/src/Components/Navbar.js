@@ -138,7 +138,7 @@ function Navbar() {
 
               <li className="navbar-list">
                 <img
-                  src={currentUser.photoURL ? currentUser.photoURL : avatar}
+                  src={user.photoURL ? user.photoURL : avatar}
                   alt="avatar"
                   className="navbar-avatar"
                 />
@@ -284,7 +284,7 @@ function Navbar() {
                       <li className="navbar-list-mobile">
                         <img
                           src={
-                            currentUser.photoURL ? currentUser.photoURL : avatar
+                            user.photoURL ? user.photoURL : avatar
                           }
                           alt="avatar"
                           className="navbar-avatar-mobile"
