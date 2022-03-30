@@ -12,8 +12,7 @@ import { useContext } from "react"; // allows us to establish connection btwn th
 import FavouritesContext from "../Contexts/FavouritesContext";
 
 import MoreInformation from "./MoreInformation";
-import {Link} from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 function SchoolsCard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();
@@ -34,7 +33,10 @@ function SchoolsCard(props) {
   return (
     <div className="school-card">
       <p className="school-name">
-      <Link  to={`/schools/${props.data.school_name}`}> {props.data.school_name} </Link>
+        <Link className="school-name" to={`/schools/${props.data.school_name}`}>
+          {" "}
+          {props.data.school_name}{" "}
+        </Link>
         <FontAwesomeIcon
           className={
             !itemIsFavourite ? "fa-heart-icon" : "fa-heart-icon-toggled"
@@ -70,7 +72,6 @@ function SchoolsCard(props) {
           <input type="checkbox" className="compare-btn"></input>
         </label>
       </div>
-
     </div>
   );
 }

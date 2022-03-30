@@ -17,7 +17,7 @@
   border-radius: 1rem;
   padding-left: 3rem;
   margin-bottom: 2rem;
-  border-bottom: 4px solid #103b79;;
+  border-bottom: 4px solid #103b79;
 }
 
 .school-card:hover {
@@ -25,17 +25,16 @@
   box-shadow: 4px 6px #103b79;
   transition: all 0.3s ease;
   transform: translateX(-10px) translateY(-10px);
-  
 }
 
 .school-name {
-  color: #3b8185;
   padding-top: 1rem;
   margin-bottom: 12px;
   font-weight: bold;
   text-transform: capitalize;
   font-size: 30px;
   padding-left: 5px;
+  color: #3b8185;
 }
 
 .fa-heart-icon {
