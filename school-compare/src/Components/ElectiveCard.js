@@ -6,7 +6,7 @@ import "../ComponentsCSS/ElectiveCard.css";
 import { useContext } from "react"; // allows us to establish connection btwn this component and the Favourites context
 import FavouritesContext from "../Contexts/FavouritesContext";
 
-import MoreInfoButton from "./MoreInfoButton";
+import MoreInformation from "./MoreInformation";
 
 function ElectiveCard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();
@@ -108,7 +108,6 @@ function ElectiveCard(props) {
         </label>
       </div>
 
-      <MoreInfoButton />
     </div>
   );
 }
