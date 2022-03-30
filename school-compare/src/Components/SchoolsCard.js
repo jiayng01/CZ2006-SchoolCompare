@@ -10,7 +10,10 @@ import "../ComponentsCSS/SchoolsCard.css";
 
 import { useContext } from "react"; // allows us to establish connection btwn this component and the Favourites context
 import FavouritesContext from "../Contexts/FavouritesContext";
-import MoreInfoButton from "./MoreInfoButton";
+
+import MoreInformation from "./MoreInformation";
+import {Link} from "react-router-dom";
+
 
 function SchoolsCard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();
@@ -31,7 +34,7 @@ function SchoolsCard(props) {
   return (
     <div className="school-card">
       <p className="school-name">
-        {props.data.school_name}
+      <Link  to={`/schools/${props.data.school_name}`}> {props.data.school_name} </Link>
         <FontAwesomeIcon
           className={
             !itemIsFavourite ? "fa-heart-icon" : "fa-heart-icon-toggled"
@@ -68,7 +71,6 @@ function SchoolsCard(props) {
         </label>
       </div>
 
-      <MoreInfoButton />
     </div>
   );
 }

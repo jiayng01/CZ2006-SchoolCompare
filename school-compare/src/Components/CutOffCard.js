@@ -7,7 +7,7 @@ import "../ComponentsCSS/CutOffCard.css";
 import { useContext } from "react"; // allows us to establish connection btwn this component and the Favourites context
 import FavouritesContext from "../Contexts/FavouritesContext";
 
-import MoreInfoButton from "./MoreInfoButton";
+import MoreInformation from "./MoreInformation";
 
 function CutOffCard(props) {
   const level = props.level;
@@ -89,8 +89,6 @@ function CutOffCard(props) {
             <input type="checkbox" className="compare-btn"></input>
           </label>
         </div>
-
-        <MoreInfoButton />
       </div>
     );
   } else if (level === "Tertiary") {
@@ -122,7 +120,7 @@ function CutOffCard(props) {
           </label>
         </div>
 
-        <MoreInfoButton />
+
       </div>
     );
   }

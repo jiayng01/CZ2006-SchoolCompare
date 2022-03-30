@@ -39,6 +39,8 @@ import PrimaryElective from "./Pages/Schools/Primary/PrimaryElective";
 import SecondaryElective from "./Pages/Schools/Secondary/SecondaryElective";
 import TertiaryElective from "./Pages/Schools/Tertiary/TertiaryElective";
 
+import MoreInformation from "./Components/MoreInformation";
+
 function App() {
   return (
     <>
@@ -49,6 +51,9 @@ function App() {
         <Route path="home" element={<Home />} />
         <Route>
           <Route path="schools" element={<Schools />} />
+
+          <Route path="/schools/:school_name"  element={<MoreInformation/>} ></Route>
+
           <Route>
             {" "}
             {/* Nested routes for  /schools/primary*/}
