@@ -53,6 +53,20 @@
 
 .navbar-right-buttons {
   margin-left: auto;
+  margin-right: 8%;
+}
+
+.navbar-avatar {
+  position: absolute;
+  bottom: 10px;
+  width: 32px;
+  border-radius: 50%;
+  overflow: "hidden";
+  border: solid;
+  border-width: 3px;
+  vertical-align: middle;
+  border-color: #faf9f6;
+  margin-left: 1.2rem;
 }
 
 .fa-book-icon {
@@ -96,8 +110,20 @@
   border-radius: 0.2rem;
 }
 
+.navbar-avatar-mobile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: "hidden";
+  border: solid;
+  border-width: 3px;
+  border-color: #faf9f6;
+  margin-top: 0.5rem;
+}
+
 /*Responsive CSS*/
-@media screen and (min-width: 1000px) {
+
+@media screen and (min-width: 1200px) {
   .hamburger-menu {
     display: none;
   }
@@ -110,9 +136,22 @@
     justify-content: center;
     align-items: center;
   }
+
+  .navbar-avatar {
+    position: absolute;
+    bottom: 10px;
+    width: 28px;
+    border-radius: 50%;
+    overflow: "hidden";
+    border: solid;
+    border-width: 3px;
+    vertical-align: middle;
+    border-color: #faf9f6;
+    margin-left: 1.2rem;
+  }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   .navbar-items {
     display: none;
   }
@@ -123,31 +162,42 @@
     position: relative;
     left: 0rem;
     bottom: 0.3rem;
+  }
+  .navbar-avatar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .navbar-items {
+    display: none;
+  }
+  .navbar-items-mobile:hover {
+    background-color: transparent;
+  }
+  .navbar-badge {
+    position: relative;
+    left: 0rem;
+    bottom: 0.3rem;
+  }
+
+  .navbar-mobile {
+    text-align: end;
+  }
+
+  .fa-cross-icon {
+    margin-left: 78px;
   }
 }
 
 @media screen and (max-width: 300px) {
-  .navbar-items {
-    display: none;
-  }
-  .navbar-items-mobile:hover {
-    background-color: transparent;
-  }
-  .navbar-badge {
-    position: relative;
-    left: 0rem;
-    bottom: 0.3rem;
-  }
-  .mobile-container {
-    justify-content: left;
-    text-align: start;
-  }
-
   .navbar-mobile {
-    text-align: center;
+    position: relative;
+    right: 2rem;
   }
 
   .fa-cross-icon {
-    margin-left: 34px;
+    position: relative;
+    right: 2.4rem;
   }
 }

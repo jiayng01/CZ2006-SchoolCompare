@@ -21,8 +21,7 @@ import {
   updateProfile,
   updateEmail,
 } from "firebase/auth";
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
-// import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
@@ -154,7 +153,7 @@ async function updateNamePhoto(newName, file, setLoading) {
   setLoading(true);
   const fileRef = ref(storage, "/profilePics/" + user.uid);
 
-  // const snapshot = await uploadBytes(fileRef, file);
+  await uploadBytes(fileRef, file);
   const photoURL = await getDownloadURL(fileRef);
 
   const q = query(collection(db, "users"), where("uid", "==", user.uid));
