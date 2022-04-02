@@ -5,9 +5,9 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { FavouritesContextProvider } from "./Contexts/FavouritesContext";
 import "react-toastify/dist/ReactToastify.css";
-import "react-bootstrap"
+import "react-bootstrap";
 import { ToastContainer } from "react-toastify";
-
+import { SchoolsContextProvider } from "./Contexts/SchoolsContext";
 
 ReactDOM.render(
   <FavouritesContextProvider>

@@ -23,7 +23,7 @@ function SecondarySubjects() {
   if (data != null) {
     // filter to get primary school data
     let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       if (
         (data[i].mainlevel_code === "SECONDARY" ||
           data[i].mainlevel_code === "MIXED LEVELS") &&
@@ -46,7 +46,7 @@ function SecondarySubjects() {
         value.school_name.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         return value;
-      } 
+      }
     })
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (

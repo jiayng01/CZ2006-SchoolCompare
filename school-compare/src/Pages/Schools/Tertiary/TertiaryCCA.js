@@ -23,35 +23,37 @@ function TertiaryCCA() {
   if (data !== undefined) {
     // filter to get primary school data
     let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       if (
         /* Total 18 entries*/
         (data[i].mainlevel_code.toLowerCase() ===
           "JUNIOR COLLEGE".toLowerCase() ||
-        (data[i].school_name
-          .toLowerCase()
-          .includes("INSTITUTION".toLowerCase()) &&
-          !data[i].school_name
-            .toLowerCase()
-            .includes("JUNIOR".toLowerCase())) ||
-        (data[i].mainlevel_code.toLowerCase() ===
-          "MIXED LEVELS".toLowerCase() &&
           (data[i].school_name
             .toLowerCase()
-            .includes("TEMASEK".toLowerCase()) ||
-            data[i].school_name
+            .includes("INSTITUTION".toLowerCase()) &&
+            !data[i].school_name
               .toLowerCase()
-              .includes("NATIONAL".toLowerCase()) ||
-            data[i].school_name
+              .includes("JUNIOR".toLowerCase())) ||
+          (data[i].mainlevel_code.toLowerCase() ===
+            "MIXED LEVELS".toLowerCase() &&
+            (data[i].school_name
               .toLowerCase()
-              .includes("JUNIOR COLLEGE".toLowerCase()) ||
-            data[i].school_name
-              .toLowerCase()
-              .includes("DUNMAN".toLowerCase()) ||
-            data[i].school_name.toLowerCase().includes("RIVER".toLowerCase()) ||
-            data[i].school_name
-              .toLowerCase()
-              .includes("INDEPENDENT".toLowerCase())))) &&
+              .includes("TEMASEK".toLowerCase()) ||
+              data[i].school_name
+                .toLowerCase()
+                .includes("NATIONAL".toLowerCase()) ||
+              data[i].school_name
+                .toLowerCase()
+                .includes("JUNIOR COLLEGE".toLowerCase()) ||
+              data[i].school_name
+                .toLowerCase()
+                .includes("DUNMAN".toLowerCase()) ||
+              data[i].school_name
+                .toLowerCase()
+                .includes("RIVER".toLowerCase()) ||
+              data[i].school_name
+                .toLowerCase()
+                .includes("INDEPENDENT".toLowerCase())))) &&
         (data[i].physical_sports.length > 0 ||
           data[i].visual_and_pa.length > 0 ||
           data[i].clubs_and_societies.length > 0 ||
@@ -81,7 +83,7 @@ function TertiaryCCA() {
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
       <div key={school.school_name}>
-        <CCACard data={school} level="tertiary"/>
+        <CCACard data={school} level="tertiary" />
       </div>
     ));
 

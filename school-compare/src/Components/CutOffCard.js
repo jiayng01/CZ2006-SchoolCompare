@@ -45,20 +45,6 @@ function CutOffCard(props) {
           ></FontAwesomeIcon>
         </p>
         <div className="cut-off-container">
-          {/* <div className="cut-off-container">
-            <div>
-              <span className="cut-off-entry">Express</span> :
-              {props.data.express}
-            </div>
-
-            <div>
-              <span className="cut-off-entry">NA</span> :{props.data.na}
-            </div>
-
-            <div>
-              <span className="cut-off-entry">NT</span> :{props.data.nt}
-            </div>
-          </div> */}
           <div className="cut-off-box">
             <span className="cut-off-entry">Express</span>
             <div className="cut-off-affiliation">Affiliated: </div>
@@ -104,7 +90,7 @@ function CutOffCard(props) {
             onClick={toggleFavouriteStatusHandler}
           ></FontAwesomeIcon>
         </p>
-        <div className="cut-off-container">
+        <div className="jc-cut-off-container cut-off-container">
           <div>
             <span className="cut-off-entry">Arts</span> : {props.data.arts}
           </div>
@@ -119,8 +105,6 @@ function CutOffCard(props) {
             <input type="checkbox" className="compare-btn"></input>
           </label>
         </div>
-
-
       </div>
     );
   }

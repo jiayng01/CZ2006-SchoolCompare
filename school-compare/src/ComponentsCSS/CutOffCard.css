@@ -2,6 +2,10 @@
   height: fit-content;
 }
 
+.jc-cut-off-container {
+  margin-left: 2rem;
+  margin-bottom: 0.6rem;
+}
 .cut-off-container {
   display: flex;
   margin-right: 1.5rem;
@@ -37,4 +41,28 @@
 .cut-off-entry {
   color: crimson;
   text-decoration: 2px underline crimson;
+}
+
+@media screen and (max-width: 700px) {
+  .cut-off-box {
+    margin-right: 0.7rem;
+  }
+
+  .cut-off-affiliation {
+    font-size: 16px;
+    text-align: center;
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .cut-off-box {
+    margin-right: 0rem;
+  }
+
+  .cut-off-affiliation {
+    font-size: 16px;
+    text-align: center;
+    height: fit-content;
+  }
 }

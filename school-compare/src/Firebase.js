@@ -24,17 +24,19 @@ import {
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { getDatabase } from "firebase/database";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCnpkoXtoilGMF7PDmWH_zS-wDdB_nsKz0",
   authDomain: "school-compare-cffbf.firebaseapp.com",
+  databaseURL:
+    "https://school-compare-cffbf-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "school-compare-cffbf",
   storageBucket: "school-compare-cffbf.appspot.com",
   messagingSenderId: "788961608159",
   appId: "1:788961608159:web:d63d54c0a1486aadb6446a",
-
 };
 
 // Initialize Firebase

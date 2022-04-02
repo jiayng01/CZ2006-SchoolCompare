@@ -5,11 +5,14 @@ import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
 import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
-import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
+//import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
 
 import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
 import "../../../ComponentsCSS/SchoolSearchBar.css";
+
+import { SchoolsContext } from "../../../Contexts/SchoolsContext";
+import { useContext } from "react";
 
 function Tertiary() {
   const [pageNumber, setPageNumber] = useState(0);
@@ -17,13 +20,17 @@ function Tertiary() {
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
   const [searchTerm, setSearchTerm] = useState("");
 
+  const { schoolsContext } = useContext(SchoolsContext);
+  const api = schoolsContext.schools;
+
   // initialize schools
   let schools = [];
+  let data = api;
 
   if (data !== undefined) {
     // filter to get primary school data
     let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       if (
         /* Total 18 entries*/
         data[i].mainlevel_code.toLowerCase() ===
@@ -116,8 +123,6 @@ function Tertiary() {
         <div className="school-level-title">Tertiary Schools </div>
         <CompareButton />
       </div>
-
-      <Dropdown currentPage={"Tertiary"} />
       {displaySchools}
       <ReactPaginate
         previousLabel="<"

@@ -23,7 +23,7 @@ function TertiaryElective() {
   if (data !== undefined) {
     // filter to get primary school data
     let index = 0; // to ensure the school appear in numeric order, using i will skip some numbers
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       if (
         /* Total 18 entries*/
         (data[i].mainlevel_code.toLowerCase() ===

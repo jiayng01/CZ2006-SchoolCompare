@@ -52,18 +52,27 @@ function App() {
         <Route>
           <Route path="schools" element={<Schools />} />
 
-          <Route path="/schools/:school_name"  element={<MoreInformation/>} ></Route>
+          <Route
+            path="/schools/:school_name"
+            element={<MoreInformation />}
+          ></Route>
 
           <Route>
             {" "}
             {/* Nested routes for  /schools/primary*/}
             <Route path="schools/primary" element={<Primary />} />
-            <Route path="schools/primary/general" element={<Primary />} />
+            <Route
+              path="schools/primary/general"
+              element={<Primary api={api} />}
+            />
             <Route
               path="schools/primary/subjects-offered"
               element={<PrimarySubjects />}
             />
-            <Route path="schools/primary/ccas" element={<PrimaryCCA />} />
+            <Route
+              path="schools/primary/ccas"
+              element={<PrimaryCCA api={api} />}
+            />
             <Route
               path="schools/primary/electives&programmes"
               element={<PrimaryElective />}
