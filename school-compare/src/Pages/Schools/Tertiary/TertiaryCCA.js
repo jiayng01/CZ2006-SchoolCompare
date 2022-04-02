@@ -5,17 +5,23 @@ import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
 import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
-import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
+//import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
 
 import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
 import "../../../ComponentsCSS/SchoolSearchBar.css";
+
+import { SchoolsContext } from "../../../Contexts/SchoolsContext";
+import { useContext } from "react";
 
 function TertiaryCCA() {
   const [pageNumber, setPageNumber] = useState(0);
   const schoolsPerPage = 20;
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
   const [searchTerm, setSearchTerm] = useState("");
+
+  const { schoolsContext } = useContext(SchoolsContext);
+  let data = schoolsContext.schools;
 
   // initialize schools
   let schools = [];
@@ -54,11 +60,15 @@ function TertiaryCCA() {
               data[i].school_name
                 .toLowerCase()
                 .includes("INDEPENDENT".toLowerCase())))) &&
-        (data[i].physical_sports.length > 0 ||
-          data[i].visual_and_pa.length > 0 ||
-          data[i].clubs_and_societies.length > 0 ||
-          data[i].uniformed_groups.length > 0 ||
-          data[i].others.length > 0)
+        ((data[i].physical_sports !== undefined &&
+          data[i].physical_sports.length > 0) ||
+          (data[i].visual_and_pa !== undefined &&
+            data[i].visual_and_pa.length > 0) ||
+          (data[i].clubs_and_societies !== undefined &&
+            data[i].clubs_and_societies.length > 0) ||
+          (data[i].uniformed_groups !== undefined &&
+            data[i].uniformed_groups.length > 0) ||
+          (data[i].others !== undefined && data[i].others.length > 0))
       ) {
         schools[index++] = data[i];
       }

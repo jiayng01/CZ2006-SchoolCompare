@@ -5,17 +5,23 @@ import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
 import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
-import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
+//import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
 
 import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
 import "../../../ComponentsCSS/SchoolSearchBar.css";
+
+import { SchoolsContext } from "../../../Contexts/SchoolsContext";
+import { useContext } from "react";
 
 function PrimaryElective() {
   const [pageNumber, setPageNumber] = useState(0);
   const schoolsPerPage = 20;
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
   const [searchTerm, setSearchTerm] = useState("");
+
+  const { schoolsContext } = useContext(SchoolsContext);
+  let data = schoolsContext.schools;
 
   // initialize schools
   let schools = [];
@@ -29,10 +35,12 @@ function PrimaryElective() {
           data[i].school_name
             .toLowerCase()
             .includes("NICHOLAS".toLowerCase())) &&
-        (data[i].moe_programme.length > 0 ||
-          data[i].alp_domain.length > 0 ||
-          data[i].llp_domain1.length > 0 ||
-          data[i].llp_domain2.length > 0)
+        ((data[i].moe_programme !== undefined &&
+          data[i].moe_programme.length > 0) ||
+          (data[i].alp_domain !== undefined && data[i].alp_domain.length > 0) ||
+          (data[i].llp_domain1 !== undefined &&
+            data[i].llp_domain1.length > 0) ||
+          (data[i].llp_domain2 !== undefined && data[i].llp_domain2.length > 0))
       ) {
         schools[index++] = data[i];
       }

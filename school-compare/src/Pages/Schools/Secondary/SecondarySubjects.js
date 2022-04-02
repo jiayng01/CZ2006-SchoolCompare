@@ -5,17 +5,23 @@ import Dropdown from "../../../Components/Dropdown";
 import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
 import SubjectsCard from "../../../Components/SubjectsCard";
-import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
+//import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
 
 import "../../../ComponentsCSS/PaginationButtons.css";
 import "../../../ComponentsCSS/SchoolsCard.css";
 import "../../../ComponentsCSS/SchoolSearchBar.css";
+
+import { SchoolsContext } from "../../../Contexts/SchoolsContext";
+import { useContext } from "react";
 
 function SecondarySubjects() {
   const [pageNumber, setPageNumber] = useState(0);
   const schoolsPerPage = 20;
   const noOfSchoolsVisited = pageNumber * schoolsPerPage;
   const [searchTerm, setSearchTerm] = useState("");
+
+  const { schoolsContext } = useContext(SchoolsContext);
+  let data = schoolsContext.schools;
 
   // initialize schools
   let schools = [];
@@ -27,6 +33,7 @@ function SecondarySubjects() {
       if (
         (data[i].mainlevel_code === "SECONDARY" ||
           data[i].mainlevel_code === "MIXED LEVELS") &&
+        data[i].subject_desc !== undefined &&
         data[i].subject_desc.length > 0
       ) {
         schools[index++] = data[i];

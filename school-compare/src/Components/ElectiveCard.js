@@ -30,7 +30,10 @@ function ElectiveCard(props) {
   let moe_programme = [];
 
   /* To add commas because MOE programme length > 0*/
-  if (props.data.moe_programme.length > 0) {
+  if (
+    props.data.moe_programme !== undefined &&
+    props.data.moe_programme.length > 0
+  ) {
     moe_programme_boolean = true;
     for (let i = 0; i < props.data.moe_programme.length; i++) {
       if (i !== props.data.moe_programme.length - 1) {
@@ -41,15 +44,27 @@ function ElectiveCard(props) {
     }
   }
 
-  if (props.data.alp_domain.length > 0 && props.data.alp_domain != "NULL") {
+  if (
+    props.data.alp_domain !== undefined &&
+    props.data.alp_domain.length > 0 &&
+    props.data.alp_domain != "NULL"
+  ) {
     alp_domain_boolean = true;
   }
 
-  if (props.data.llp_domain1.length > 0 && props.data.llp_domain1 != "NULL") {
+  if (
+    props.data.llp_domain1 !== undefined &&
+    props.data.llp_domain1.length > 0 &&
+    props.data.llp_domain1 != "NULL"
+  ) {
     llp_domain1_boolean = true;
   }
 
-  if (props.data.llp_domain2.length > 0 && props.data.llp_domain2 != "NULL") {
+  if (
+    props.data.llp_domain2 !== undefined &&
+    props.data.llp_domain2.length > 0 &&
+    props.data.llp_domain2 != "NULL"
+  ) {
     llp_domain2_boolean = true;
   }
 
@@ -107,7 +122,6 @@ function ElectiveCard(props) {
           <input type="checkbox" className="compare-btn"></input>
         </label>
       </div>
-
     </div>
   );
 }

@@ -41,11 +41,12 @@ import TertiaryElective from "./Pages/Schools/Tertiary/TertiaryElective";
 
 import MoreInformation from "./Components/MoreInformation";
 
+import { SchoolsContextProvider } from "./Contexts/SchoolsContext";
+
 function App() {
   return (
     <>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="home" element={<Home />} />
@@ -61,18 +62,12 @@ function App() {
             {" "}
             {/* Nested routes for  /schools/primary*/}
             <Route path="schools/primary" element={<Primary />} />
-            <Route
-              path="schools/primary/general"
-              element={<Primary api={api} />}
-            />
+            <Route path="schools/primary/general" element={<Primary />} />
             <Route
               path="schools/primary/subjects-offered"
               element={<PrimarySubjects />}
             />
-            <Route
-              path="schools/primary/ccas"
-              element={<PrimaryCCA api={api} />}
-            />
+            <Route path="schools/primary/ccas" element={<PrimaryCCA />} />
             <Route
               path="schools/primary/electives&programmes"
               element={<PrimaryElective />}

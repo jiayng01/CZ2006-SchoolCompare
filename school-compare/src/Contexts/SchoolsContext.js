@@ -7,7 +7,6 @@ export const SchoolsContext = createContext();
 
 export const SchoolsContextProvider = (props) => {
   const [schools, setSchools] = useState();
-  const [cca, setCCA] = useState();
 
   useEffect(() => {
     const db = getDatabase();
@@ -15,15 +14,12 @@ export const SchoolsContextProvider = (props) => {
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       setSchools(data);
-      setCCA(data);
-      console.log("cca");
     });
     console.log("testing to see if it gets called once"); // ensure gets called once
   }, []);
 
   const schoolsContext = {
     schools,
-    cca,
   };
 
   return (

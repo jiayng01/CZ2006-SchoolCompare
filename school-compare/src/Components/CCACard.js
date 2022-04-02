@@ -21,6 +21,7 @@ function CCACard(props) {
       favouritesCtx.addFavourite(props.data);
     }
   }
+
   let physical_sports_boolean = false;
   let visual_and_pa_boolean = false;
   let clubs_and_societies_boolean = false;
@@ -34,7 +35,10 @@ function CCACard(props) {
   let others = [];
 
   /* To add commas */
-  if (props.data.physical_sports.length > 0) {
+  if (
+    props.data.physical_sports !== undefined &&
+    props.data.physical_sports.length > 0
+  ) {
     physical_sports_boolean = true;
     if (
       (props.data.jc_physical_sports !== undefined &&
@@ -62,7 +66,11 @@ function CCACard(props) {
       }
     }
   }
-  if (props.data.visual_and_pa.length > 0) {
+
+  if (
+    props.data.visual_and_pa !== undefined &&
+    props.data.visual_and_pa.length > 0
+  ) {
     visual_and_pa_boolean = true;
     if (
       (props.data.jc_visual_and_pa !== undefined &&
@@ -91,7 +99,10 @@ function CCACard(props) {
     }
   }
 
-  if (props.data.clubs_and_societies.length > 0) {
+  if (
+    props.data.clubs_and_societies !== undefined &&
+    props.data.clubs_and_societies.length > 0
+  ) {
     clubs_and_societies_boolean = true;
     if (
       (props.data.jc_clubs_and_societies !== undefined &&
@@ -125,7 +136,10 @@ function CCACard(props) {
     }
   }
 
-  if (props.data.uniformed_groups.length > 0) {
+  if (
+    props.data.uniformed_groups !== undefined &&
+    props.data.uniformed_groups.length > 0
+  ) {
     uniformed_groups_boolean = true;
     if (
       (props.data.jc_uniformed_groups !== undefined &&
@@ -157,12 +171,11 @@ function CCACard(props) {
     }
   }
 
-  if (props.data.others.length > 0) {
+  if (props.data.others !== undefined && props.data.others.length > 0) {
     others_boolean = true;
     if (
       (props.data.jc_others !== undefined && props.level === "tertiary") ||
-      (props.data.jc_others !== undefined &&
-        props.level === "primary")
+      (props.data.jc_others !== undefined && props.level === "primary")
     ) {
       for (let i = 0; i < props.data.jc_others.length; i++) {
         if (i !== props.data.jc_others.length - 1) {
@@ -244,7 +257,6 @@ function CCACard(props) {
           <input type="checkbox" className="compare-btn"></input>
         </label>
       </div>
-
     </div>
   );
 }

@@ -10,12 +10,14 @@ import { ToastContainer } from "react-toastify";
 import { SchoolsContextProvider } from "./Contexts/SchoolsContext";
 
 ReactDOM.render(
-  <FavouritesContextProvider>
-    <BrowserRouter>
-      <App />
-      <ToastContainer />
-    </BrowserRouter>
-  </FavouritesContextProvider>,
+  <SchoolsContextProvider>
+    <FavouritesContextProvider>
+      <BrowserRouter>
+        <App />
+        <ToastContainer />
+      </BrowserRouter>
+    </FavouritesContextProvider>
+  </SchoolsContextProvider>,
   document.getElementById("root")
 );
 

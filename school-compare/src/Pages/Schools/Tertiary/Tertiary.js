@@ -21,11 +21,10 @@ function Tertiary() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const { schoolsContext } = useContext(SchoolsContext);
-  const api = schoolsContext.schools;
+  let data = schoolsContext.schools;
 
   // initialize schools
   let schools = [];
-  let data = api;
 
   if (data !== undefined) {
     // filter to get primary school data

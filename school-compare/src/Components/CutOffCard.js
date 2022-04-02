@@ -26,8 +26,11 @@ function CutOffCard(props) {
 
   if (level === "Secondary") {
     if (
+      props.data.express !== undefined &&
       props.data.express.length === 0 &&
+      props.data.na !== undefined &&
       props.data.na.length === 0 &&
+      props.data.nt !== undefined &&
       props.data.nt.length === 0
     ) {
       return null;
