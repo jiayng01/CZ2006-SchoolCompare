@@ -20,11 +20,13 @@ import {
   onAuthStateChanged,
   updateProfile,
   updateEmail,
+  EmailAuthProvider,
   reauthenticateWithCredential,
 } from "firebase/auth";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+// import { getDatabase } from "firebase/database";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -120,19 +122,10 @@ function useAuth() {
   return currentUser;
 }
 
-async function reauthenticate(password) {
+function reauthenticate(currentPassword) {
   const user = auth.currentUser;
-  const credential = {
-    email: user.email,
-    password: password,
-  };
-  await reauthenticateWithCredential(user, credential)
-    .then(() => {
-      // User re-authenticated.
-    })
-    .catch((error) => {
-      toast(error.message, { type: "warning" });
-    });
+  const cred = EmailAuthProvider.credential(user.email, currentPassword);
+  return reauthenticateWithCredential(user, cred);
 }
 
 const updateUserEmail = async (newEmail) => {
@@ -209,7 +202,8 @@ async function updatePhoto(file, setLoading) {
   setLoading(false);
 }
 
-function deleteAccount(setLoading) {
+function deleteAccount(password, setLoading) {
+  reauthenticate(password);
   const user = auth.currentUser;
   setLoading(true);
   deleteUser(user)
@@ -230,7 +224,6 @@ function deleteAccount(setLoading) {
       logout();
     })
     .catch((err) => {
-      //TODO reauthentication (separate function) when signed in too long ago
       toast(err.message, { type: "error" });
     });
   setLoading(false);
