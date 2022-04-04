@@ -20,6 +20,7 @@ import {
   onAuthStateChanged,
   updateProfile,
   updateEmail,
+  reauthenticateWithCredential,
 } from "firebase/auth";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { useState, useEffect } from "react";
@@ -76,7 +77,6 @@ const registerWithEmailAndPassword = async (
     })
       .then(() => {
         console.log(auth.currentUser.displayName);
-        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error.message);
@@ -85,6 +85,7 @@ const registerWithEmailAndPassword = async (
     console.error(err);
     toast(err.message, { type: "error" });
   }
+  setIsLoading(false);
 };
 
 const sendPasswordReset = async (email) => {
@@ -103,15 +104,15 @@ const logout = () => {
 
 function useAuth() {
   const [currentUser, setCurrentUser] = useState();
-  //const [isAuth, setIsAuth] = useState(false);
+  // const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
-        //setIsAuth(true);
+        // setIsAuth(true);
       } else {
-        //setIsAuth(false);
+        // setIsAuth(false);
         setCurrentUser(false);
       }
     });
@@ -120,43 +121,50 @@ function useAuth() {
   return currentUser;
 }
 
-async function updateUserEmail(newEmail, setError, setLoading) {
+async function reauthenticate(password) {
   const user = auth.currentUser;
-  setLoading(true);
-  await updateEmail(user, newEmail)
-    .then(async () => {
-      const q = query(collection(db, "users"), where("uid", "==", user.uid));
-      const querySnapshot = await getDocs(q).catch((err) => {
-        console.log("getDocs from query error: ", err.message);
-        setError(true);
-      });
-
-      const userRef = querySnapshot.docs[0].ref;
-
-      await updateDoc(userRef, {
-        email: newEmail,
-      }).catch((err) => {
-        console.log("updateDoc (email field) error: ", err.message);
-        setError(true);
-      });
+  const credential = {
+    email: user.email,
+    password: password,
+  };
+  await reauthenticateWithCredential(user, credential)
+    .then(() => {
+      // User re-authenticated.
     })
-    .catch((err) => {
-      //TODO reauthentication (separate function) when signed in too long ago
-      console.log("updateEmail (Authentication) error: ", err.message);
-      setError(true);
-      toast(err.message, { type: "error" });
+    .catch((error) => {
+      toast(error.message, { type: "warning" });
     });
-  setLoading(false);
 }
 
-async function updateNamePhoto(newName, file, setLoading) {
+const updateUserEmail = async (newEmail) => {
+  const user = auth.currentUser;
+
+  await updateEmail(user, newEmail).then(async () => {
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const querySnapshot = await getDocs(q).catch((err) => {
+      console.log("getDocs from query error: ", err.message);
+    });
+
+    const userRef = querySnapshot.docs[0].ref;
+
+    await updateDoc(userRef, {
+      email: newEmail,
+    }).catch((err) => {
+      console.log("updateDoc (email field) error: ", err.message);
+    });
+  });
+  // .catch((err) => {
+  //   //TODO reauthentication (separate function) when signed in too long ago
+  //   console.log("updateEmail (Authentication) error: ", err.message);
+  //   setError(true);
+  //   toast(err.message, { type: "error" });
+  // })
+};
+
+async function updateName(newName, setLoading) {
   const user = auth.currentUser;
 
   setLoading(true);
-  const fileRef = ref(storage, "/profilePics/" + user.uid);
-
-  await uploadBytes(fileRef, file);
-  const photoURL = await getDownloadURL(fileRef);
 
   const q = query(collection(db, "users"), where("uid", "==", user.uid));
   const querySnapshot = await getDocs(q).catch((err) =>
@@ -172,10 +180,33 @@ async function updateNamePhoto(newName, file, setLoading) {
 
   await updateProfile(user, {
     displayName: newName,
+  }).catch((err) => {
+    console.log("updateProfile (displayName) error: ", err.message);
+  });
+  setLoading(false);
+}
+
+async function updatePhoto(file, setLoading) {
+  const user = auth.currentUser;
+  console.log("file type: ", typeof file);
+
+  setLoading(true);
+
+  const fileRef = ref(storage, "/profilePics/" + user.uid);
+
+  const metadata = {
+    contentType: "image/jpeg",
+  };
+
+  await uploadBytes(fileRef, file, metadata);
+  const photoURL = await getDownloadURL(fileRef);
+
+  await updateProfile(user, {
     photoURL: photoURL,
   }).catch((err) => {
-    console.log("updateProfile error: ", err.message);
+    console.log("updateProfile (photoURL) error: ", err.message);
   });
+  console.log("In Firebase updatePhoto, updated user photoURL:", user.photoURL);
   setLoading(false);
 }
 
@@ -212,8 +243,10 @@ export {
   sendPasswordReset,
   logout,
   useAuth,
-  updateNamePhoto,
+  updateName,
+  updatePhoto,
   updateUserEmail,
   deleteAccount,
+  reauthenticate,
 };
 export default app;
