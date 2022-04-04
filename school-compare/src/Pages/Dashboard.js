@@ -24,7 +24,6 @@ function Dashboard() {
   );
   const [photoURL, setPhotoURL] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   // ORIGINAL
   // const fetchUserName = async () => {
@@ -61,7 +60,34 @@ function Dashboard() {
   //   setLoading(false);
   // };
 
-  useEffect(async () => {
+  function fetchData() {
+    if (currentUser) {
+      setUid(currentUser.uid);
+      setName(currentUser.displayName);
+      setEmail(currentUser.email);
+      if (currentUser.photoURL) {
+        setPhoto(currentUser.photoURL);
+        setPhotoURL(currentUser.photoURL);
+      }
+      console.log(
+        "currentUser, name, email, photoURL, photo:",
+        currentUser,
+        name,
+        email,
+        photoURL,
+        photo
+      );
+    }
+    // if (currentUser?.photoURL) {
+    //   setPhoto(currentUser.photoURL);
+    //   setPhotoURL(currentUser.photoURL);
+    // }
+    else {
+      console.log("no photoURl");
+    }
+  }
+
+  useEffect(() => {
     let isSubscribed = true;
     console.log("in useEffect");
     if (isLoading || loading) {
@@ -72,31 +98,7 @@ function Dashboard() {
       toast("Please log in to view dashboard", { type: "info" });
       navigate("/login");
     }
-
-    if (isSubscribed) {
-      if (currentUser) {
-        setUid(currentUser.uid);
-        setName(currentUser.displayName);
-        setEmail(currentUser.email);
-        setPhoto(currentUser.photoURL);
-        setPhotoURL(currentUser.photoURL);
-        console.log(
-          "currentUser, name, email, photoURL, photo:",
-          currentUser,
-          name,
-          email,
-          photoURL,
-          photo
-        );
-      }
-      // if (currentUser?.photoURL) {
-      //   setPhoto(currentUser.photoURL);
-      //   setPhotoURL(currentUser.photoURL);
-      // }
-      else {
-        console.log("no photoURl");
-      }
-    }
+    if (isSubscribed) fetchData();
     return () => (isSubscribed = false);
   }, [currentUser, isLoading, uid]);
 
@@ -108,7 +110,7 @@ function Dashboard() {
   }
 
   async function handleSave() {
-    if (name == "" || email == "") {
+    if (name === "" || email === "") {
       toast("Do not leave name and/or email fields empty.", {
         type: "warning",
       });
@@ -125,17 +127,22 @@ function Dashboard() {
           updatePhoto(photoURL, setLoading);
         }
         toast("Changes saved", { type: "success" });
+        return;
       })
       .catch((err) => {
-        //TODO reauthentication (separate function) when signed in too long ago
         console.log("updateEmail (Authentication) error: ", err.message);
-        toast(err.message, { type: "error" });
-        if (err.code == "auth/requires-recent-login") {
-          const password = window.prompt("Please re-enter your password");
-          reauthenticate(password);
+        if (err.code === "auth/requires-recent-login") {
+          const password = window.prompt("Please re-enter your password"); //TODO: replace with a pop up that allows password input to be masked
+          reauthenticate(password)
+            .then(() => {
+              console.log("Retry save...");
+              handleSave();
+            })
+            .catch((err) => console.log("After reauth", err.message));
+        } else {
+          toast(err.message, { type: "error" });
         }
       });
-    return;
   }
 
   function handleCancel() {
@@ -147,7 +154,8 @@ function Dashboard() {
       "Are you sure you wish to delete your account?"
     );
     if (confirmDelete) {
-      deleteAccount(setLoading);
+      const password = window.prompt("Please re-enter your password"); //TODO: replace with a pop up that allows password input to be masked
+      deleteAccount(password, setLoading);
     }
   }
 
