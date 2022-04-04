@@ -24,7 +24,7 @@ function Dashboard() {
   );
   const [photoURL, setPhotoURL] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
 
   // ORIGINAL
   // const fetchUserName = async () => {
@@ -108,7 +108,7 @@ function Dashboard() {
   }
 
   async function handleSave() {
-    if (name == "" || email == "") {
+    if (name === "" || email === "") {
       toast("Do not leave name and/or email fields empty.", {
         type: "warning",
       });
@@ -130,7 +130,7 @@ function Dashboard() {
         //TODO reauthentication (separate function) when signed in too long ago
         console.log("updateEmail (Authentication) error: ", err.message);
         toast(err.message, { type: "error" });
-        if (err.code == "auth/requires-recent-login") {
+        if (err.code === "auth/requires-recent-login") {
           const password = window.prompt("Please re-enter your password");
           reauthenticate(password);
         }
