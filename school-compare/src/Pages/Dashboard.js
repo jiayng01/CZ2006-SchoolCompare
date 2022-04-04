@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+
 import "../PagesCSS/Dashboard/Dashboard.css";
-import avatar from "../PagesCSS/Dashboard/avatar.png";
 import {
   auth, //db,
   logout,
-  updateNamePhoto,
+  updateName,
+  updatePhoto,
   updateUserEmail,
   deleteAccount,
+  reauthenticate,
 } from "../Firebase";
 import { toast } from "react-toastify";
 function Dashboard() {
   const [currentUser, isLoading /* , err*/] = useAuthState(auth);
+  const [uid, setUid] = useState("");
   const [name, setName] = useState("name");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
-  const [photo, setPhoto] = useState(avatar);
-  const [photoURL, setPhotoURL] = useState(avatar);
+  const [photo, setPhoto] = useState(
+    "https://ouch-cdn2.icons8.com/PCj6WwNF1xmJ2kHeHjum0n0U1ZH2kmItggiXJKO0WR8/rs:fit:912:912/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNTYv/NDk2NmFiM2UtNjFk/MS00MjJhLTk2N2Mt/ODhkMmY0NTdiNTIz/LnBuZw.png"
+  );
+  const [photoURL, setPhotoURL] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -40,10 +45,26 @@ function Dashboard() {
   // }, [user, loading]);
   // END ORIGINAL
 
-  useEffect(() => {
+  //   const getUserData = () => {
+  //     setLoading(true);
+  //   try {
+  //     setName(currentUser.displayName);
+  //     console.log("currentUser.displayName: ", currentUser.displayName);
+  //     setEmail(currentUser.email);
+  //     setPhoto(currentUser.photoURL);
+  //     setPhotoURL(currentUser.photoURL);
+  //     console.log("photoURL, photo:", photoURL, photo);
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("An error occured while fetching user data");
+  //   }
+  //   setLoading(false);
+  // };
+
+  useEffect(async () => {
     let isSubscribed = true;
     console.log("in useEffect");
-    if (isLoading) {
+    if (isLoading || loading) {
       console.log("in useEffect: isLoading");
       return;
     }
@@ -54,19 +75,30 @@ function Dashboard() {
 
     if (isSubscribed) {
       if (currentUser) {
+        setUid(currentUser.uid);
         setName(currentUser.displayName);
-        console.log("currentUser.displayName: ", currentUser.displayName);
         setEmail(currentUser.email);
-      }
-      if (currentUser?.photoURL) {
         setPhoto(currentUser.photoURL);
         setPhotoURL(currentUser.photoURL);
-      } else {
+        console.log(
+          "currentUser, name, email, photoURL, photo:",
+          currentUser,
+          name,
+          email,
+          photoURL,
+          photo
+        );
+      }
+      // if (currentUser?.photoURL) {
+      //   setPhoto(currentUser.photoURL);
+      //   setPhotoURL(currentUser.photoURL);
+      // }
+      else {
         console.log("no photoURl");
       }
     }
     return () => (isSubscribed = false);
-  }, [currentUser, isLoading, navigate]);
+  }, [currentUser, isLoading, uid]);
 
   function handleChangePhoto(e) {
     if (e.target.files[0]) {
@@ -75,25 +107,48 @@ function Dashboard() {
     }
   }
 
-  function handleSave() {
-    //TODO don't allow when name and email are empty
-    updateUserEmail(email, setError, setLoading);
-    console.log(loading, error);
-    if (!loading && !error) {
-      setError(false);
-      if (photoURL === avatar) {
-        console.log("photoURL = avatar");
-        setPhotoURL(avatar);
-      }
-      updateNamePhoto(name, photoURL, setLoading);
-      console.log("Saved name and photo");
+  async function handleSave() {
+    if (name == "" || email == "") {
+      toast("Do not leave name and/or email fields empty.", {
+        type: "warning",
+      });
+      return;
     }
+    await updateUserEmail(email)
+      .then(() => {
+        // console.log("loading, error:", loading, error);
+        console.log("Updating name...");
+        updateName(name, setLoading);
+        console.log("loading, photoURL, photo:", loading, photoURL, photo);
+        if (!loading && typeof photoURL == "object") {
+          console.log("Updating photo...");
+          updatePhoto(photoURL, setLoading);
+        }
+        toast("Changes saved", { type: "success" });
+      })
+      .catch((err) => {
+        //TODO reauthentication (separate function) when signed in too long ago
+        console.log("updateEmail (Authentication) error: ", err.message);
+        toast(err.message, { type: "error" });
+        if (err.code == "auth/requires-recent-login") {
+          const password = window.prompt("Please re-enter your password");
+          reauthenticate(password);
+        }
+      });
+    return;
   }
 
-  function handleCancel() {}
+  function handleCancel() {
+    navigate("/");
+  }
 
   function handleDelete() {
-    deleteAccount(setLoading);
+    const confirmDelete = window.confirm(
+      "Are you sure you wish to delete your account?"
+    );
+    if (confirmDelete) {
+      deleteAccount(setLoading);
+    }
   }
 
   // useEffect(() => {
