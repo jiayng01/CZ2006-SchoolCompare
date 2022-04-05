@@ -6,7 +6,7 @@ import { getDatabase, ref, onValue } from "firebase/database";
 export const SchoolsContext = createContext();
 
 export const SchoolsContextProvider = (props) => {
-  const [schools, setSchools] = useState(null);
+  const [schools, setSchools] = useState();
 
   useEffect(() => {
     const db = getDatabase();

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { auth, useAuth } from "../../Firebase";
+import { useAuth } from "../../Firebase";
 import "../../PagesCSS/Forum/Forum.css";
 import Time from "./DatePosted";
 import SearchBar from "./SearchBar";
 import FilterPost from "./FilterPost";
 import { useGetPostsReplies } from "./PostController"
 import Card from "./PostCard"
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import avatar from "../../PagesCSS/Dashboard/avatar.png";
 
 // TODO: Pagination of the posts
 // TODO: Fix moving components due to changing filters
@@ -60,7 +60,7 @@ function ViewForum() {
         </Link>
         <div className="search-input-with-dropdown">
           <SearchBar
-            placeholder="Search post..."
+            placeholder="Search"
             handleFilter={handleFilter}
             filteredPost={filteredPost}
             setFilteredPost={setFilteredPost}
@@ -74,13 +74,12 @@ function ViewForum() {
 
       </div>
       {/* Filtered by search after selection from dropdown*/}
-      {filteredPost.length !== 0 ? (filteredPost.map((post) => {
+      {filteredPost.length !== 0 && textEntered.length !== 0 ? (filteredPost.map((post) => {
         return (
           <div className="post" key={post.id}>
             <div className="post-header">
-              <AccountCircleIcon />
-              <img className="post-user-img" alt="" />
-              <img className="post-user-img" alt="" />
+              <img className="post-user-img" src={user.photoURL ? user.photoURL : avatar}
+                alt="avatar" />
               <p className="post-user-name">{post.author.name}</p>
               <Time content={post} />
             </div>
@@ -88,20 +87,23 @@ function ViewForum() {
           </div>
         )
       }))
-        : /* Filtered by dropdown*/
-        list.map((post) => {
-          return (
-            <div className="post" key={post.id}>
-              <div className="post-header">
-                <AccountCircleIcon />
-                <img className="post-user-img" alt="" />
-                <p className="post-user-name">{post.author.name}</p>
-                <Time content={post} />
+        /* No Posts */
+        : textEntered.length !== 0 ?
+          <div> No posts available... </div> :
+          /* Filtered by dropdown*/
+          list.map((post) => {
+            return (
+              <div className="post" key={post.id}>
+                <div className="post-header">
+                  <img className="post-user-img" src={user.photoURL ? user.photoURL : avatar}
+                    alt="avatar" />
+                  <p className="post-user-name">{post.author.name}</p>
+                  <Time content={post} />
+                </div>
+                <Card content={post} />
               </div>
-              <Card content={post} />
-            </div>
-          )
-        })
+            )
+          })
       }
     </div >
   );

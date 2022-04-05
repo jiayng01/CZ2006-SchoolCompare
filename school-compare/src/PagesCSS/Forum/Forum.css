@@ -43,3 +43,10 @@
 .forum-create-post:hover{
 	background-color: #f87b7b
 }
+
+.post-user-img {
+	width: 32px;
+	border-radius: 50%;
+	overflow: "hidden";
+
+}

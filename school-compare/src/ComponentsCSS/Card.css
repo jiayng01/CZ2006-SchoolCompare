@@ -55,6 +55,13 @@
     margin-right: 0.5rem;
 }
 
+.post-user-img {
+	width: 32px;
+	border-radius: 50%;
+	overflow: "hidden";
+
+}
+
 .time-ago{
     font-size: smaller;
     position: relative;
