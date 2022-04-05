@@ -6,20 +6,22 @@ import { getDatabase, ref, onValue } from "firebase/database";
 export const SchoolsContext = createContext();
 
 export const SchoolsContextProvider = (props) => {
-  const [schools, setSchools] = useState();
+  const [schools, setSchools] = useState(null);
 
   useEffect(() => {
     const db = getDatabase();
     const starCountRef = ref(db, "schools/");
-    onValue(starCountRef, (snapshot) => {
+    const unsub = onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       setSchools(data);
+
     });
     console.log("testing to see if it gets called once"); // ensure gets called once
+    return unsub;
   }, []);
 
   const schoolsContext = {
-    schools,
+    schools
   };
 
   return (

@@ -15,7 +15,7 @@
 // export default MoreInfoButton;
 
 //import data from "../JSON/combined_data.json";
-import react from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faTrainSubway } from "@fortawesome/free-solid-svg-icons";
@@ -23,65 +23,78 @@ import { faBus } from "@fortawesome/free-solid-svg-icons";
 import mrtIcon from "../Images/mrt-icon.png";
 import "../ComponentsCSS/MoreInformation.css";
 import { useLocation, useParams } from "react-router-dom";
-
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 import { SchoolsContext } from "../Contexts/SchoolsContext";
-import { useContext } from "react";
+import react, { useContext } from "react";
 
 const MoreInformation = () => {
   const { schoolsContext } = useContext(SchoolsContext);
-  let data = schoolsContext.schools;
+  const data = schoolsContext.schools;
   //console.log("school id", props.location.state);
+
   const { school_name } = useParams();
-  //console.log({id})
 
   return (
-    <>
-      <div className="more-info-heading"> {school_name} </div>
-      <div className="more-info">
-        {data
-          .filter((value) => value.school_name === `${school_name}`)
-          .map((props) => {
-            let subjects = [];
-            for (let i = 0; i < props.subject_desc.length; i++) {
-              if (i !== props.subject_desc.length - 1) {
-                subjects.push(props.subject_desc[i].toLowerCase() + " ,  ");
-              } else {
-                subjects.push(props.subject_desc[i].toLowerCase());
+    <div>
+      {!data ?
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }
+          }
+          open
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop > :
+        <>
+          <div className="more-info-heading"> {school_name} </div>
+          <div className="more-info">
+            {data.filter((value) => value.school_name.toLowerCase() === `${school_name}`)
+              .map((props) => {
+                let subjects = [];
+                for (let i = 0; i < props.subject_desc.length; i++) {
+                  if (i !== props.subject_desc.length - 1) {
+                    subjects.push(props.subject_desc[i].toLowerCase() + " ,  ");
+                  } else {
+                    subjects.push(props.subject_desc[i].toLowerCase());
+                  }
+                }
+                return (
+                  <div key={props._id}>
+                    <MoreInfo
+                      key={props._id}
+                      _id={props._id}
+                      school_name={props.school_name}
+                      email_address={props.email_address}
+                      address={props.address}
+                      postal_code={props.postal_code}
+                      mrt_desc={props.mrt_desc}
+                      telephone_no={props.telephone_no}
+                      bus_desc={props.bus_desc}
+                      principal_name={props.principal_name}
+                      url_address={props.url_address}
+                      subjects={subjects}
+                      physical_sports={props.physical_sports}
+                      visual_and_pa={props.visual_and_pa}
+                      clubs_and_societies={props.clubs_and_societies}
+                      uniformed_groups={props.uniformed_groups}
+                      others={props.others}
+                      moe_programme={props.moe_programme}
+                      alp_domain={props.alp_domain}
+                      alp_title={props.alp_title}
+                      llp_domain1={props.llp_domain1}
+                      llp_title1={props.llp_title1}
+                      llp_domain2={props.llp_domain2}
+                      llp_title2={props.llp_title2}
+                    />
+                  </div>
+                )
               }
-            }
-            return (
-              <div key={props._id}>
-                <MoreInfo
-                  key={props._id}
-                  _id={props._id}
-                  school_name={props.school_name}
-                  email_address={props.email_address}
-                  address={props.address}
-                  postal_code={props.postal_code}
-                  mrt_desc={props.mrt_desc}
-                  telephone_no={props.telephone_no}
-                  bus_desc={props.bus_desc}
-                  principal_name={props.principal_name}
-                  url_address={props.url_address}
-                  subjects={subjects}
-                  physical_sports={props.physical_sports}
-                  visual_and_pa={props.visual_and_pa}
-                  clubs_and_societies={props.clubs_and_societies}
-                  uniformed_groups={props.uniformed_groups}
-                  others={props.others}
-                  moe_programme={props.moe_programme}
-                  alp_domain={props.alp_domain}
-                  alp_title={props.alp_title}
-                  llp_domain1={props.llp_domain1}
-                  llp_title1={props.llp_title1}
-                  llp_domain2={props.llp_domain2}
-                  llp_title2={props.llp_title2}
-                />
-              </div>
-            );
-          })}
-      </div>
-    </>
+              )}
+          </div>
+        </>
+      };
+    </div>
   );
 };
 
@@ -166,11 +179,11 @@ const MoreInfo = ({
       </div>{" "}
       {/* div for general info */}
       <div className="subjects-card-mf">
-        <p className="subjects-card-school-name-mf">
+        <div className="subjects-card-school-name-mf">
           {" "}
           Subjects Offered
           <div className="subjects-desc-mf">{subjects}</div>
-        </p>
+        </div>
       </div>
       {/* div for subjects*/}
       <div className="cca-card-mf">

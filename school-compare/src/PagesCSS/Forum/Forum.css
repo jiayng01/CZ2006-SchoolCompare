@@ -35,9 +35,11 @@
 .forum-create-post{
 	background-color: #ED9797;
 	border-radius: 8px;
-	position: sticky;
 	padding-top: 5px;
 	width: 10rem;
 	color: black;
-	
+}
+
+.forum-create-post:hover{
+	background-color: #f87b7b
 }
