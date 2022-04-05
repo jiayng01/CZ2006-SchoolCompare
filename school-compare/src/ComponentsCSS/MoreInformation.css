@@ -37,37 +37,37 @@
 
 
 /* Location, MRT, Bus */
-.school-location {
+.school-location-mf {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding-bottom: 0.5rem;
 }
 
-.school-address {
+.school-address-mf {
   text-transform: capitalize;
   padding-left: 0.3rem;
   padding-top: 0.3rem;
 }
 
-.school-postal {
+.school-postal-mf {
   padding-left: 1rem;
   padding-top: 0.3rem;
 }
 
-.fa-location-dot-icon {
+.fa-location-dot-icon-mf {
   width: 3rem;
   font-size: 30px;
   margin-top: 0.5rem;
   color: rgb(21, 78, 80);
 }
 
-.school-mrt-wrapper {
+.school-mrt-wrapper-mf {
   display: flex;
   margin-left: 10px;
 }
 
-.school-mrt-desc {
+.school-mrt-desc-mf {
   text-transform: capitalize;
   text-align-last: left;
   padding-left: 0.65rem;
@@ -125,7 +125,7 @@
 }
 
 /*Subjects*/
-.subjects-card {
+.subjects-card-mf {
   font-family: "Saira Condensed", sans-serif;
   font-size: 24px;
   background-color: #f2c0c0;
@@ -138,7 +138,7 @@
   border-bottom: 4px solid #103b79;;
 }
 
-.subjects-card-school-name{
+.subjects-card-school-name-mf{
   text-align: center;
   color: #3b8185;
   padding-top: 1rem;
@@ -149,7 +149,7 @@
   padding-right: 35px; 
 }
 
-.subjects-desc {
+.subjects-desc-mf {
   color: black;
   font-weight: 100;
   font-size: large;
@@ -159,7 +159,7 @@
 
 
 /* CCA */
-.cca-card {
+.cca-card-mf {
   font-family: "Saira Condensed", sans-serif;
   font-size: 24px;
   background-color: #f2c0c0;
@@ -172,7 +172,7 @@
   border-bottom: 4px solid #103b79;;
 }
 
-.cca-container{
+.cca-container-mf{
   text-align: center;
   color: #3b8185;
   padding-top: 1rem;
@@ -183,13 +183,13 @@
   padding-right: 35px; 
 }
 
-.cca-div {
+.cca-div-mf {
   margin-bottom: 10px;
   text-transform: capitalize;
   text-align: justify;
 }
 
-.cca-category {
+.cca-category-mf {
   color: #da277d;
   background-color: #f3e0eaaf;
   border-radius: 5px;
@@ -199,7 +199,7 @@
   font-size: 25px;
 }
 
-.cca-name {
+.cca-name-mf {
   color: black;
   font-weight: 100;
   font-size: large;
@@ -209,7 +209,7 @@
 
 
 /* Electives */
-.elective-card {
+.elective-card-mf {
   font-family: "Saira Condensed", sans-serif;
   font-size: 24px;
   background-color: #f2c0c0;
@@ -222,7 +222,7 @@
   border-bottom: 4px solid #103b79;;
 }
 
-.elective-container {
+.elective-container-mf {
   text-align: center;
   color: #3b8185;
   padding-top: 1rem;
@@ -233,13 +233,13 @@
   padding-right: 35px; 
 }
 
-.elective-div {
+.elective-div-mf {
   margin-bottom: 10px;
   text-transform: capitalize;
   text-align: justify;
 }
 
-.elective-category {
+.elective-category-mf {
   color: #da277d;
   background-color: #f3e0eaaf;
   border-radius: 5px;
@@ -249,7 +249,7 @@
   font-size: 25px;
 }
 
-.elective-name {
+.elective-name-mf {
   color: black;
   font-weight: 100;
   font-size: large;
