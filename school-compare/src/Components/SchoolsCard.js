@@ -33,10 +33,7 @@ function SchoolsCard(props) {
   return (
     <div className="school-card">
       <p className="school-name">
-        <Link className="school-name" to={`/schools/${props.data.school_name}`}>
-          {" "}
-          {props.data.school_name}{" "}
-        </Link>
+      <Link className="school-name" to={`/schools/${props.data.school_name}`}> {props.data.school_name} </Link>
         <FontAwesomeIcon
           className={
             !itemIsFavourite ? "fa-heart-icon" : "fa-heart-icon-toggled"
