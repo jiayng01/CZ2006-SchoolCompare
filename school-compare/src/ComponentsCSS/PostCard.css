@@ -30,7 +30,7 @@
     font-weight: 400;
   }
 
-.post-header{
+.posts-header{
 	display: flex;
 	margin: 1rem;
     font-size: 1rem;
@@ -39,7 +39,7 @@
     font-weight: 600;
 }
 
-.post{
+.posts{
 	display: flex;
 	flex-wrap: wrap;
 	padding: 0.5rem;
@@ -50,12 +50,12 @@
     text-align: left;
 }
 
-.post-user-name{
+.posts-user-name{
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
 
-.post-user-img {
+.posts-user-img {
 	width: 32px;
 	border-radius: 50%;
 	overflow: "hidden";
@@ -65,4 +65,6 @@
 .time-ago{
     font-size: smaller;
     position: relative;
+    color:rgba(15, 14, 14, 0.678);
+    margin-top: 0.1rem;
 }

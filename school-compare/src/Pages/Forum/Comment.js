@@ -3,6 +3,7 @@ import Time from "./DatePosted"
 import { useAuth } from "../../Firebase"
 import AddComment from "./AddComment"
 import { useNavigate } from 'react-router-dom';
+import avatar from "../../PagesCSS/Dashboard/avatar.png";
 
 
 function Comment({ comment, replies, getReplies, activeComment, setActiveComment, updateComment, addComment }) {
@@ -27,12 +28,17 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
         <div className='comment'>
             <div className='comment-image-container'>
                 {/* <img /> */}
+                <img className="post-user-img"
+                    src={comment.author.photoURL ? comment.author.photoURL : avatar}
+                    alt="avatar" />
             </div>
             <div className='comment-right-part'>
 
                 <div className='comment-content'>
                     {/*Author*/}
-                    <div className='comment-author'>{comment.author.name}</div>
+                    <div className='comment-author'>
+                        {comment.author.name}
+                    </div>
                     <Time content={comment} />
                 </div>
 
@@ -74,7 +80,10 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
                 {isReplying && (
                     <AddComment
                         submitLabel="Reply"
-                        handleSubmit={(text) => addComment(text, postId, parentId)}
+                        handleSubmit={(text) => {
+                            addComment(text, postId, parentId)
+                            setActiveComment(null)
+                        }}
                     />
                 )}
 

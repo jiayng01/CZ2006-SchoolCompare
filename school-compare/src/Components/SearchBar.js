@@ -2,7 +2,7 @@ import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
-import "../../PagesCSS/Forum/SearchBar.css"
+import "../ComponentsCSS/SearchBar.css"
 
 function SearchBar({ placeholder, handleFilter, filteredPost, setFilteredPost, textEntered, setTextEntered }) {
 

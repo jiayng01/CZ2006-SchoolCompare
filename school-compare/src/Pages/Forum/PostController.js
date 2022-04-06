@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { collection, doc, getDocs, onSnapshot, orderBy, query } from "firebase/firestore"
-import { ref } from "firebase/storage";
 import { db } from "../../Firebase"
 
 
@@ -43,6 +42,8 @@ function useGetPostsReplies() {
     }, []);
     return [postList, replyList];
 }
+
+
 
 
 export { useGetPost, useGetPostsReplies }

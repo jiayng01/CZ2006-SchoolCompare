@@ -31,7 +31,8 @@ async function useAddComment(body, postId, parentId = null) {
     await addDoc(collection(db, "comments"), {
         author: {
             name: doc.docs[0].data().name,
-            uid: auth.currentUser.uid
+            uid: auth.currentUser.uid,
+            photoURL: auth.currentUser.photoURL ? auth.currentUser.photoURL : null
         },
         values: {
             body,

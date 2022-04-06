@@ -1,27 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../PagesCSS/Forum/CreatePost.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import FormTextError from "../../Components/FormTextError";
-import { addDoc, collection, Timestamp, getDocs, doc, where, query, } from "firebase/firestore";
-import { auth, db, storage } from "../../Firebase";
-
+import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { db, storage, useAuth } from "../../Firebase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { v4 } from "uuid";
+import ProgressBar from "../../Components/ProgressBar"
 
-// import ProgressBar from "./ProgressBar";
 // TODO: Multiple Image attachments
 // TODO: CSS
 
 function CreatePost() {
+  const user = useAuth();
+  const [imgFile, setImgFile] = useState(null);
+  const [progress, setProgress] = useState(0);
 
-  const initialValues = {
-    toggle: false,
-    title: "",
-    query: "",
-    imageUrl: "",
-    createdAt: Timestamp.now().toDate(),
-  };
   const validationSchema = Yup.object({
     title: Yup.string().required("A title is required!"),
     query: Yup.string().required("A desciption of the query is required!"),
@@ -29,31 +26,77 @@ function CreatePost() {
   const navigate = useNavigate();
 
 
-  async function onSubmit(values) {
-
-    const q = query(collection(db, "users"), where("uid", "==", `${auth.currentUser.uid}`));
-    const doc = await getDocs(q);
-    const username = !values.toggle ? doc.docs[0].data().name : "Anonymous";
-    await addDoc(collection(db, "posts"), {
-      values,
-      author: {
-        name: username,
-        uid: auth.currentUser.uid
-      }
-    }).then(() => {
-      toast("Succesfully Posted!", { type: "success" });
-      navigate("/Forum");
-    }).catch(err => {
-      toast("Post upload failed!", { type: "error" })
-      console.log(err)
-    })
+  const initialValues = {
+    toggle: false,
+    title: "",
+    query: "",
+    imageURL: imgFile,
+    createdAt: Timestamp.now().toDate(),
   };
 
+  function onSubmit(values) {
+
+    if (imgFile) {
+      const storageRef = ref(storage, `postImages/${imgFile.name + v4()}`);
+      const uploadTask = uploadBytesResumable(storageRef, imgFile);
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          const percentage = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          setProgress(percentage);
+        }, (error) => {
+          toast("Image upload failed!", { type: "error" });
+          console.log(error);
+        }, () => {
+          getDownloadURL(uploadTask.snapshot.ref)
+            .then((url) => {
+              values.imageURL = url
+              const username = !values.toggle ? user.displayName : "Anonymous";
+              addDoc(collection(db, "posts"), {
+                values,
+                author: {
+                  name: username,
+                  uid: user.uid,
+                  photoURL: user.photoURL ? user.photoURL : null
+                }
+              }).then(() => {
+                toast("Succesfully Posted!", { type: "success" });
+                navigate("/Forum");
+              }).catch(err => {
+                toast("Post upload failed!", { type: "error" })
+                console.log(err)
+              })
+            })
+        });
+
+    }
+    else {
+      const username = !values.toggle ? user.displayName : "Anonymous";
+      addDoc(collection(db, "posts"), {
+        values,
+        author: {
+          name: username,
+          uid: user.uid,
+          photoURL: user.photoURL ? user.photoURL : null
+        }
+      }).then(() => {
+        toast("Succesfully Posted!", { type: "success" });
+        navigate("/Forum");
+      }).catch(err => {
+        toast("Post upload failed!", { type: "error" })
+        console.log(err)
+      })
+    }
+  }
+
   return (
-    <div className="pc-container">
+
+    < div className="pc-container" >
       <p className="pc-forum">Forum</p>
       <p className="pc-title">Post your questions here!</p>
-      <hr color="black" size="1.2" width="320px" style={{ margin: "auto" }} />
+      <hr color="black"
+        size="1.2"
+        width="320px"
+        style={{ margin: "auto" }} />
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -61,6 +104,7 @@ function CreatePost() {
       >
         <div className="pc-form">
           <Form>
+
             {/* title */}
             <div className="form-control">
               <label className="pc-label">Title:</label>
@@ -101,9 +145,19 @@ function CreatePost() {
             {/* image */}
             <div className="form-control-checkbox">
               <label htmlFor="">
-                <input type="file" name="image" accept="image/*"></input>
+                <input type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={(event) => setImgFile(event.target.files[0])}>
+                </input>
                 {initialValues.image && console.log(initialValues)}
               </label>
+            </div>
+
+
+            {/*Progress Bar */}
+            <div className="form-control">
+              {progress > 0 && <ProgressBar progress={progress} />}
             </div>
 
             {/* Submit button */}
@@ -115,7 +169,7 @@ function CreatePost() {
           </Form>
         </div>
       </Formik>
-    </div>
+    </div >
   );
 }
 

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../Firebase";
 import "../../PagesCSS/Forum/Forum.css";
 import Time from "./DatePosted";
-import SearchBar from "./SearchBar";
-import FilterPost from "./FilterPost";
+import SearchBar from "../../Components/SearchBar";
+import FilterPost from "../../Components/FilterPost";
 import { useGetPostsReplies } from "./PostController"
-import Card from "./PostCard"
+import Card from "../../Components/PostCard"
 import avatar from "../../PagesCSS/Dashboard/avatar.png";
 
 // TODO: Pagination of the posts
@@ -14,11 +14,11 @@ import avatar from "../../PagesCSS/Dashboard/avatar.png";
 // TODO: CSS responsive
 
 function ViewForum() {
+  const user = useAuth();
+  const [postList, replyList] = useGetPostsReplies();
   const [filteredPost, setFilteredPost] = useState([]);
   const [textEntered, setTextEntered] = useState("");
   const [chosen, setChosen] = useState("Latest");
-  const [postList, replyList] = useGetPostsReplies();
-  const user = useAuth();
 
   const getRepliesNo = (post) => {
     return replyList.filter((reply) => reply.values.postId === post.id).length
@@ -76,11 +76,11 @@ function ViewForum() {
       {/* Filtered by search after selection from dropdown*/}
       {filteredPost.length !== 0 && textEntered.length !== 0 ? (filteredPost.map((post) => {
         return (
-          <div className="post" key={post.id}>
-            <div className="post-header">
-              <img className="post-user-img" src={user.photoURL ? user.photoURL : avatar}
+          <div className="posts" key={post.id}>
+            <div className="posts-header">
+              <img className="posts-user-img" src={post.author.photoURL ? post.author.photoURL : avatar}
                 alt="avatar" />
-              <p className="post-user-name">{post.author.name}</p>
+              <p className="posts-user-name">{post.author.name}</p>
               <Time content={post} />
             </div>
             <Card content={post} />
@@ -93,11 +93,11 @@ function ViewForum() {
           /* Filtered by dropdown*/
           list.map((post) => {
             return (
-              <div className="post" key={post.id}>
-                <div className="post-header">
-                  <img className="post-user-img" src={user.photoURL ? user.photoURL : avatar}
+              <div className="posts" key={post.id}>
+                <div className="posts-header">
+                  <img className="posts-user-img" src={post.author.photoURL ? post.author.photoURL : avatar}
                     alt="avatar" />
-                  <p className="post-user-name">{post.author.name}</p>
+                  <p className="posts-user-name">{post.author.name}</p>
                   <Time content={post} />
                 </div>
                 <Card content={post} />
