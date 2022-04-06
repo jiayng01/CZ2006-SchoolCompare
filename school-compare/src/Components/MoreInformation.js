@@ -23,9 +23,9 @@ import { faBus } from "@fortawesome/free-solid-svg-icons";
 import mrtIcon from "../Images/mrt-icon.png";
 import "../ComponentsCSS/MoreInformation.css";
 import { useLocation, useParams } from "react-router-dom";
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-import Button from '@mui/material/Button';
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
 import { SchoolsContext } from "../Contexts/SchoolsContext";
 import react, { useContext } from "react";
 
@@ -35,29 +35,47 @@ const MoreInformation = () => {
   //console.log("school id", props.location.state);
   const { school_name } = useParams();
 
-
   return (
     <div>
-      {!data ?
+      {!data ? (
         <Backdrop
-          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }
-          }
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open
         >
           <CircularProgress color="inherit" />
-        </Backdrop > :
+        </Backdrop>
+      ) : (
         <>
           <div className="more-info-heading"> {school_name} </div>
           <div className="more-info">
-            {data.filter((value) => value.school_name.toLowerCase() === school_name)
+            {data
+              .filter(
+                (value) => value.school_name.toLowerCase() === school_name
+              )
               .map((props) => {
-                let subjects = [];
+                let subjects = undefined;
                 if (props.subject_desc !== undefined) {
+                  subjects = [];
                   for (let i = 0; i < props.subject_desc.length; i++) {
                     if (i !== props.subject_desc.length - 1) {
-                      subjects.push(props.subject_desc[i].toLowerCase() + " ,  ");
+                      subjects.push(
+                        props.subject_desc[i].toLowerCase() + " ,  "
+                      );
                     } else {
                       subjects.push(props.subject_desc[i].toLowerCase());
+                    }
+                  }
+                }
+
+                let moe_programme = [];
+                if (props.moe_programme !== undefined) {
+                  for (let i = 0; i < props.moe_programme.length; i++) {
+                    if (i !== props.moe_programme.length - 1) {
+                      moe_programme.push(
+                        props.moe_programme[i].toLowerCase() + " ,  "
+                      );
+                    } else {
+                      moe_programme.push(props.moe_programme[i].toLowerCase());
                     }
                   }
                 }
@@ -90,12 +108,12 @@ const MoreInformation = () => {
                       llp_title2={props.llp_title2}
                     />
                   </div>
-                )
-              }
-              )}
+                );
+              })}
           </div>
         </>
-      };
+      )}
+      ;
     </div>
   );
 };
@@ -179,15 +197,16 @@ const MoreInfo = ({
           </b>
         </div>
       </div>{" "}
-      {/* div for general info */}
-      <div className="subjects-card-mf">
-        <div className="subjects-card-school-name-mf">
-          {" "}
-          Subjects Offered
-          <div className="subjects-desc-mf">{subjects}</div>
+      {/* div for subjects */}
+      {subjects !== undefined && (
+        <div className="subjects-card-mf">
+          <div className="subjects-card-school-name-mf">
+            Subjects Offered
+            <div className="subjects-desc-mf">{subjects}</div>
+          </div>
         </div>
-      </div>
-      {/* div for subjects*/}
+      )}
+      {/* div for ccas*/}
       <div className="cca-card-mf">
         {
           <div className="cca-container-mf">
@@ -225,16 +244,16 @@ const MoreInfo = ({
           </div>
         }
       </div>
-      {/* div for cca*/}
+      {/* div for elective*/}
       <div className="elective-card-mf">
         <div className="elective-container-mf">
-          MOE Programme
-          {
+          Electives & Programmes
+          {moe_programme !== undefined && (
             <div className="elective-div-mf">
-              <div className="elective-category-mf"> </div>
+              <div className="elective-category-mf"> MOE Programme :</div>
               <div className="elective-name-mf"> {moe_programme} </div>
             </div>
-          }
+          )}
           {alp_domain != "NULL" && (
             <div className="elective-div-mf">
               <div className="elective-category-mf">{alp_domain} </div>
@@ -255,7 +274,6 @@ const MoreInfo = ({
           )}
         </div>
       </div>{" "}
-      {/*div for electives*/}
     </div>
   );
 };
