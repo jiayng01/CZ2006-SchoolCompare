@@ -23,27 +23,27 @@ function ViewComments() {
     }
 
     return (
-        <div className='comments'>
+        <>
+            <h3 className='comments-title'>Comments</h3>
+            <div className='comments'>
+                <div className='comments-container'>
 
-            <div className='comments-container'>
-                <h3 className='comments-title'>
-                    Comments
-                </h3>
-                {rootComments.map((comments) => {
-                    return <Comment
-                        key={comments.id}
-                        comment={comments}
-                        replies={getReplies(comments.id)}
-                        getReplies={getReplies}
-                        activeComment={activeComment}
-                        setActiveComment={setActiveComment}
-                        updateComment={useUpdateComment}
-                        addComment={useAddComment}
+                    {rootComments.map((comments) => {
+                        return <Comment
+                            key={comments.id}
+                            comment={comments}
+                            replies={getReplies(comments.id)}
+                            getReplies={getReplies}
+                            activeComment={activeComment}
+                            setActiveComment={setActiveComment}
+                            updateComment={useUpdateComment}
+                            addComment={useAddComment}
 
-                    />
-                })}
+                        />
+                    })}
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

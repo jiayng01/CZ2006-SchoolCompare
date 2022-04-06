@@ -26,6 +26,7 @@ function AddComment({ handleSubmit, submitLabel, hasCancelButton = false, initia
                 onChange={onChange}
                 placeholder='what are your thoughts?'
                 disabled={!user} />
+
             <button
                 className='comment-button'
                 disabled={isTextAreaDisabled}>
@@ -38,6 +39,7 @@ function AddComment({ handleSubmit, submitLabel, hasCancelButton = false, initia
                     onClick={handleCancel}>
                     Cancel
                 </button>}
+
         </form>
     )
 }
