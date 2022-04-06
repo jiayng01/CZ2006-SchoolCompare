@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Firebase";
 import "../../PagesCSS/Forum/Forum.css";
-import Time from "./DatePosted";
+import Time from "../../Components/DatePosted";
 import SearchBar from "../../Components/SearchBar";
 import FilterPost from "../../Components/FilterPost";
 import { useGetPostsReplies } from "./PostController"

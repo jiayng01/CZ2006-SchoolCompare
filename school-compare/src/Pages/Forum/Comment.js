@@ -1,5 +1,5 @@
 import React from 'react'
-import Time from "./DatePosted"
+import Time from "../../Components/DatePosted"
 import { useAuth } from "../../Firebase"
 import AddComment from "./AddComment"
 import { useNavigate } from 'react-router-dom';

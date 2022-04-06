@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import "../../PagesCSS/Forum/Post.css";
 import Comments from "./ViewComments"
-import Time from "./DatePosted"
+import Time from "../../Components/DatePosted"
 import { useGetPost } from "./PostController"
 import avatar from "../../PagesCSS/Dashboard/avatar.png";
 import CommentText from "./AddComment"
