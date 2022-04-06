@@ -33,8 +33,8 @@ const MoreInformation = () => {
   const { schoolsContext } = useContext(SchoolsContext);
   const data = schoolsContext.schools;
   //console.log("school id", props.location.state);
-
   const { school_name } = useParams();
+
 
   return (
     <div>
@@ -49,14 +49,16 @@ const MoreInformation = () => {
         <>
           <div className="more-info-heading"> {school_name} </div>
           <div className="more-info">
-            {data.filter((value) => value.school_name.toLowerCase() === `${school_name}`)
+            {data.filter((value) => value.school_name.toLowerCase() === school_name)
               .map((props) => {
                 let subjects = [];
-                for (let i = 0; i < props.subject_desc.length; i++) {
-                  if (i !== props.subject_desc.length - 1) {
-                    subjects.push(props.subject_desc[i].toLowerCase() + " ,  ");
-                  } else {
-                    subjects.push(props.subject_desc[i].toLowerCase());
+                if (props.subject_desc !== undefined) {
+                  for (let i = 0; i < props.subject_desc.length; i++) {
+                    if (i !== props.subject_desc.length - 1) {
+                      subjects.push(props.subject_desc[i].toLowerCase() + " ,  ");
+                    } else {
+                      subjects.push(props.subject_desc[i].toLowerCase());
+                    }
                   }
                 }
                 return (
