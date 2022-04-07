@@ -5,11 +5,13 @@ import { useGetCommentList, useAddComment, useUpdateComment } from './CommentCon
 import "../../PagesCSS/Forum/Comment.css"
 
 function ViewComments() {
+
+    // ADDITIONAL: Option to hide or show comments
+    // ADDITIONAL: Option to show full comment if the comment is too long
+
     const { postId } = useParams();
     const commentList = useGetCommentList(postId)
     const [activeComment, setActiveComment] = useState(null);
-
-    // TODO: Responsive CSS
 
     const rootComments = commentList.filter((doc) =>
         doc.values.parentId === null

@@ -11,8 +11,10 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { v4 } from "uuid";
 import ProgressBar from "../../Components/ProgressBar"
 
-// TODO: Multiple Image attachments
-// TODO: CSS
+// TODO: Progress Bar, Checkbox, Upload button CSS
+// ADDITIONAL: Multiple Image attachments
+// ADDITIONAL: Rich Text Editor
+// ADDITIONAL: Paragraphing of query text (special characters or smth)
 
 function CreatePost() {
   const user = useAuth();
@@ -30,7 +32,7 @@ function CreatePost() {
     toggle: false,
     title: "",
     query: "",
-    imageURL: imgFile,
+    imageURL: "",
     createdAt: Timestamp.now().toDate(),
   };
 
@@ -51,12 +53,13 @@ function CreatePost() {
             .then((url) => {
               values.imageURL = url
               const username = !values.toggle ? user.displayName : "Anonymous";
+              const URL = !values.toggle && user.photoURL ? user.photoURL : null;
               addDoc(collection(db, "posts"), {
                 values,
                 author: {
                   name: username,
                   uid: user.uid,
-                  photoURL: user.photoURL ? user.photoURL : null
+                  photoURL: URL
                 }
               }).then(() => {
                 toast("Succesfully Posted!", { type: "success" });
@@ -71,12 +74,13 @@ function CreatePost() {
     }
     else {
       const username = !values.toggle ? user.displayName : "Anonymous";
+      const URL = !values.toggle && user.photoURL ? user.photoURL : null;
       addDoc(collection(db, "posts"), {
         values,
         author: {
           name: username,
           uid: user.uid,
-          photoURL: user.photoURL ? user.photoURL : null
+          photoURL: URL
         }
       }).then(() => {
         toast("Succesfully Posted!", { type: "success" });

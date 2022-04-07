@@ -9,9 +9,10 @@ import { useGetPostsReplies } from "./PostController"
 import Card from "../../Components/PostCard"
 import avatar from "../../PagesCSS/Dashboard/avatar.png";
 
-// TODO: Pagination of the posts
-// TODO: Fix moving components due to changing filters
-// TODO: CSS responsive
+// TODO: Forum Title CSS
+// TODO: Animated video header CSS
+// ADDITIONAL: Delete Post Option?
+// ADDITIONAL: Pagination of the posts
 
 function ViewForum() {
   const user = useAuth();
@@ -88,7 +89,7 @@ function ViewForum() {
         )
       }))
         /* No Posts */
-        : textEntered.length !== 0 ?
+        : textEntered.length !== 0 || list.length === 0 ?
           <div> No posts available... </div> :
           /* Filtered by dropdown*/
           list.map((post) => {

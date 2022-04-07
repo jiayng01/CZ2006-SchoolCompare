@@ -8,7 +8,7 @@ import avatar from "../../PagesCSS/Dashboard/avatar.png";
 import CommentText from "./AddComment"
 import { useAddComment } from './CommentController';
 
-// TODO: Responsive CSS
+// ADDITIONAL: Paragraphing (tweak firestore)
 
 function ViewPost() {
 
