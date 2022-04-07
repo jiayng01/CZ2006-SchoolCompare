@@ -44,10 +44,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export const storage = getStorage(app);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
-
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
@@ -241,4 +237,7 @@ export {
   deleteAccount,
   reauthenticate,
 };
+export const storage = getStorage(app);
+export const db = getFirestore(app);
+export const auth = getAuth(app);
 export default app;

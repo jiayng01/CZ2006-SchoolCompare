@@ -40,6 +40,7 @@ import SecondaryElective from "./Pages/Schools/Secondary/SecondaryElective";
 import TertiaryElective from "./Pages/Schools/Tertiary/TertiaryElective";
 
 import MoreInformation from "./Components/MoreInformation";
+import ChangePassword from "./Components/changePassword";
 
 import { SchoolsContextProvider } from "./Contexts/SchoolsContext";
 
@@ -122,6 +123,7 @@ function App() {
         <Route path="feedback" element={<Feedback />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<SignUp />} />
+        <Route path="changePassword" element={<ChangePassword />} />
         <Route exact path="/reset" element={<Reset />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="*" element={<Error />} />

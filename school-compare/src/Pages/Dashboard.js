@@ -149,6 +149,10 @@ function Dashboard() {
     navigate("/");
   }
 
+  function changePwd() {
+    navigate("/changePassword");
+  }
+
   function handleDelete() {
     const confirmDelete = window.confirm(
       "Are you sure you wish to delete your account?"
@@ -218,6 +222,15 @@ function Dashboard() {
         >
           Save changes
         </button>
+
+        <button
+          disabled={loading}
+          onClick={changePwd}
+          className="dashboard-buttons"
+        >
+          Change Password
+        </button>
+
         <button
           disabled={loading}
           onClick={handleCancel}
@@ -225,6 +238,7 @@ function Dashboard() {
         >
           Cancel
         </button>
+
         <button
           disabled={loading}
           onClick={handleDelete}

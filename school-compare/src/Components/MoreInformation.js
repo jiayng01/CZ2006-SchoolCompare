@@ -27,7 +27,7 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
 import { SchoolsContext } from "../Contexts/SchoolsContext";
-import react, { useContext } from "react";
+import React, { useContext } from "react";
 
 const MoreInformation = () => {
   const { schoolsContext } = useContext(SchoolsContext);
