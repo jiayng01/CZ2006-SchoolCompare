@@ -4,51 +4,50 @@ import { useState } from "react";
 import ErrorCompare from "../Pages/ErrorCompare";
 
 const CompareContext = createContext({
-  school: [],
-  totalSchools: 0,
-  addToCompare: (compareSchool) => {},
-  removeFromCompare: (schoolId) => {},
-  itemToCompare: (schoolId) => {},
+    school: [],
+    totalSchools: 0,
+    addToCompare: (compareSchool) => { },
+    removeFromCompare: (schoolId) => { },
+    itemToCompare: (schoolId) => { },
 }); //context is a javascript object
 // FavouritesContext will contain a react component, so follow naming convention of component
 // these are initial values
 export function CompareContextProvider(props) {
-  const [schoolsToCompare, setSchoolsToCompare] = useState([]);
+    const [schoolsToCompare, setSchoolsToCompare] = useState([]);
 
-  function addCompareHandler(compareSchool) {
-    setSchoolsToCompare((prevSchools) => {
-      if(prevSchools.length==2) {<ErrorCompare />}
-     else
-        return prevSchools.concat(compareSchool);
-    });
-  }
+    function addCompareHandler(compareSchool) {
+        setSchoolsToCompare((prevSchools) => {
 
-  function removeCompareHandler(schoolId) {
-    setSchoolsToCompare((prevSchools) => {
-      return prevSchools.filter((school) => school._id !== schoolId);
-    });
-  }
+            return prevSchools.concat(compareSchool);
+        });
+    }
 
-  function itemCompareHandler(schoolId) {
-    return schoolsToCompare.some((school) => school._id === schoolId);
-  }
+    function removeCompareHandler(schoolId) {
+        setSchoolsToCompare((prevSchools) => {
+            return prevSchools.filter((school) => school._id !== schoolId);
+        });
+    }
 
-  const context = {
-    school: schoolsToCompare,
-    totalSchools: schoolsToCompare.length,
-    addToCompare: addCompareHandler,
-    removeFromCompare: removeCompareHandler,
-    itemToCompare: itemCompareHandler,
-    // exposes these functions to all wrapped components
-  };
+    function itemCompareHandler(schoolId) {
+        return schoolsToCompare.some((school) => school._id === schoolId);
+    }
 
-  return (
-    <CompareContext.Provider value={context}>
-      {/* value={context} is for updating the context so that other components wrapped by this provider will be informed
+    const context = {
+        school: schoolsToCompare,
+        totalSchools: schoolsToCompare.length,
+        addToCompare: addCompareHandler,
+        removeFromCompare: removeCompareHandler,
+        itemToCompare: itemCompareHandler,
+        // exposes these functions to all wrapped components
+    };
+
+    return (
+        <CompareContext.Provider value={context}>
+            {/* value={context} is for updating the context so that other components wrapped by this provider will be informed
        Wraps around all components that are interested in interacting with the context */}
-      {props.children}
-    </CompareContext.Provider>
-  );
+            {props.children}
+        </CompareContext.Provider>
+    );
 }
 
 export default CompareContext;

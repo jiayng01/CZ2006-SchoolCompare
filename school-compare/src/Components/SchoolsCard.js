@@ -12,7 +12,7 @@ import { useContext } from "react"; // allows us to establish connection btwn th
 import FavouritesContext from "../Contexts/FavouritesContext";
 import CompareContext from "../Contexts/CompareContext";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SchoolsCard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();
@@ -36,7 +36,7 @@ function SchoolsCard(props) {
   function toggleCompareHandler() {
     if (toCompare) {
       compareCtx.removeFromCompare(props.data._id);
-    } else {
+    } else if (compareCtx.school.length < 2) {
       compareCtx.addToCompare(props.data);
     }
   }
@@ -44,7 +44,7 @@ function SchoolsCard(props) {
   return (
     <div className="school-card">
       <p className="school-name">
-      <Link className="school-name" to={`/schools/${props.data.school_name}`}> {props.data.school_name} </Link>
+        <Link className="school-name" to={`/schools/${props.data.school_name}`}> {props.data.school_name} </Link>
         <FontAwesomeIcon
           className={
             !itemIsFavourite ? "fa-heart-icon" : "fa-heart-icon-toggled"
