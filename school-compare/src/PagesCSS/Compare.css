@@ -1,11 +1,15 @@
 * {
     margin: 0;
     padding: 0;
+    
   }
-  
+  .comp-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .compare-school{
     display:flex;
-    flex-direction: column;
   }
   .comp-header {
     padding: 70px;

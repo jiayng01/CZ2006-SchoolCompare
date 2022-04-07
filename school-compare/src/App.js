@@ -121,7 +121,9 @@ function App() {
         <Route>
           {""}
           <Route path="forum/postCreate" element={<PostCreate />} />
+
           <Route path="forum/Post/:title/:postId" element={<Post />} />
+
         </Route>
         <Route path="feedback" element={<Feedback />} />
         <Route path="login" element={<Login />} />

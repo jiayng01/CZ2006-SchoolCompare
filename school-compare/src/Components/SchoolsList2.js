@@ -12,48 +12,47 @@ import CompareContext from "../Contexts/CompareContext";
 
 import { useContext } from "react";
 
-const SchoolsList2 = (props) => {
+const SchoolsList2 = ({ schools }) => {
   const { schoolsContext } = useContext(SchoolsContext);
   const data = schoolsContext.schools;
   const { school_name } = useParams();
   const compareCtx = useContext(CompareContext);
 
   return (
-      <div className="school-compare">
-    <div className="school-compare-list">
-        {props.schools.map((school)=>{
-            return(
-          <div key={school._id}>
-            <SchoolsCompInfo
-              key={school._id}
-              name={school.school_name}
-              _id={school._id}
-              school_name={school.school_name}
-              email_address={school.email_address}
-              address={school.address}
-              postal_code={school.postal_code}
-              mrt_desc={school.mrt_desc}
-              telephone_no={school.telephone_no}
-              bus_desc={school.bus_desc}
-              principal_name={school.principal_name}
-              url_address={school.url_address}
-              subjects={school.subjects}
-              physical_sports={school.physical_sports}
-              visual_and_pa={school.visual_and_pa}
-              clubs_and_societies={school.clubs_and_societies}
-              uniformed_groups={school.uniformed_groups}
-              others={school.others}
-              moe_programme={school.moe_programme}
-              alp_domain={school.alp_domain}
-              alp_title={school.alp_title}
-              llp_domain1={school.llp_domain1}
-              llp_title1={school.llp_title1}
-              llp_domain2={school.llp_domain2}
-              llp_title2={school.llp_title2}
-            />
-          </div>);
-        })}
-    </div>
+    <div className="school-compare">
+      <div className="school-compare-list">
+
+        <div key={schools._id}>
+          <SchoolsCompInfo
+            key={schools._id}
+            name={schools.school_name}
+            _id={schools._id}
+            school_name={schools.school_name}
+            email_address={schools.email_address}
+            address={schools.address}
+            postal_code={schools.postal_code}
+            mrt_desc={schools.mrt_desc}
+            telephone_no={schools.telephone_no}
+            bus_desc={schools.bus_desc}
+            principal_name={schools.principal_name}
+            url_address={schools.url_address}
+            subjects={schools.subjects}
+            physical_sports={schools.physical_sports}
+            visual_and_pa={schools.visual_and_pa}
+            clubs_and_societies={schools.clubs_and_societies}
+            uniformed_groups={schools.uniformed_groups}
+            others={schools.others}
+            moe_programme={schools.moe_programme}
+            alp_domain={schools.alp_domain}
+            alp_title={schools.alp_title}
+            llp_domain1={schools.llp_domain1}
+            llp_title1={schools.llp_title1}
+            llp_domain2={schools.llp_domain2}
+            llp_title2={schools.llp_title2}
+          />
+        </div>
+
+      </div>
     </div>
   );
 };
@@ -86,7 +85,7 @@ const SchoolsCompInfo = ({
   if (!_id) return <div />;
   return (
     <div> {name}
-      <div className="school-info"> 
+      <div className="school-info">
         <p className="gen-info ">General Information</p>
 
         <div className="school-location-mf">

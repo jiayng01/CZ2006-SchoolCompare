@@ -29,20 +29,21 @@ function Compare() {
   } else {
     content = (
       <div className="compare-school">
-        <SchoolsList2 schools={compareCtx.school} />
+        {compareCtx.school.map((prop) => <SchoolsList2 key={prop._id} schools={prop} />)}
+
       </div>
     );
   }
-  
+
   return (
-    <section>
+    <div className="comp-page">
       <div className="comp-header">
         <h1 className="comp-title">
           Schools to Compare ({compareCtx.totalSchools})
         </h1>
       </div>
       {content}
-    </section>
+    </div>
   );
 }
 

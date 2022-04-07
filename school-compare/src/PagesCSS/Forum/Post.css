@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
 
 .post-page{
-	background-color:  #9bd8df;
-	font-family: 'Quicksand', serif;
+	/* background-color:  #9bd8df; */
+	font-family: sans-serif;
 }
 .post-container{
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
+	min-width: 50rem;
 }
 .post-header{
 	display: flex;
@@ -33,10 +34,11 @@
 	background-color: #ffd9d9;
 	margin-left: 5rem;
 	margin-right: 5rem;
-	border-radius: 1rem;
+	/* border-radius: 1rem; */
 	margin-bottom: 2rem;
 	padding: 1.8rem;
 	box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+
 }
 .post-img{
 	width: 100%;
@@ -45,12 +47,14 @@
 }
 .post-title{
 	text-align: center;
+	font-size: 1.5rem;
 }
 .post-query {
 	padding: 2.2rem;
 	line-height: 2.3rem;
 	padding-top: 1rem;
-	font-size: 1.3rem;
+	font-size: 1.1rem;
+	text-align: center;
 }
 .comment-form-textarea {
 	height: 5rem;
@@ -58,9 +62,9 @@
 	margin-right: 5rem;
 	padding-top: 0.5rem;
 	padding-left: 0.5rem;
-	width:87%;
+	/* width:91%; */
 	font-size:larger;
-	border-radius: 0.8rem;
+	/* border-radius: 0.8rem; */
 	background-color: #ffd9d9;
 	resize: none;
   }

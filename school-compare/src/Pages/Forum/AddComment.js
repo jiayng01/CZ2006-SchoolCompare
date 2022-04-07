@@ -3,8 +3,6 @@ import { useAuth } from '../../Firebase';
 
 function AddComment({ handleSubmit, submitLabel, hasCancelButton = false, initialText = '', handleCancel, postId }) {
 
-    // TODO: CSS
-
     const user = useAuth();
     const [text, setText] = useState(initialText);
     const isTextAreaDisabled = !user ? true : text.length === 0 ? true : false
@@ -39,6 +37,9 @@ function AddComment({ handleSubmit, submitLabel, hasCancelButton = false, initia
                     onClick={handleCancel}>
                     Cancel
                 </button>}
+            {!user && <p className='comment-warning'>
+                Please Login to Comment.
+            </p>}
 
         </form>
     )
