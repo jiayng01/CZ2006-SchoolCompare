@@ -8,14 +8,17 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import { SchoolsContextProvider } from "./Contexts/SchoolsContext";
+import { CompareContextProvider } from "./Contexts/CompareContext";
 
 ReactDOM.render(
   <SchoolsContextProvider>
     <FavouritesContextProvider>
+      <CompareContextProvider>
       <BrowserRouter>
         <App />
         <ToastContainer />
       </BrowserRouter>
+      </CompareContextProvider>
     </FavouritesContextProvider>
   </SchoolsContextProvider>,
   document.getElementById("root")

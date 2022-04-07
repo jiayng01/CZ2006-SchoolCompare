@@ -1,0 +1,265 @@
+.school-compare{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .school-compare-list{
+    color: #151a1b;
+    padding-top: 1rem;
+    margin-top: 1px;
+    margin-bottom: 25px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 40px;
+    padding-left: 5px;
+    text-align: center;
+  }
+  
+  .gen-info{
+    text-align: center;
+    color: #3b8185;
+    padding-top: 1rem;
+    margin-bottom: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 30px;
+    padding-right: 43px; 
+  }
+  
+  .school-info {
+    font-family: "Saira Condensed", sans-serif;
+    font-size: 24px;
+    background-color: #f2c0c0;
+    width: 47rem;
+    height: fit-content;
+    margin: auto;
+    border-radius: 1rem;
+    padding-left: 3rem;
+    margin-top: 10px;
+    margin-bottom: 2rem;
+    border-bottom: 4px solid #103b79;;
+  }
+  
+  
+  /* Location, MRT, Bus */
+  .school-location-mf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+  }
+  
+  .school-address-mf {
+    text-transform: capitalize;
+    padding-left: 0.3rem;
+    padding-top: 0.3rem;
+  }
+  
+  .school-postal-mf {
+    padding-left: 1rem;
+    padding-top: 0.3rem;
+  }
+  
+  .fa-location-dot-icon-mf {
+    width: 3rem;
+    font-size: 30px;
+    margin-top: 0.5rem;
+    color: rgb(21, 78, 80);
+  }
+  
+  .school-mrt-wrapper-mf {
+    display: flex;
+    margin-left: 10px;
+  }
+  
+  .school-mrt-desc-mf {
+    text-transform: capitalize;
+    text-align-last: left;
+    padding-left: 0.65rem;
+  }
+  
+  .school-bus-wrapper {
+    display: flex;
+    margin-left: 10px;
+  }
+  
+  .school-bus-desc {
+    text-transform: capitalize;
+    text-align-last: left;
+    padding-left: 0.8rem; 
+    margin-top: 0.1rem;
+  }
+  
+  .fa-bus-icon{
+    width: 2rem;
+    margin-top: 0.5rem;
+    font-size: 25px;
+    color: rgb(21, 78, 80);
+  }
+  
+  /* Email, Telephone, Principal, school website */
+  .email-address{
+    position: static;  
+    font-size: 25px;
+    color: black;
+    font-family: "Saira Condensed", sans-serif;
+  }
+  
+  .school-tele{
+    position: relative;
+    font-size: 25px;
+    color: black;
+    font-family: "Saira Condensed", sans-serif;
+    margin-left: 0px;
+  }
+  
+  .principal{
+    position: relative;
+    font-size: 25px;
+    color: black;
+    font-family: "Saira Condensed", sans-serif;
+    margin-left: 1px;
+  }
+  
+  .website{
+    text-align: center;
+    font-size: 25px;
+    color: white;
+    margin-top: 0.5rem;
+    padding-right: 35px;
+  }
+  
+  /*Subjects*/
+  .subjects-card-mf {
+    font-family: "Saira Condensed", sans-serif;
+    font-size: 24px;
+    background-color: #f2c0c0;
+    width: 47rem;
+    height: fit-content;
+    margin: auto;
+    border-radius: 1rem;
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+    border-bottom: 4px solid #103b79;;
+  }
+  
+  .subjects-card-school-name-mf{
+    text-align: center;
+    color: #3b8185;
+    padding-top: 1rem;
+    margin-bottom: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 30px;
+    padding-right: 35px; 
+  }
+  
+  .subjects-desc-mf {
+    color: black;
+    font-weight: 100;
+    font-size: large;
+    margin-top: 1rem;
+    padding-left: 10px;
+  }
+  
+  
+  /* CCA */
+  .cca-card-mf {
+    font-family: "Saira Condensed", sans-serif;
+    font-size: 24px;
+    background-color: #f2c0c0;
+    width: 47rem;
+    height: fit-content;
+    margin: auto;
+    border-radius: 1rem;
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+    border-bottom: 4px solid #103b79;;
+  }
+  
+  .cca-container-mf{
+    text-align: center;
+    color: #3b8185;
+    padding-top: 1rem;
+    margin-bottom: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 30px;
+    padding-right: 35px; 
+  }
+  
+  .cca-div-mf {
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    text-align: justify;
+  }
+  
+  .cca-category-mf {
+    color: #da277d;
+    background-color: #f3e0eaaf;
+    border-radius: 5px;
+    border-bottom: 2px solid #dd69a1;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+  }
+  
+  .cca-name-mf {
+    color: black;
+    font-weight: 100;
+    font-size: large;
+    margin-top: 1rem;
+    padding-left: 10px;
+  }
+  
+  
+  /* Electives */
+  .elective-card-mf {
+    font-family: "Saira Condensed", sans-serif;
+    font-size: 24px;
+    background-color: #f2c0c0;
+    width: 47rem;
+    height: fit-content;
+    margin: auto;
+    border-radius: 1rem;
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+    border-bottom: 4px solid #103b79;;
+  }
+  
+  .elective-container-mf {
+    text-align: center;
+    color: #3b8185;
+    padding-top: 1rem;
+    margin-bottom: 12px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 30px;
+    padding-right: 35px; 
+  }
+  
+  .elective-div-mf {
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    text-align: justify;
+  }
+  
+  .elective-category-mf {
+    color: #da277d;
+    background-color: #f3e0eaaf;
+    border-radius: 5px;
+    border-bottom: 2px solid #dd69a1;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+  }
+  
+  .elective-name-mf {
+    color: black;
+    font-weight: 100;
+    font-size: large;
+    margin-top: 1rem;
+    padding-left: 10px;
+  }
+  
+  

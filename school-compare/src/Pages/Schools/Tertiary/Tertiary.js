@@ -3,7 +3,7 @@ import SchoolsCard from "../../../Components/SchoolsCard";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
-import CompareButton from "../../../Components/CompareButton";
+//import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
 //import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
 
@@ -120,7 +120,7 @@ function Tertiary() {
         }}
       >
         <div className="school-level-title">Tertiary Schools </div>
-        <CompareButton />
+        {/* <CompareButton /> */}
       </div>
       {displaySchools}
       <ReactPaginate

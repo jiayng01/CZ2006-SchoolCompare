@@ -3,7 +3,7 @@ import ElectiveCard from "../../../Components/ElectiveCard";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
-import CompareButton from "../../../Components/CompareButton";
+//import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
 //import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
 
@@ -98,7 +98,7 @@ function SecondaryElective() {
         }}
       >
         <div className="school-level-title">Secondary Schools </div>
-        <CompareButton />
+        {/* <CompareButton /> */}
       </div>
 
       {displaySchools}
