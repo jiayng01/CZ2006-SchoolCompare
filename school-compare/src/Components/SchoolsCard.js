@@ -54,17 +54,6 @@ function SchoolsCard(props) {
         ></FontAwesomeIcon>
       </p>
 
-      <p className="school-name">
-        <FontAwesomeIcon
-          className={
-            !toCompare ? "compare-icon" : "compare-icon-toggled"
-          }
-          icon={faCodeCompare}
-          onClick={toggleCompareHandler}
-        ></FontAwesomeIcon>
-      </p>
-
-
       <div className="school-location">
         <FontAwesomeIcon
           className="fa-location-dot-icon"
@@ -91,7 +80,15 @@ function SchoolsCard(props) {
           <input type="checkbox" className="compare-btn" name = {props.data.school_name}></input>
         </label>
       </div> */}
-
+      <p className="container">
+        <FontAwesomeIcon
+          className={
+            !toCompare ? "compare-icon" : "compare-icon-toggled"
+          }
+          icon={faCodeCompare}
+          onClick={toggleCompareHandler}
+        ></FontAwesomeIcon>
+      </p>
       {/* <CheckboxCompare name={props.data.school_name}  /> */}
 
     </div>

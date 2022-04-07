@@ -1,12 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faCodeCompare } from "@fortawesome/free-solid-svg-icons";
 import "../ComponentsCSS/SubjectsCard.css";
 import "../ComponentsCSS/CutOffCard.css";
 
 import { useContext } from "react"; // allows us to establish connection btwn this component and the Favourites context
 import FavouritesContext from "../Contexts/FavouritesContext";
-
+import CompareContext from "../Contexts/CompareContext";
 import MoreInformation from "./MoreInformation";
 
 function CutOffCard(props) {
@@ -23,7 +23,16 @@ function CutOffCard(props) {
       favouritesCtx.addFavourite(props.data);
     }
   }
+  const compareCtx = useContext(CompareContext);
+  const toCompare = compareCtx.itemToCompare(props.data._id);
 
+  function toggleCompareHandler() {
+    if (toCompare) {
+      compareCtx.removeFromCompare(props.data._id);
+    } else if (compareCtx.school.length < 2) {
+      compareCtx.addToCompare(props.data);
+    }
+  }
   if (level === "Secondary") {
     if (
       props.data.express !== undefined &&
@@ -102,12 +111,21 @@ function CutOffCard(props) {
             {props.data.science}
           </div>
         </div>
-        <div className="container">
+        {/* <div className="container">
           <label className="compare-btn-form-control">
             click to compare
             <input type="checkbox" className="compare-btn"></input>
           </label>
-        </div>
+        </div> */}
+        <p className="container">
+          <FontAwesomeIcon
+            className={
+              !toCompare ? "compare-icon" : "compare-icon-toggled"
+            }
+            icon={faCodeCompare}
+            onClick={toggleCompareHandler}
+          ></FontAwesomeIcon>
+        </p>
       </div>
     );
   }
