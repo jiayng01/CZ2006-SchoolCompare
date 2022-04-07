@@ -12,6 +12,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState, useContext } from "react";
 import FavouritesContext from "../Contexts/FavouritesContext";
 import { useAuth, logout } from "../Firebase";
+import CompareContext from "../Contexts/CompareContext";
 
 // Change the inline-style on selecting the respective tabs
 let activeStyle = {
@@ -22,6 +23,7 @@ let activeStyle = {
 function Navbar() {
   const [expandNavBar, setExpandNavBar] = useState(false);
   const favouritesCtx = useContext(FavouritesContext);
+  const compareCtx = useContext(CompareContext);
 
   const user = useAuth();
 
@@ -88,6 +90,18 @@ function Navbar() {
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               Feedback
+            </NavLink>
+          </li>
+
+          {/* To Compare Page */}
+          <li className="navbar-list">
+            <NavLink
+              className="navbar-items"
+              to="/compare"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Compare
+              <span className="navbar-badge">{compareCtx.totalSchools}</span>
             </NavLink>
           </li>
         </div>
@@ -231,6 +245,22 @@ function Navbar() {
                       }
                     >
                       Feedback
+                    </NavLink>
+                  </li>
+
+                  {/* To Compare Page */}
+                  <li className="navbar-list-mobile">
+                    <NavLink
+                      className="navbar-items-mobile"
+                      to="/compare"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      <span className="navbar-badge">
+                        {compareCtx.totalSchools}
+                      </span>
+                      Compare
                     </NavLink>
                   </li>
 

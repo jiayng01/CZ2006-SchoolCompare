@@ -2,7 +2,7 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
-import CompareButton from "../../../Components/CompareButton";
+//import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
 import SubjectsCard from "../../../Components/SubjectsCard";
 //import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
@@ -92,7 +92,7 @@ function SecondarySubjects() {
         }}
       >
         <div className="school-level-title">Secondary Schools </div>
-        <CompareButton />
+        {/* <CompareButton /> */}
       </div>
 
       {displaySchools}

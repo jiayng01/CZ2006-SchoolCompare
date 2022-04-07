@@ -43,6 +43,8 @@ import MoreInformation from "./Components/MoreInformation";
 import ChangePassword from "./Components/changePassword";
 
 import { SchoolsContextProvider } from "./Contexts/SchoolsContext";
+import Compare from "./Pages/Compare";
+import ErrorCompare from "./Pages/ErrorCompare";
 
 function App() {
   return (
@@ -115,6 +117,7 @@ function App() {
         </Route>
         <Route path="favourites" element={<Favourites />} />
         <Route path="forum" element={<Forum />} />
+        <Route path="compare" element={<Compare />} />
         <Route>
           {""}
           <Route path="forum/postCreate" element={<PostCreate />} />
@@ -127,6 +130,7 @@ function App() {
         <Route exact path="/reset" element={<Reset />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="*" element={<Error />} />
+        <Route path="*" element={<ErrorCompare />} />
       </Routes>
     </>
   );
