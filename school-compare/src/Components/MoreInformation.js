@@ -79,6 +79,91 @@ const MoreInformation = () => {
                     }
                   }
                 }
+
+                /* for sports */
+                let physical_sports = [];
+                if (props.physical_sports !== undefined) {
+                  for (let i = 0; i < props.physical_sports.length; i++) {
+                    if (i !== props.physical_sports.length - 1) {
+                      physical_sports.push(
+                        props.physical_sports[i].toLowerCase() + " ,  "
+                      );
+                    } else {
+                      physical_sports.push(
+                        props.physical_sports[i].toLowerCase()
+                      );
+                    }
+                  }
+                }
+
+                /* for visual and pa */
+                let visual_and_pa = [];
+                if (props.visual_and_pa !== undefined) {
+                  for (let i = 0; i < props.visual_and_pa.length; i++) {
+                    if (i !== props.visual_and_pa.length - 1) {
+                      visual_and_pa.push(
+                        props.visual_and_pa[i].toLowerCase() + " ,  "
+                      );
+                    } else {
+                      visual_and_pa.push(props.visual_and_pa[i].toLowerCase());
+                    }
+                  }
+                }
+
+                /* for clubs and societies */
+                let clubs_and_societies = [];
+                if (props.clubs_and_societies !== undefined) {
+                  for (let i = 0; i < props.clubs_and_societies.length; i++) {
+                    if (i !== props.clubs_and_societies.length - 1) {
+                      clubs_and_societies.push(
+                        props.clubs_and_societies[i].toLowerCase() + " ,  "
+                      );
+                    } else {
+                      clubs_and_societies.push(
+                        props.clubs_and_societies[i].toLowerCase()
+                      );
+                    }
+                  }
+                }
+
+                /* for uniformed groups */
+                let uniformed_groups = [];
+                if (props.uniformed_groups !== undefined) {
+                  for (let i = 0; i < props.uniformed_groups.length; i++) {
+                    if (i !== props.uniformed_groups.length - 1) {
+                      uniformed_groups.push(
+                        props.uniformed_groups[i].toLowerCase() + " ,  "
+                      );
+                    } else {
+                      uniformed_groups.push(
+                        props.uniformed_groups[i].toLowerCase()
+                      );
+                    }
+                  }
+                }
+
+                /* for others */
+                let others = [];
+                if (props.others !== undefined) {
+                  for (let i = 0; i < props.others.length; i++) {
+                    if (i !== props.others.length - 1) {
+                      others.push(props.others[i].toLowerCase() + " ,  ");
+                    } else {
+                      others.push(props.others[i].toLowerCase());
+                    }
+                  }
+                }
+
+                let electiveBoolean = false;
+                if (
+                  moe_programme.length > 0 ||
+                  props.alp_domain !== undefined ||
+                  props.llp_domain1 !== undefined ||
+                  props.llp_domain2 !== undefined
+                ) {
+                  electiveBoolean = true;
+                }
+
                 return (
                   <div key={props._id}>
                     <MoreInfo
@@ -94,18 +179,19 @@ const MoreInformation = () => {
                       principal_name={props.principal_name}
                       url_address={props.url_address}
                       subjects={subjects}
-                      physical_sports={props.physical_sports}
-                      visual_and_pa={props.visual_and_pa}
-                      clubs_and_societies={props.clubs_and_societies}
-                      uniformed_groups={props.uniformed_groups}
-                      others={props.others}
-                      moe_programme={props.moe_programme}
+                      physical_sports={physical_sports}
+                      visual_and_pa={visual_and_pa}
+                      clubs_and_societies={clubs_and_societies}
+                      uniformed_groups={uniformed_groups}
+                      others={others}
+                      moe_programme={moe_programme}
                       alp_domain={props.alp_domain}
                       alp_title={props.alp_title}
                       llp_domain1={props.llp_domain1}
                       llp_title1={props.llp_title1}
                       llp_domain2={props.llp_domain2}
                       llp_title2={props.llp_title2}
+                      electiveBoolean={electiveBoolean}
                     />
                   </div>
                 );
@@ -141,10 +227,11 @@ const MoreInfo = ({
   llp_title1,
   llp_domain2,
   llp_title2,
+  electiveBoolean,
 }) => {
   if (!_id) return <div />;
   return (
-    <div>
+    <>
       <div className="school-info">
         <p className="gen-info ">General Information</p>
 
@@ -193,14 +280,16 @@ const MoreInfo = ({
 
         <div className="website">
           <b>
-            <a href={url_address}>Visit the School Page </a>
+            <a href={url_address} target="_blank">
+              Visit the School Page{" "}
+            </a>
           </b>
         </div>
       </div>{" "}
       {/* div for subjects */}
       {subjects !== undefined && (
         <div className="subjects-card-mf">
-          <div className="subjects-card-school-name-mf">
+          <div className="subjects-mf">
             Subjects Offered
             <div className="subjects-desc-mf">{subjects}</div>
           </div>
@@ -211,70 +300,73 @@ const MoreInfo = ({
         {
           <div className="cca-container-mf">
             CCA Information
-            {physical_sports !== undefined && (
+            {physical_sports !== undefined && physical_sports.length > 0 && (
               <div className="cca-div-mf">
                 <div className="cca-category-mf">Physical Sports </div>
-                <div className="cca-name-mf"> {physical_sports + ","}</div>
+                <div className="cca-name-mf"> {physical_sports}</div>
               </div>
             )}
-            {visual_and_pa !== undefined && (
+            {visual_and_pa !== undefined && visual_and_pa.length > 0 && (
               <div className="cca-div-mf">
                 <div className="cca-category-mf">Visual & Performing Arts </div>
-                <div className="cca-name-mf"> {visual_and_pa + ","}</div>
+                <div className="cca-name-mf"> {visual_and_pa}</div>
               </div>
             )}
-            {clubs_and_societies !== undefined && (
-              <div className="cca-div-mf">
-                <div className="cca-category-mf">Clubs & Societies </div>
-                <div className="cca-name-mf"> {clubs_and_societies + ","} </div>
-              </div>
-            )}
-            {uniformed_groups !== undefined && (
+            {clubs_and_societies !== undefined &&
+              clubs_and_societies.length > 0 && (
+                <div className="cca-div-mf">
+                  <div className="cca-category-mf">Clubs & Societies </div>
+                  <div className="cca-name-mf"> {clubs_and_societies} </div>
+                </div>
+              )}
+            {uniformed_groups !== undefined && uniformed_groups.length > 0 && (
               <div className="cca-div-mf">
                 <div className="cca-category-mf">Uniformed Groups </div>
-                <div className="cca-name-mf">{uniformed_groups + ","} </div>
+                <div className="cca-name-mf">{uniformed_groups} </div>
               </div>
             )}
-            {others !== undefined && (
+            {others !== undefined && others.length > 0 && (
               <div className="cca-div-mf">
                 <div className="cca-category-mf">Others </div>
-                <div className="cca-name-mf"> {others + ","} </div>
+                <div className="cca-name-mf"> {others} </div>
               </div>
             )}
           </div>
         }
       </div>
       {/* div for elective*/}
-      <div className="elective-card-mf">
-        <div className="elective-container-mf">
-          Electives & Programmes
-          {moe_programme !== undefined && (
-            <div className="elective-div-mf">
-              <div className="elective-category-mf"> MOE Programme :</div>
-              <div className="elective-name-mf"> {moe_programme} </div>
-            </div>
-          )}
-          {alp_domain != "NULL" && (
-            <div className="elective-div-mf">
-              <div className="elective-category-mf">{alp_domain} </div>
-              <div className="elective-name-mf"> {alp_title}</div>
-            </div>
-          )}
-          {llp_domain1 != "NULL" && (
-            <div className="elective-div-mf">
-              <div className="elective-category-mf">{llp_domain1} </div>
-              <div className="elective-name-mf"> {llp_title1} </div>
-            </div>
-          )}
-          {llp_domain2 != "NULL" && (
-            <div className="elective-div-mf">
-              <div className="elective-category-mf">{llp_domain2} </div>
-              <div className="elective-name-mf">{llp_title2} </div>
-            </div>
-          )}
+      {electiveBoolean && (
+        <div className="elective-card-mf">
+          <div className="elective-container-mf">
+            Electives & Programmes
+            {moe_programme.length !== 0 && (
+              <div className="elective-div-mf">
+                <div className="elective-category-mf"> MOE Programme :</div>
+                <div className="elective-name-mf"> {moe_programme} </div>
+              </div>
+            )}
+            {alp_domain != "NULL" && alp_domain !== undefined && (
+              <div className="elective-div-mf">
+                <div className="elective-category-mf">{alp_domain} </div>
+                <div className="elective-name-mf"> {alp_title}</div>
+              </div>
+            )}
+            {llp_domain1 != "NULL" && llp_domain1 !== undefined && (
+              <div className="elective-div-mf">
+                <div className="elective-category-mf">{llp_domain1} </div>
+                <div className="elective-name-mf"> {llp_title1} </div>
+              </div>
+            )}
+            {llp_domain2 != "NULL" && llp_domain2 !== undefined && (
+              <div className="elective-div-mf">
+                <div className="elective-category-mf">{llp_domain2} </div>
+                <div className="elective-name-mf">{llp_title2} </div>
+              </div>
+            )}
+          </div>
         </div>
-      </div>{" "}
-    </div>
+      )}
+    </>
   );
 };
 

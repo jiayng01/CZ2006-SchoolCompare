@@ -7,8 +7,6 @@ import { useContext } from "react"; // allows us to establish connection btwn th
 import FavouritesContext from "../Contexts/FavouritesContext";
 import CompareContext from "../Contexts/CompareContext";
 
-import MoreInformation from "./MoreInformation";
-
 function CCACard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();
 

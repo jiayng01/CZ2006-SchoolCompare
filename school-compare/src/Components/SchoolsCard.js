@@ -8,7 +8,7 @@ import mrtIcon from "../Images/mrt-icon.png";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import "../ComponentsCSS/SchoolsCard.css";
 
-import { useContext } from "react"; // allows us to establish connection btwn this component and the Favourites context
+import { useContext } from "react"; 
 import FavouritesContext from "../Contexts/FavouritesContext";
 import CompareContext from "../Contexts/CompareContext";
 
@@ -43,7 +43,7 @@ function SchoolsCard(props) {
 
   return (
     <div className="school-card">
-      <p className="school-name">
+      <p className="school-name school-name-enlarge">
         <Link className="school-name" to={`/schools/${props.data.school_name}`}> {props.data.school_name} </Link>
         <FontAwesomeIcon
           className={
@@ -74,12 +74,6 @@ function SchoolsCard(props) {
         <div className="school-mrt-desc">{props.data.mrt_desc}</div>
       </div>
 
-      {/* <div className="container">
-        <label className="compare-btn-form-control">
-          click to compare
-          <input type="checkbox" className="compare-btn" name = {props.data.school_name}></input>
-        </label>
-      </div> */}
       <p className="container">
         <FontAwesomeIcon
           className={
@@ -89,8 +83,6 @@ function SchoolsCard(props) {
           onClick={toggleCompareHandler}
         ></FontAwesomeIcon>
       </p>
-      {/* <CheckboxCompare name={props.data.school_name}  /> */}
-
     </div>
   );
 }

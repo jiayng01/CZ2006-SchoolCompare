@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
   } */
-  
+/*   
   .school-compare-list{
     color: #151a1b;
     padding-top: 1rem;
@@ -38,11 +38,11 @@
     margin-top: 10px;
     margin-bottom: 2rem;
     border-bottom: 4px solid #103b79;;
-  }
+  } */
   
   
   /* Location, MRT, Bus */
-  .school-location-mf {
+  /* .school-location-mf {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -95,10 +95,10 @@
     margin-top: 0.5rem;
     font-size: 25px;
     color: rgb(21, 78, 80);
-  }
+  } */
   
   /* Email, Telephone, Principal, school website */
-  .email-address{
+  /* .email-address{
     position: static;  
     font-size: 25px;
     color: black;
@@ -127,10 +127,10 @@
     color: white;
     margin-top: 0.5rem;
     padding-right: 35px;
-  }
+  } */
   
   /*Subjects*/
-  .subjects-card-mf {
+  /* .subjects-card-mf {
     font-family: "Saira Condensed", sans-serif;
     font-size: 24px;
     background-color: #f2c0c0;
@@ -160,11 +160,11 @@
     font-size: large;
     margin-top: 1rem;
     padding-left: 10px;
-  }
+  } */
   
   
   /* CCA */
-  .cca-card-mf {
+  /* .cca-card-mf {
     font-family: "Saira Condensed", sans-serif;
     font-size: 24px;
     background-color: #f2c0c0;
@@ -210,11 +210,11 @@
     font-size: large;
     margin-top: 1rem;
     padding-left: 10px;
-  }
+  } */
   
   
   /* Electives */
-  .elective-card-mf {
+  /* .elective-card-mf {
     font-family: "Saira Condensed", sans-serif;
     font-size: 24px;
     background-color: #f2c0c0;
@@ -261,5 +261,5 @@
     margin-top: 1rem;
     padding-left: 10px;
   }
-  
+   */
   

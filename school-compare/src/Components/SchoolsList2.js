@@ -21,7 +21,6 @@ const SchoolsList2 = ({ schools }) => {
   return (
     <div className="school-compare">
       <div className="school-compare-list">
-
         <div key={schools._id}>
           <SchoolsCompInfo
             key={schools._id}
@@ -51,7 +50,6 @@ const SchoolsList2 = ({ schools }) => {
             llp_title2={schools.llp_title2}
           />
         </div>
-
       </div>
     </div>
   );
@@ -84,7 +82,9 @@ const SchoolsCompInfo = ({
 }) => {
   if (!_id) return <div />;
   return (
-    <div> {name}
+    <div>
+      {" "}
+      {name}
       <div className="school-info">
         <p className="gen-info ">General Information</p>
 
@@ -133,7 +133,9 @@ const SchoolsCompInfo = ({
 
         <div className="website">
           <b>
-            <a href={url_address}>Visit the School Page </a>
+            <a href={url_address} target="_blank">
+              Visit the School Page{" "}
+            </a>
           </b>
         </div>
       </div>{" "}
