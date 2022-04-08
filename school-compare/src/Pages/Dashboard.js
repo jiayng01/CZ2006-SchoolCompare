@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-
+import Modal from "../Components/Modal.js";
 import "../PagesCSS/Dashboard/Dashboard.css";
 import {
   auth, //db,
@@ -23,8 +23,11 @@ function Dashboard() {
     "https://ouch-cdn2.icons8.com/PCj6WwNF1xmJ2kHeHjum0n0U1ZH2kmItggiXJKO0WR8/rs:fit:912:912/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy9wbmcvNTYv/NDk2NmFiM2UtNjFk/MS00MjJhLTk2N2Mt/ODhkMmY0NTdiNTIz/LnBuZw.png"
   );
   const [photoURL, setPhotoURL] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [toDelete, setToDelete] = useState(false);
   // ORIGINAL
   // const fetchUserName = async () => {
   //   try {
@@ -109,6 +112,11 @@ function Dashboard() {
     }
   }
 
+  function displayModal() {
+    console.log("in displayModal");
+    setModalOpen(true);
+  }
+
   async function handleSave() {
     if (name === "" || email === "") {
       toast("Do not leave name and/or email fields empty.", {
@@ -118,11 +126,10 @@ function Dashboard() {
     }
     await updateUserEmail(email)
       .then(() => {
-        // console.log("loading, error:", loading, error);
         console.log("Updating name...");
         updateName(name, setLoading);
         console.log("loading, photoURL, photo:", loading, photoURL, photo);
-        if (!loading && typeof photoURL == "object") {
+        if (!loading && typeof photoURL == "object" && photoURL !== null) {
           console.log("Updating photo...");
           updatePhoto(photoURL, setLoading);
         }
@@ -132,18 +139,32 @@ function Dashboard() {
       .catch((err) => {
         console.log("updateEmail (Authentication) error: ", err.message);
         if (err.code === "auth/requires-recent-login") {
-          const password = window.prompt("Please re-enter your password"); //TODO: replace with a pop up that allows password input to be masked
-          reauthenticate(password)
-            .then(() => {
-              console.log("Retry save...");
-              handleSave();
-            })
-            .catch((err) => console.log("After reauth", err.message));
+          displayModal();
         } else {
           toast(err.message, { type: "error" });
         }
       });
   }
+
+  useEffect(() => {
+    console.log("toDelete:", toDelete);
+    if (modalOpen) {
+      return;
+    } else if (!modalOpen && password !== "") {
+      reauthenticate(password)
+        .then(() => {
+          if (!toDelete) {
+            console.log("Retry save...");
+            handleSave();
+          } else {
+            deleteAccount(setLoading);
+            setToDelete(false);
+          }
+        })
+        .catch((err) => toast(err.message, { type: "error" }));
+      setPassword("");
+    }
+  }, [modalOpen]);
 
   function handleCancel() {
     navigate("/");
@@ -157,29 +178,12 @@ function Dashboard() {
     const confirmDelete = window.confirm(
       "Are you sure you wish to delete your account?"
     );
+
     if (confirmDelete) {
-      const password = window.prompt("Please re-enter your password"); //TODO: replace with a pop up that allows password input to be masked
-      deleteAccount(password, setLoading);
+      setToDelete(true);
+      displayModal();
     }
   }
-
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     setName(currentUser.displayName);
-  //     console.log("currentUser.displayName: ", currentUser.displayName);
-  //     setEmail(currentUser.email);
-  //   }
-  //   if (currentUser?.photoURL) {
-  //     setPhoto(currentUser.photoURL);
-  //     setPhotoURL(currentUser.photoURL);
-  //   } else {
-  //     console.log("no photoURl");
-  //   }
-  // }, [currentUser]);
-
-  // console.log("displayName: ", name);
-  // console.log("photoURL: ", photoURL);
-  // console.log("photo: ", photo);
 
   return (
     <div className="dashboard">
@@ -217,10 +221,12 @@ function Dashboard() {
 
         <button
           disabled={loading}
-          onClick={handleSave}
+          onClick={() => {
+            handleSave();
+          }}
           className="dashboard-buttons"
         >
-          Save changes
+          Save Changes
         </button>
 
         <button
@@ -241,12 +247,21 @@ function Dashboard() {
 
         <button
           disabled={loading}
-          onClick={handleDelete}
+          onClick={() => {
+            handleDelete();
+          }}
           className="dashboard-buttons"
         >
           Delete Account
         </button>
       </div>
+      {modalOpen && (
+        <Modal
+          setOpenModal={setModalOpen}
+          setPassword={setPassword}
+          setToDelete={setToDelete}
+        />
+      )}
     </div>
   );
 }

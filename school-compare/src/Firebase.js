@@ -23,7 +23,13 @@ import {
   EmailAuthProvider,
   reauthenticateWithCredential,
 } from "firebase/auth";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+  deleteObject,
+} from "firebase/storage";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 // import { getDatabase } from "firebase/database";
@@ -198,8 +204,7 @@ async function updatePhoto(file, setLoading) {
   setLoading(false);
 }
 
-function deleteAccount(password, setLoading) {
-  reauthenticate(password);
+async function deleteAccount(setLoading) {
   const user = auth.currentUser;
   setLoading(true);
   deleteUser(user)
@@ -214,10 +219,14 @@ function deleteAccount(password, setLoading) {
       await deleteDoc(userRef).catch((err) => {
         toast(err.message, { type: "error" });
       });
+
+      const fileRef = ref(storage, "/profilePics/" + user.uid);
+      deleteObject(fileRef).catch((err) => {
+        toast(err.message, { type: "error" });
+      });
     })
     .then(() => {
       toast("Account deleted.", { type: "info" });
-      logout();
     })
     .catch((err) => {
       toast(err.message, { type: "error" });
