@@ -1,6 +1,9 @@
 import React from "react";
 import { createContext } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { db, auth } from "../Firebase";
+import { doc, setDoc, getDoc, collection } from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const FavouritesContext = createContext({
   favourites: [],
@@ -9,10 +12,15 @@ const FavouritesContext = createContext({
   removeFavourite: (schoolId) => {},
   itemIsFavourite: (schoolId) => {},
 }); //context is a javascript object
-// FavouritesContext will contain a react component, so follow naming convention of component
 // these are initial values
+
 export function FavouritesContextProvider(props) {
-  const [userFavourites, setuserFavourites] = useState([]);
+  const [userFavourites, setuserFavourites] = useState(() => {
+    // getting stored value (not logged in)
+    const saved = localStorage.getItem("favourites");
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
 
   function addFavouriteHandler(favouriteSchool) {
     setuserFavourites((prevUserFavourites) => {
@@ -38,6 +46,10 @@ export function FavouritesContextProvider(props) {
     itemIsFavourite: itemIsFavouriteHandler,
     // exposes these functions to all wrapped components
   };
+
+  useEffect(() => {
+    localStorage.setItem("favourites", JSON.stringify(context.favourites));
+  }, [context.favourites]);
 
   return (
     <FavouritesContext.Provider value={context}>
