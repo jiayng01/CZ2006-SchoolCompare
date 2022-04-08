@@ -1,21 +1,21 @@
-/* .school-compare{
-    display: flex;
-    flex-direction: row;
-  } */
-/*   
+  .compare-school-names{
+    font-family: "Saira Condensed", sans-serif;
+  }
+  .school-compare{
+    display: block;
+  }
   .school-compare-list{
     color: #151a1b;
     padding-top: 1rem;
-    margin-top: 1px;
-    margin-bottom: 25px;
     font-weight: bold;
     text-transform: capitalize;
     font-size: 40px;
     padding-left: 5px;
     text-align: center;
+    margin: 1px 20px 25px 20px;
   }
   
-  .gen-info{
+  .gen-info-compare{
     text-align: center;
     color: #3b8185;
     padding-top: 1rem;
@@ -26,115 +26,123 @@
     padding-right: 43px; 
   }
   
-  .school-info {
+  .school-info-compare {
     font-family: "Saira Condensed", sans-serif;
     font-size: 24px;
     background-color: #f2c0c0;
-    width: 47rem;
+    width: 40rem;
     height: fit-content;
     margin: auto;
     border-radius: 1rem;
     padding-left: 3rem;
     margin-top: 10px;
     margin-bottom: 2rem;
-    border-bottom: 4px solid #103b79;;
-  } */
+    border-bottom: 4px solid #103b79;
+  }
   
   
   /* Location, MRT, Bus */
-  /* .school-location-mf {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .school-location-compare {
     padding-bottom: 0.5rem;
+    font-weight: 200;
+    
   }
   
-  .school-address-mf {
+  .school-address-compare {
     text-transform: capitalize;
     padding-left: 0.3rem;
     padding-top: 0.3rem;
   }
   
-  .school-postal-mf {
+  .school-postal-compare {
     padding-left: 1rem;
     padding-top: 0.3rem;
   }
   
-  .fa-location-dot-icon-mf {
+  .fa-location-dot-icon-compare {
     width: 3rem;
     font-size: 30px;
     margin-top: 0.5rem;
     color: rgb(21, 78, 80);
   }
   
-  .school-mrt-wrapper-mf {
-    display: flex;
+  .school-mrt-wrapper-compare {
+    display: inline-flex;
     margin-left: 10px;
+    vertical-align: bottom;
+   
   }
   
-  .school-mrt-desc-mf {
+  .school-mrt-desc-compare {
     text-transform: capitalize;
     text-align-last: left;
     padding-left: 0.65rem;
+    font-weight: 200;
   }
   
-  .school-bus-wrapper {
-    display: flex;
+  .school-bus-wrapper-compare {
+    display: inline-flex;
     margin-left: 10px;
+    vertical-align: bottom;
   }
   
-  .school-bus-desc {
+  .school-bus-desc-compare {
     text-transform: capitalize;
-    text-align-last: left;
-    padding-left: 0.8rem; 
     margin-top: 0.1rem;
+    font-weight: 200;
+    padding-right: 2rem;
+    text-align: justify;
+    word-wrap: break-word;
   }
   
-  .fa-bus-icon{
+  .fa-bus-icon-compare{
     width: 2rem;
     margin-top: 0.5rem;
     font-size: 25px;
     color: rgb(21, 78, 80);
-  } */
+    padding-right: 1rem;
+  }
   
   /* Email, Telephone, Principal, school website */
-  /* .email-address{
+  .email-address-compare{
     position: static;  
     font-size: 25px;
     color: black;
     font-family: "Saira Condensed", sans-serif;
+    font-weight: 200;
   }
   
-  .school-tele{
+  .school-tele-compare{
     position: relative;
     font-size: 25px;
     color: black;
     font-family: "Saira Condensed", sans-serif;
     margin-left: 0px;
+    font-weight: 200;
   }
   
-  .principal{
+  .principal-compare{
     position: relative;
     font-size: 25px;
     color: black;
     font-family: "Saira Condensed", sans-serif;
     margin-left: 1px;
+    font-weight: 200;
   }
   
-  .website{
+  .website-compare{
     text-align: center;
     font-size: 25px;
     color: white;
     margin-top: 0.5rem;
     padding-right: 35px;
-  } */
+  }
   
   /*Subjects*/
-  /* .subjects-card-mf {
+  .subjects-card-compare {
     font-family: "Saira Condensed", sans-serif;
-    font-size: 24px;
     background-color: #f2c0c0;
-    width: 47rem;
+    width: 40rem;
     height: fit-content;
     margin: auto;
     border-radius: 1rem;
@@ -143,7 +151,7 @@
     border-bottom: 4px solid #103b79;;
   }
   
-  .subjects-card-school-name-mf{
+  .subjects-compare{
     text-align: center;
     color: #3b8185;
     padding-top: 1rem;
@@ -154,21 +162,24 @@
     padding-right: 35px; 
   }
   
-  .subjects-desc-mf {
+  .subjects-desc-compare {
     color: black;
-    font-weight: 100;
-    font-size: large;
     margin-top: 1rem;
-    padding-left: 10px;
-  } */
+    text-transform: capitalize;
+    font-size: 24px;
+    font-weight: 200;
+    text-align: justify;
+    padding-left: 5px;
+    padding-right: 10px;
+  }
   
   
   /* CCA */
-  /* .cca-card-mf {
+   .cca-card-compare {
     font-family: "Saira Condensed", sans-serif;
     font-size: 24px;
     background-color: #f2c0c0;
-    width: 47rem;
+    width: 40rem;
     height: fit-content;
     margin: auto;
     border-radius: 1rem;
@@ -177,7 +188,7 @@
     border-bottom: 4px solid #103b79;;
   }
   
-  .cca-container-mf{
+  .cca-container-compare{
     text-align: center;
     color: #3b8185;
     padding-top: 1rem;
@@ -188,13 +199,13 @@
     padding-right: 35px; 
   }
   
-  .cca-div-mf {
+  .cca-div-compare {
     margin-bottom: 10px;
     text-transform: capitalize;
     text-align: justify;
   }
   
-  .cca-category-mf {
+  .cca-category-compare {
     color: #da277d;
     background-color: #f3e0eaaf;
     border-radius: 5px;
@@ -203,22 +214,23 @@
     text-align: center;
     font-size: 25px;
   }
-  
-  .cca-name-mf {
+
+  .cca-name-compare {
     color: black;
-    font-weight: 100;
-    font-size: large;
+    font-weight: 200;
+    font-size: 24px;
     margin-top: 1rem;
     padding-left: 10px;
-  } */
+    text-align: justify;
+  } 
   
   
   /* Electives */
-  /* .elective-card-mf {
+  .elective-card-compare {
     font-family: "Saira Condensed", sans-serif;
     font-size: 24px;
     background-color: #f2c0c0;
-    width: 47rem;
+    width: 40rem;
     height: fit-content;
     margin: auto;
     border-radius: 1rem;
@@ -227,7 +239,7 @@
     border-bottom: 4px solid #103b79;;
   }
   
-  .elective-container-mf {
+  .elective-container-compare {
     text-align: center;
     color: #3b8185;
     padding-top: 1rem;
@@ -238,13 +250,13 @@
     padding-right: 35px; 
   }
   
-  .elective-div-mf {
+  .elective-div-compare {
     margin-bottom: 10px;
     text-transform: capitalize;
     text-align: justify;
   }
   
-  .elective-category-mf {
+  .elective-category-compare {
     color: #da277d;
     background-color: #f3e0eaaf;
     border-radius: 5px;
@@ -254,12 +266,17 @@
     font-size: 25px;
   }
   
-  .elective-name-mf {
+  .elective-name-compare {
     color: black;
-    font-weight: 100;
-    font-size: large;
+    font-weight: 200;
     margin-top: 1rem;
     padding-left: 10px;
+    font-size: 24px;
   }
-   */
   
+  
+
+  @media screen and (max-width: 700px) {
+    
+  
+  }

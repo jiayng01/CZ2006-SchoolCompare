@@ -1,8 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .fav-header {
   padding: 70px;
   text-align: center;
@@ -60,4 +55,32 @@
   color: #c1e7eb;
   background-color: #0c7187;
   box-shadow: none;
+}
+
+
+@media screen and (max-width: 700px) {
+  .fav-title {
+    font-size: 35px;
+  }
+  
+  .fav-empty-heading {
+    font-size: 2px;
+    margin-bottom: 0.5em;
+    color: #0c7187;
+  }
+  
+  .fav-empty-text {
+    font-size: 15px;
+    margin-bottom: 0.5em;
+    color: #0c7187;
+  }
+  
+  .fav-button {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .fav-img {
+    width: 160px;
+  }
 }

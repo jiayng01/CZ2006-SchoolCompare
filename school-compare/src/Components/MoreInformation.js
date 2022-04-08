@@ -287,7 +287,7 @@ const MoreInfo = ({
         </div>
       </div>{" "}
       {/* div for subjects */}
-      {subjects !== undefined && (
+      {subjects !== undefined && subjects.length > 0 && (
         <div className="subjects-card-mf">
           <div className="subjects-mf">
             Subjects Offered
