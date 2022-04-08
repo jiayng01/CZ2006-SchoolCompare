@@ -4,7 +4,7 @@ import secondaryCutOff from "../../../JSON/secondary_cut_off.json"; /* CutOffPoi
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
-import CompareButton from "../../../Components/CompareButton";
+//import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
 import CutOffCard from "../../../Components/CutOffCard";
 //import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
@@ -91,7 +91,7 @@ function SecondaryCutOff() {
         }}
       >
         <div className="school-level-title">Secondary Schools </div>
-        <CompareButton />
+        {/* <CompareButton /> */}
       </div>
 
       {displaySchools}

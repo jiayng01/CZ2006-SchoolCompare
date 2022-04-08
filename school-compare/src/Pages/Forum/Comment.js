@@ -8,7 +8,6 @@ import avatar from "../../PagesCSS/Dashboard/avatar.png";
 
 function Comment({ comment, replies, getReplies, activeComment, setActiveComment, updateComment, addComment }) {
 
-    // TODO: CSS
     const user = useAuth()
     const editTime = 300000;
     const timePassed = (new Date() - comment.values.createdAt.toDate()) > editTime

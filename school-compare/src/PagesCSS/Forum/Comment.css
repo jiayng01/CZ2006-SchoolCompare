@@ -19,7 +19,7 @@
 }
 
 .comments-title {
-  font-size: 22px;
+  font-size: 1.1rem;
 }
 
 .comment {
@@ -38,17 +38,18 @@
 .comment-content {
   display: flex;
   align-items: center;
+  font-size: 0.8rem;
 }
 
 .comment-author {
   margin-right: 8px;
-  font-size: 20px;
-  color: rgb(45, 121, 245);
+  font-size: 1.1rem;
+  color: rgb(75, 45, 245);
   font-weight: 600;
 }
 
 .comment-text {
-  font-size: 18px;
+  font-size: 0.95rem;
 
 }
 
@@ -72,19 +73,21 @@
   margin-top: 20px;
 }
 
+.comment-warning {
+  color: red;
+  margin-left: 5rem;
+}
 
 @media screen and (max-width: 1000px) {
   .comment-author,
   .comments-title {
     font-size: 1.1rem;
   }
-  
-  .comment-text {
-    font-size: 1rem;
-    }
+
 
   .comments,
-  .comments-title{
+  .comments-title,
+  .comment-warning{
     margin-left: 2rem;
 		margin-right: 2rem;
   }
@@ -96,13 +99,10 @@
   .comments-title {
     font-size: 1rem;
   }
-  
-  .comment-text {
-    font-size: 0.9rem;
-  }
 
   .comments,
-  .comments-title{
+  .comments-title,
+  .comment-warning{
     margin-left: 1.1rem;
 		margin-right: 1.1rem;
   }
@@ -118,7 +118,8 @@
     font-size: 0.8rem;
   }
   .comments,
-  .comments-title{
+  .comments-title,
+  .comment-warning{
     margin-left: 0.3rem;
     margin-right: 0.3rem;
   }

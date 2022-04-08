@@ -2,7 +2,7 @@
 
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faCodeCompare, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faTrainSubway } from "@fortawesome/free-solid-svg-icons";
 import mrtIcon from "../Images/mrt-icon.png";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
@@ -10,8 +10,8 @@ import "../ComponentsCSS/SchoolsCard.css";
 
 import { useContext } from "react"; // allows us to establish connection btwn this component and the Favourites context
 import FavouritesContext from "../Contexts/FavouritesContext";
+import CompareContext from "../Contexts/CompareContext";
 
-import MoreInformation from "./MoreInformation";
 import { Link } from "react-router-dom";
 
 function SchoolsCard(props) {
@@ -30,10 +30,21 @@ function SchoolsCard(props) {
     }
   }
 
+  const compareCtx = useContext(CompareContext);
+  const toCompare = compareCtx.itemToCompare(props.data._id);
+
+  function toggleCompareHandler() {
+    if (toCompare) {
+      compareCtx.removeFromCompare(props.data._id);
+    } else if (compareCtx.school.length < 2) {
+      compareCtx.addToCompare(props.data);
+    }
+  }
+
   return (
     <div className="school-card">
       <p className="school-name">
-      <Link className="school-name" to={`/schools/${props.data.school_name}`}> {props.data.school_name} </Link>
+        <Link className="school-name" to={`/schools/${props.data.school_name}`}> {props.data.school_name} </Link>
         <FontAwesomeIcon
           className={
             !itemIsFavourite ? "fa-heart-icon" : "fa-heart-icon-toggled"
@@ -63,12 +74,23 @@ function SchoolsCard(props) {
         <div className="school-mrt-desc">{props.data.mrt_desc}</div>
       </div>
 
-      <div className="container">
+      {/* <div className="container">
         <label className="compare-btn-form-control">
           click to compare
-          <input type="checkbox" className="compare-btn"></input>
+          <input type="checkbox" className="compare-btn" name = {props.data.school_name}></input>
         </label>
-      </div>
+      </div> */}
+      <p className="container">
+        <FontAwesomeIcon
+          className={
+            !toCompare ? "compare-icon" : "compare-icon-toggled"
+          }
+          icon={faCodeCompare}
+          onClick={toggleCompareHandler}
+        ></FontAwesomeIcon>
+      </p>
+      {/* <CheckboxCompare name={props.data.school_name}  /> */}
+
     </div>
   );
 }
