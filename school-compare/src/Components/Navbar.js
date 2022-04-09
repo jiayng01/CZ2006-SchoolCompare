@@ -71,6 +71,18 @@ function Navbar() {
             </NavLink>
           </li>
 
+          {/* To Compare Page */}
+          <li className="navbar-list">
+            <NavLink
+              className="navbar-items"
+              to="/compare"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              Compare
+              <span className="navbar-badge">{compareCtx.totalSchools}</span>
+            </NavLink>
+          </li>
+
           {/* To Forum page */}
           <li className="navbar-list">
             <NavLink
@@ -93,17 +105,6 @@ function Navbar() {
             </NavLink>
           </li>
 
-          {/* To Compare Page */}
-          <li className="navbar-list">
-            <NavLink
-              className="navbar-items"
-              to="/compare"
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              Compare
-              <span className="navbar-badge">{compareCtx.totalSchools}</span>
-            </NavLink>
-          </li>
         </div>
 
         <div className="navbar-right-buttons">
