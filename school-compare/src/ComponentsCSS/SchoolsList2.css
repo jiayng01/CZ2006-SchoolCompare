@@ -289,6 +289,10 @@
       font-size: 25px;
     }
 
+    .fa-delete-left {
+      font-size: 25px;
+    }
+
     .school-compare-list{
       margin-left: 8px;
       margin-right: 8px;
@@ -431,7 +435,12 @@
 
   @media screen and (max-width: 700px) {
     .compare-school-names{
-      font-size: 15px;
+      font-size: 14px;
+    }
+
+    .fa-delete-left {
+      font-size: 14px;
+      margin-left: 0.5rem;
     }
 
     .school-compare-list{
