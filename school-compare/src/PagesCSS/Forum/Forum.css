@@ -12,9 +12,14 @@
 	display:flex;
 	flex-direction: row;
 	margin: 2rem;
+	margin-bottom: 0;
 	gap:40rem;
 }
-
+.forum-title{
+	margin: 1rem;
+	margin-top: 2rem;
+	font-family: sans-serif;
+}
 .search-input-with-dropdown{
 	display:flex;
 	height: 35px;
@@ -40,6 +45,11 @@
 
 .forum-create-post:hover{
 	background-color: #f87b7b
+}
+
+.posts{
+	min-width: fit-content;
+	margin-top: 2rem;
 }
 
 @media screen and (max-width: 1280px) {

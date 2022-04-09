@@ -4,30 +4,30 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import "../ComponentsCSS/SearchBar.css"
 
-function SearchBar({ placeholder, handleFilter, filteredPost, setFilteredPost, textEntered, setTextEntered }) {
+function SearchBar(props) {
 
   const clearInput = () => {
-    setFilteredPost([])
-    setTextEntered("")
+    props.setFilteredPost([])
+    props.setTextEntered("")
   }
 
   return (
     <div className='search'>
       <div className='search-container'>
         <div className='search-icon'>
-          {filteredPost.length === 0 ?
+          {props.filteredPost.length === 0 ?
             <SearchIcon /> :
             <CloseIcon id='clearBtn' onClick={clearInput} />}
         </div>
         <input
           type='text'
-          placeholder={placeholder}
-          onChange={(e) => handleFilter(e, filteredPost)}
-          value={textEntered} />
+          placeholder={props.placeholder}
+          onChange={(e) => props.handleFilter(e, props.filteredPost)}
+          value={props.textEntered} />
       </div>
-      {filteredPost.length !== 0 && (
+      {props.filteredPost.length !== 0 && (
         <div className='data-result'>
-          {filteredPost.slice(0, 5).map((post) => {
+          {props.filteredPost.slice(0, 5).map((post) => {
             return (
               <Link to={`./Post/${post.values.title.trim().replace(/\s+/g, '-')}/${post.id}`}>
                 <p id={post.id}>{post.values.title}</p>

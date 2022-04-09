@@ -4,7 +4,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import "../ComponentsCSS/FilterPost.css"
 
-function FilterPost({ chosen, setChosen }) {
+function FilterPost(props) {
     const [open, setOpen] = useState(false);
     return (
 
@@ -15,7 +15,7 @@ function FilterPost({ chosen, setChosen }) {
                     setOpen(!open)
                 }}
             >
-                <p className="btn-dropdown-chosen">{chosen}</p>
+                <p className="btn-dropdown-chosen">{props.chosen}</p>
                 <FontAwesomeIcon className="fa-chevron-downs" icon={faChevronDown} />
             </div>
             {open && (
@@ -23,7 +23,7 @@ function FilterPost({ chosen, setChosen }) {
                     <li className="btn-dropdown-item" >
                         <p className="btn-dropdown-item"
                             onClick={() => {
-                                setChosen("Latest")
+                                props.setChosen("Latest")
                                 setOpen(!open)
                             }}>
                             Latest
@@ -32,7 +32,7 @@ function FilterPost({ chosen, setChosen }) {
                     <li className="btn-dropdown-item">
                         <p className="btn-dropdown-item"
                             onClick={() => {
-                                setChosen("Oldest")
+                                props.setChosen("Oldest")
                                 setOpen(!open)
                             }}>
                             Oldest
@@ -41,7 +41,7 @@ function FilterPost({ chosen, setChosen }) {
                     <li className="btn-dropdown-item">
                         <p className="btn-dropdown-item"
                             onClick={() => {
-                                setChosen("Activity")
+                                props.setChosen("Activity")
                                 setOpen(!open)
                             }}>
                             Activity

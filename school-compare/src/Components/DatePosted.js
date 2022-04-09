@@ -1,13 +1,13 @@
 import React from 'react'
 
-function DatePosted({ content }) {
+function DatePosted(props) {
     const current = new Date();
     const time = current.getTime();
     // const month = current.getMonth();
     // const year = current.getFullYear();
     // const hour = current.getHours();
     // const min = current.getMinutes();
-    const contentDate = content.values.createdAt.toDate();
+    const contentDate = props.content.values.createdAt.toDate();
     const timeDifference = (time - contentDate.getTime()) / 1000;
 
     return (

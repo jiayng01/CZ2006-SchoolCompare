@@ -16,11 +16,20 @@ import ProgressBar from "../../Components/ProgressBar"
 // ADDITIONAL: Rich Text Editor
 // ADDITIONAL: Paragraphing of query text (special characters or smth)
 
+
 function CreatePost() {
   const user = useAuth();
   const [imgFile, setImgFile] = useState(null);
   const [progress, setProgress] = useState(0);
-
+  const fillerStyles = {
+    height: '5px',
+    width: `${progress}%`,
+    maxWidth: '15rem',
+    marginLeft: "5rem",
+    backgroundColor: 'var(--primary)',
+    borderRadius: 'inherit',
+    textAlign: 'right'
+  }
   const validationSchema = Yup.object({
     title: Yup.string().required("A title is required!"),
     query: Yup.string().required("A desciption of the query is required!"),
@@ -35,6 +44,7 @@ function CreatePost() {
     imageURL: "",
     createdAt: Timestamp.now().toDate(),
   };
+
 
   function onSubmit(values) {
 
@@ -52,12 +62,12 @@ function CreatePost() {
           getDownloadURL(uploadTask.snapshot.ref)
             .then((url) => {
               values.imageURL = url
-              const username = !values.toggle ? user.displayName : "Anonymous";
+              // const username = !values.toggle ? user.displayName : "Anonymous";
               const URL = !values.toggle && user.photoURL ? user.photoURL : null;
               addDoc(collection(db, "posts"), {
                 values,
                 author: {
-                  name: username,
+                  // name: username,
                   uid: user.uid,
                   photoURL: URL
                 }
@@ -78,7 +88,6 @@ function CreatePost() {
       addDoc(collection(db, "posts"), {
         values,
         author: {
-          name: username,
           uid: user.uid,
           photoURL: URL
         }
@@ -97,10 +106,10 @@ function CreatePost() {
     < div className="pc-container" >
       <p className="pc-forum">Forum</p>
       <p className="pc-title">Post your questions here!</p>
-      <hr color="black"
+      {/* <hr color="black"
         size="1.2"
         width="320px"
-        style={{ margin: "auto" }} />
+        style={{ margin: "auto" }} /> */}
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -136,7 +145,7 @@ function CreatePost() {
             </div>
 
             {/* checkbox */}
-            <div className="form-control-checkbox">
+            <div className="form-control checkbox">
               <label>
                 <Field
                   type="checkbox"
@@ -147,7 +156,7 @@ function CreatePost() {
             </div>
 
             {/* image */}
-            <div className="form-control-checkbox">
+            <div className="form-control checkbox">
               <label htmlFor="">
                 <input type="file"
                   name="image"
@@ -160,9 +169,10 @@ function CreatePost() {
 
 
             {/*Progress Bar */}
-            <div className="form-control">
-              {progress > 0 && <ProgressBar progress={progress} />}
-            </div>
+            {progress > 0 &&
+              <div className="form-control" style={fillerStyles}>
+                <ProgressBar progress={progress} />
+              </div>}
 
             {/* Submit button */}
             <div className="form-control">
