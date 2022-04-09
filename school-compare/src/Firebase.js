@@ -234,6 +234,20 @@ async function deleteAccount(setLoading) {
   setLoading(false);
 }
 
+
+const useGetUsers = () => {
+  const [userList, setUserList] = useState();
+
+  const getUser = async () => {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    setUserList(querySnapshot.docs.map((doc) => ({
+      ...doc.data()
+    })))
+  }
+  getUser();
+  return userList
+}
+
 export {
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
@@ -245,6 +259,7 @@ export {
   updateUserEmail,
   deleteAccount,
   reauthenticate,
+  useGetUsers
 };
 export const storage = getStorage(app);
 export const db = getFirestore(app);

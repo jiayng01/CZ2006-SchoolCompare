@@ -5,30 +5,45 @@ import AddComment from "./AddComment"
 import { useNavigate } from 'react-router-dom';
 import avatar from "../../PagesCSS/Dashboard/avatar.png";
 
-
-function Comment({ comment, replies, getReplies, activeComment, setActiveComment, updateComment, addComment }) {
+function Comment(props) {
 
     const user = useAuth()
+
     const editTime = 300000;
-    const timePassed = (new Date() - comment.values.createdAt.toDate()) > editTime
-    const canEdit = user && comment.author.uid === user.uid && !timePassed
+    const timePassed = (new Date() - props.comment.values.createdAt.toDate()) > editTime
+    const canEdit = user && props.comment.author.uid === user.uid && !timePassed
     const isEditing =
-        activeComment &&
-        activeComment.id === comment.id &&
-        activeComment.type === "editing";
+        props.activeComment &&
+        props.activeComment.id === props.comment.id &&
+        props.activeComment.type === "editing";
     const isReplying =
-        activeComment &&
-        activeComment.id === comment.id &&
-        activeComment.type === "replying";
-    const parentId = comment.id
-    const postId = comment.values.postId
+        props.activeComment &&
+        props.activeComment.id === props.comment.id &&
+        props.activeComment.type === "replying";
+    const parentId = props.comment.id
+    const postId = props.comment.values.postId
     const navigate = useNavigate();
+
+    const userExist = (uid) => {
+        if (props.userList.some((person) => person.uid === uid)) {
+            return props.userList.filter((person) => person.uid === uid);
+        }
+        else
+            return false
+    }
     return (
+        // <div>{!userList ? (
+        //     <Backdrop
+        //         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        //         open
+        //     >
+        //         <CircularProgress color="inherit" />
+        //     </Backdrop>) : (
         <div className='comment'>
             <div className='comment-image-container'>
                 {/* <img /> */}
                 <img className="post-user-img"
-                    src={comment.author.photoURL ? comment.author.photoURL : avatar}
+                    src={userExist(props.comment.author.uid) && props.comment.author.photoURL ? props.comment.author.photoURL : avatar}
                     alt="avatar" />
             </div>
             <div className='comment-right-part'>
@@ -36,25 +51,26 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
                 <div className='comment-content'>
                     {/*Author*/}
                     <div className='comment-author'>
-                        {comment.author.name}
+                        {userExist(props.comment.author.uid) ?
+                            userExist(props.comment.author.uid)[0].name : "DeletedUser"}
                     </div>
-                    <Time content={comment} />
+                    <Time content={props.comment} />
                 </div>
 
                 {/* Edit Comment or comment body */}
                 {!isEditing ?
                     <div className='comment-text'>
-                        {comment.values.body}
+                        {props.comment.values.body}
                     </div> :
                     <AddComment
                         submitLabel='Update'
                         hasCancelButton
-                        initialText={comment.values.body}
+                        initialText={props.comment.values.body}
                         handleSubmit={(text) => {
-                            updateComment(text, comment.id)
-                            setActiveComment(null)
+                            props.updateComment(text, props.comment.id)
+                            props.setActiveComment(null)
                         }}
-                        handleCancel={() => setActiveComment(null)}
+                        handleCancel={() => props.setActiveComment(null)}
                     />
                 }
 
@@ -62,13 +78,13 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
                 <div className='comment-actions'>
                     <div
                         className='comment-action'
-                        onClick={() => user ? setActiveComment({ id: comment.id, type: 'replying' }) : navigate("/login")} >
+                        onClick={() => user ? props.setActiveComment({ id: props.comment.id, type: 'replying' }) : navigate("/login")} >
                         Reply
                     </div>
                     {canEdit && (
                         <div
                             className='comment-action'
-                            onClick={() => setActiveComment({ id: comment.id, type: 'editing' })}>
+                            onClick={() => props.setActiveComment({ id: props.comment.id, type: 'editing' })}>
                             Edit
                         </div>
                     )}
@@ -80,25 +96,25 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
                     <AddComment
                         submitLabel="Reply"
                         handleSubmit={(text) => {
-                            addComment(text, postId, parentId)
-                            setActiveComment(null)
+                            props.addComment(text, postId, parentId)
+                            props.setActiveComment(null)
                         }}
                     />
                 )}
 
                 {/* Nested Replies*/}
-                {replies.length > 0 && (
+                {props.replies.length > 0 && (
                     <div className='replies'>
-                        {replies.map((reply) => (
+                        {props.replies.map((reply) => (
                             <Comment
                                 key={reply.id}
                                 comment={reply}
-                                replies={getReplies(reply.id)}
-                                getReplies={getReplies}
-                                activeComment={activeComment}
-                                setActiveComment={setActiveComment}
-                                updateComment={updateComment}
-                                addComment={addComment}
+                                replies={props.getReplies(reply.id)}
+                                getReplies={props.getReplies}
+                                activeComment={props.activeComment}
+                                setActiveComment={props.setActiveComment}
+                                updateComment={props.updateComment}
+                                addComment={props.addComment}
                                 parentId={parentId}
                             />
                         ))}
@@ -106,6 +122,7 @@ function Comment({ comment, replies, getReplies, activeComment, setActiveComment
                 )}
             </div>
         </div>
+        // </div>
     )
 }
 

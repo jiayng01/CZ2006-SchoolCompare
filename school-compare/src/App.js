@@ -4,16 +4,16 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Schools from "./Pages/Schools/SchoolsMainPage";
 import Favourites from "./Pages/Favourites";
-import Feedback from "./Pages/Feedback";
+import Feedback from "./Pages/FeedbackUI";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import Reset from "./Pages/ResetPassword";
 import Dashboard from "./Pages/Dashboard";
 import Error from "./Pages/Error";
 
-import Forum from "./Pages/Forum/ViewForum";
+import Forum from "./Pages/Forum/ForumUI";
 import PostCreate from "./Pages/Forum/CreatePost";
-import Post from "./Pages/Forum/ViewPost";
+import Post from "./Pages/Forum/PostUI";
 
 /* General Page */
 import Primary from "./Pages/Schools/Primary/Primary";

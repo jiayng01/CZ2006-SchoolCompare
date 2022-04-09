@@ -4,7 +4,7 @@ import Comment from "./Comment"
 import { useGetCommentList, useAddComment, useUpdateComment } from './CommentController';
 import "../../PagesCSS/Forum/Comment.css"
 
-function ViewComments() {
+function CommentUI(props) {
 
     // ADDITIONAL: Option to hide or show comments
     // ADDITIONAL: Option to show full comment if the comment is too long
@@ -40,7 +40,7 @@ function ViewComments() {
                             setActiveComment={setActiveComment}
                             updateComment={useUpdateComment}
                             addComment={useAddComment}
-
+                            userList={props.userList}
                         />
                     })}
                 </div>
@@ -49,4 +49,4 @@ function ViewComments() {
     );
 }
 
-export default ViewComments
+export default CommentUI

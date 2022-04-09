@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../Firebase';
 
-function AddComment({ handleSubmit, submitLabel, hasCancelButton = false, initialText = '', handleCancel, postId }) {
+function AddComment(props) {
 
     const user = useAuth();
-    const [text, setText] = useState(initialText);
+    const [text, setText] = useState(props.initialText ? props.initialText : "");
     const isTextAreaDisabled = !user ? true : text.length === 0 ? true : false
     const onSubmit = (event) => {
         event.preventDefault()
-        handleSubmit(text, postId);
+        props.handleSubmit(text, props.postId);
         setText("")
     }
     const onChange = (event) => {
@@ -28,13 +28,13 @@ function AddComment({ handleSubmit, submitLabel, hasCancelButton = false, initia
             <button
                 className='comment-button'
                 disabled={isTextAreaDisabled}>
-                {submitLabel}
+                {props.submitLabel}
             </button>
-            {hasCancelButton &&
+            {props.hasCancelButton &&
                 <button
                     type="button"
                     className='comment-button comment-cancel-button'
-                    onClick={handleCancel}>
+                    onClick={props.handleCancel}>
                     Cancel
                 </button>}
             {!user && <p className='comment-warning'>

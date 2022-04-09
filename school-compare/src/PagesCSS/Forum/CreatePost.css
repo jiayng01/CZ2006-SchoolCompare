@@ -23,18 +23,23 @@
 .pc-title {
   text-align: center;
   font-size: 20px;
+  border-bottom: 0.1px black solid;
 }
 
 .form-control {
-  display: grid;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   padding-bottom: 10px;
-  text-align: left;
+
+
 }
 
-.form-control-checkbox {
-
+.checkbox {
+  margin-top: 0.5rem;
+  align-items: flex-start;
+  margin-left: 20px;
+  letter-spacing: 1px;
 
 }
 
@@ -42,13 +47,14 @@
   text-align: left;
   padding-bottom: 5px;
   padding-left: 20px;
-  left: 526px;
-  top: 745px;
+  /* left: 526px;
+  top: 745px; */
 }
 
 .pc-field {
   text-align: left;
   vertical-align: auto;
+  align-self: center;
   border-radius: 0.8rem;
   border: none;
   width: 20rem;
@@ -68,6 +74,7 @@
 }
 
 .pc-button {
+  align-self: center;
   border-radius: 20px;
   background-color: #2dc1c1;
   border: none;
@@ -78,33 +85,33 @@
   margin-top: 14px;
 }
 
-.progress-bar {
-  height: 5px;
+/* .progress-bar {
+  /* height: 5px;
   background: var(--primary);
-  margin-top: 20px;
-}
+  margin-top: 0.7rem;
+  width:1%;
+  margin-left: 5rem; 
+} */
 
 
 @media screen and (max-width: 1000px) {
-  .pc-container {
+  /* .pc-container {
     width: auto;
     height: auto;
     margin: 6rem 5rem 0 5rem;
-  }
+  } */
 
   .pc-forum {
     font-size: 40px;
   }
 
-  .pc-sent {
+  /* .pc-title {
     text-align: center;
     font-size: 26px;
-  }
+  } */
 
-  hr {
-    width: 500px;
-  }
 
+/* 
   .pc-label {
     font-size: 20px;
   }
@@ -112,15 +119,17 @@
   .pc-field {
     width: 28rem;
     font-size: 18px;
-  }
+  } */
 
-  .pc-query-field {
+  /* .pc-query-field {
     width: 28rem;
     resize: none;
-  }
+  } */
+
+
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 400px) {
   .pc-container {
     width: auto;
     height: auto;
