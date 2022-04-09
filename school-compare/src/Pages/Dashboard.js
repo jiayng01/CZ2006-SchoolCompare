@@ -166,10 +166,6 @@ function Dashboard() {
     }
   }, [modalOpen]);
 
-  function handleCancel() {
-    navigate("/");
-  }
-
   function changePwd() {
     navigate("/changePassword");
   }
@@ -235,14 +231,6 @@ function Dashboard() {
           className="dashboard-buttons"
         >
           Change Password
-        </button>
-
-        <button
-          disabled={loading}
-          onClick={handleCancel}
-          className="dashboard-buttons"
-        >
-          Cancel
         </button>
 
         <button

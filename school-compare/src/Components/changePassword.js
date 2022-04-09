@@ -16,8 +16,10 @@ function ChangePassword(){
         reauthenticate(currentPassword).then(() => {
             updatePassword(currentUser, newPassword).then(() => {
                 toast("Password was changed.", { type: "success" });
-            }).catch((error) => { console.log(error.message); });
-        }).catch((error) => { console.log(error.message) });
+            }).catch((error) => { 
+                toast(error.message, { type: "error" });
+            });
+        }).catch((error) => { toast(error.message, { type: "error" }); });
     }
 
     return (
@@ -25,14 +27,14 @@ function ChangePassword(){
         <BackgroundParticle />
         <div className="login__container">
             <input
-             type="text"
+             type="password"
              className="login__textBox"
              value={currentPassword}
              onChange={(e) => setCurrentPassword(e.target.value)}
              placeholder="Current Password"
              />
             <input
-             type="text"
+             type="password"
              className="login__textBox"
              value={newPassword}
              onChange={(e) => setNewPassword(e.target.value)}
