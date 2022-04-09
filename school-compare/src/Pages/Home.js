@@ -40,8 +40,8 @@ function Home() {
       </div>
       <div className="home-section3">
         <h2 className="home-heading3">What are you waiting for?</h2>
-        <Link to="/login">
-          <button className="home-button">Log in</button>
+        <Link to="/SignUp">
+          <button className="home-button">Sign Up</button>
         </Link>
         <p className="home-description3">
           or{" "}
