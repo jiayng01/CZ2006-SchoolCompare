@@ -15,7 +15,7 @@ import { Backdrop, CircularProgress } from "@mui/material";
 // ADDITIONAL: Delete Post Option?
 // ADDITIONAL: Pagination of the posts
 
-function ViewForum() {
+function ForumUI() {
   const user = useAuth();
   const userList = useGetUsers();
   const [postList, replyList] = useGetPostsReplies();
@@ -101,7 +101,7 @@ function ViewForum() {
                   <img className="posts-user-img" src={userExist(post.author.uid) && post.author.photoURL ? post.author.photoURL : avatar}
                     alt="avatar" />
                   <p className="posts-user-name">{userExist(post.author.uid) && !post.values.toggle ?
-                    userExist(post.author.uid)[0].name : userExist(post.author.uid) && post.values.toggle ? "Anonymous" : "DeletedUser"}</p>
+                    userExist(post.author.uid)[0].name : userExist(post.author.uid) && post.values.toggle ? "Anonymous" : "Deleted User"}</p>
                   <Time content={post} />
                 </div>
                 <Card content={post} />
@@ -114,13 +114,13 @@ function ViewForum() {
               /* Filtered by dropdown*/
               list.map((post) => {
                 return (
-                  <div className key={post.id}>
+                  <div key={post.id}>
                     <div className="posts-header">
 
                       <img className="posts-user-img" src={userExist(post.author.uid) && post.author.photoURL ? post.author.photoURL : avatar}
                         alt="avatar" />
                       <p className="posts-user-name">{userExist(post.author.uid) && !post.values.toggle ?
-                        userExist(post.author.uid)[0].name : userExist(post.author.uid) && post.values.toggle ? "Anonymous" : "DeletedUser"}</p>
+                        userExist(post.author.uid)[0].name : userExist(post.author.uid) && post.values.toggle ? "Anonymous" : "Deleted User"}</p>
                       <Time content={post} />
                     </div>
                     <Card content={post} />
@@ -135,4 +135,4 @@ function ViewForum() {
   );
 }
 
-export default ViewForum;
+export default ForumUI;

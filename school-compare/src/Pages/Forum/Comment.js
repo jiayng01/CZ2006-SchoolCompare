@@ -52,7 +52,7 @@ function Comment(props) {
                     {/*Author*/}
                     <div className='comment-author'>
                         {userExist(props.comment.author.uid) ?
-                            userExist(props.comment.author.uid)[0].name : "DeletedUser"}
+                            userExist(props.comment.author.uid)[0].name : "Deleted User"}
                     </div>
                     <Time content={props.comment} />
                 </div>

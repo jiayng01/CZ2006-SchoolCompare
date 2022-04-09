@@ -12,7 +12,7 @@ import { useGetUsers } from '../../Firebase';
 
 // ADDITIONAL: Paragraphing (tweak firestore)
 
-function ViewPost() {
+function PostUI() {
 
   const { postId } = useParams();
   const post = useGetPost(postId)
@@ -45,7 +45,7 @@ function ViewPost() {
                     alt="avatar" />
                   <h3 className="post-user" >
                     {userExist(details.author.uid) ?
-                      userExist(details.author.uid)[0].name : "DeletedUser"}
+                      userExist(details.author.uid)[0].name : "Deleted User"}
                   </h3>
                   <Time content={details} />
                 </div>
@@ -81,4 +81,4 @@ function ViewPost() {
   );
 }
 
-export default ViewPost
+export default PostUI

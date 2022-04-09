@@ -3,7 +3,7 @@
   border-top: black 1px solid;
   /* background-color: #c0e5e9; */
   margin-left: 12rem;
-	margin-right: 12rem;
+  margin-right: 12rem;
 }
 
 .comments-title {
@@ -11,7 +11,7 @@
   margin-bottom: 20px;
   margin-right: 12rem;
   margin-left: 12rem;
-	
+  margin-top: 5px;
 }
 
 .comments-container {
@@ -50,7 +50,6 @@
 
 .comment-text {
   font-size: 0.95rem;
-
 }
 
 .comment-actions {
@@ -75,7 +74,7 @@
 
 .comment-warning {
   color: red;
-  margin-left: 5rem;
+  margin-left: 12rem;
 }
 
 @media screen and (max-width: 1000px) {
@@ -84,17 +83,15 @@
     font-size: 1.1rem;
   }
 
-
   .comments,
   .comments-title,
-  .comment-warning{
-    margin-left: 2rem;
-		margin-right: 2rem;
+  .comment-warning {
+    margin-left: 5rem;
+    margin-right: 5rem;
   }
 }
 
 @media screen and (max-width: 700px) {
-
   .comment-author,
   .comments-title {
     font-size: 1rem;
@@ -102,24 +99,23 @@
 
   .comments,
   .comments-title,
-  .comment-warning{
-    margin-left: 1.1rem;
-		margin-right: 1.1rem;
+  .comment-warning {
+    margin-left: 2rem;
+    margin-right: 2rem;
   }
 }
 @media screen and (max-width: 500px) {
-
   .comment-author,
   .comments-title {
     font-size: 0.9rem;
   }
-  
+
   .comment-text {
     font-size: 0.8rem;
   }
   .comments,
   .comments-title,
-  .comment-warning{
+  .comment-warning {
     margin-left: 0.3rem;
     margin-right: 0.3rem;
   }
