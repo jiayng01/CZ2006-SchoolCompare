@@ -222,7 +222,7 @@ async function deleteAccount(setLoading) {
 
       const fileRef = ref(storage, "/profilePics/" + user.uid);
       deleteObject(fileRef).catch((err) => {
-        toast(err.message, { type: "error" });
+        console.log(err.message);
       });
     })
     .then(() => {
@@ -234,19 +234,20 @@ async function deleteAccount(setLoading) {
   setLoading(false);
 }
 
-
 const useGetUsers = () => {
   const [userList, setUserList] = useState();
 
   const getUser = async () => {
     const querySnapshot = await getDocs(collection(db, "users"));
-    setUserList(querySnapshot.docs.map((doc) => ({
-      ...doc.data()
-    })))
-  }
+    setUserList(
+      querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+      }))
+    );
+  };
   getUser();
-  return userList
-}
+  return userList;
+};
 
 export {
   logInWithEmailAndPassword,
@@ -259,7 +260,7 @@ export {
   updateUserEmail,
   deleteAccount,
   reauthenticate,
-  useGetUsers
+  useGetUsers,
 };
 export const storage = getStorage(app);
 export const db = getFirestore(app);

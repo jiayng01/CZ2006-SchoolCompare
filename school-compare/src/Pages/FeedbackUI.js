@@ -5,6 +5,7 @@ import "../PagesCSS/Feedback.css";
 import FormTextArea from "../Components/FormTextError";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../Firebase";
+import emailjs from "emailjs-com";
 
 function Feedback() {
   const initialValues = {
@@ -18,6 +19,17 @@ function Feedback() {
     message: Yup.string().required("Required"),
   });
 
+  function sendEmail(content) {
+    emailjs.send("gmail", "feedback", content, "oHVWubkS14mRrJvSS").then(
+      (result) => {
+        console.log(result.text);
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
+  }
+
   const feedbackCollectionRef = collection(db, "feedback");
   const onSubmit = async (values, actions) => {
     await addDoc(feedbackCollectionRef, {
@@ -25,6 +37,7 @@ function Feedback() {
       values,
     })
       .then(() => {
+        sendEmail(values);
         alert("Feedback received!\nThank you for your feedback!");
         actions.resetForm();
       })
