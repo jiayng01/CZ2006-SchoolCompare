@@ -1,6 +1,16 @@
   .compare-school-names{
     font-family: "Saira Condensed", sans-serif;
   }
+
+  .fa-delete-left {
+    color: #0959c1;
+    margin-left: 1rem;
+    font-size: 30px;
+  }
+  
+  .fa-delete-left:hover {
+    color: #3487b0;
+  }
   
   .school-compare-list{
     color: #151a1b;

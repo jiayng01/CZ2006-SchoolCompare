@@ -2,13 +2,16 @@
 
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCodeCompare, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCodeCompare,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 import { faTrainSubway } from "@fortawesome/free-solid-svg-icons";
 import mrtIcon from "../Images/mrt-icon.png";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import "../ComponentsCSS/SchoolsCard.css";
 
-import { useContext } from "react"; 
+import { useContext } from "react";
 import FavouritesContext from "../Contexts/FavouritesContext";
 import CompareContext from "../Contexts/CompareContext";
 
@@ -44,7 +47,10 @@ function SchoolsCard(props) {
   return (
     <div className="school-card">
       <p className="school-name school-name-enlarge">
-        <Link className="school-name" to={`/schools/${props.data.school_name}`}> {props.data.school_name} </Link>
+        <Link className="school-name" to={`/schools/${props.data.school_name}`}>
+          {" "}
+          {props.data.school_name}{" "}
+        </Link>
         <FontAwesomeIcon
           className={
             !itemIsFavourite ? "fa-heart-icon" : "fa-heart-icon-toggled"
@@ -76,13 +82,12 @@ function SchoolsCard(props) {
 
       <p className="container">
         <FontAwesomeIcon
-          className={
-            !toCompare ? "compare-icon" : "compare-icon-toggled"
-          }
+          className={!toCompare ? "compare-icon" : "compare-icon-toggled"}
           icon={faCodeCompare}
           onClick={toggleCompareHandler}
         ></FontAwesomeIcon>
       </p>
+
     </div>
   );
 }

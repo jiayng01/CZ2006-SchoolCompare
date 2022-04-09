@@ -3,19 +3,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faTrainSubway } from "@fortawesome/free-solid-svg-icons";
 import { faBus } from "@fortawesome/free-solid-svg-icons";
+import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 import mrtIcon from "../Images/mrt-icon.png";
 import "../ComponentsCSS/SchoolsList2.css";
 import { useParams } from "react-router-dom";
 
 import { SchoolsContext } from "../Contexts/SchoolsContext";
 import CompareContext from "../Contexts/CompareContext";
-
 import { useContext } from "react";
 
-const SchoolsList2 = ({ schools }) => {
+function SchoolsList2({ schools }) {
   const { schoolsContext } = useContext(SchoolsContext);
   const data = schoolsContext.schools;
   const { school_name } = useParams();
+  const compareCtx = useContext(CompareContext);
+  const toCompare = compareCtx.itemToCompare(schools._id);
+
+  function removeCompare() {
+    if (toCompare) {
+      compareCtx.removeFromCompare(schools._id);
+    }
+  }
 
   /* get subjects */
   let subjects = undefined;
@@ -146,12 +154,13 @@ const SchoolsList2 = ({ schools }) => {
             llp_domain2={schools.llp_domain2}
             llp_title2={schools.llp_title2}
             electiveBoolean={electiveBoolean}
+            removeCompare={removeCompare}
           />
         </div>
       </div>
     </div>
   );
-};
+}
 
 const SchoolsCompInfo = ({
   _id,
@@ -178,11 +187,19 @@ const SchoolsCompInfo = ({
   llp_domain2,
   llp_title2,
   electiveBoolean,
+  removeCompare,
 }) => {
   if (!_id) return <div />;
   return (
     <div>
-      <div className="compare-school-names">{name} </div>
+      <div className="compare-school-names">
+        {name}
+        <FontAwesomeIcon
+          className="fa-delete-left"
+          icon={faDeleteLeft}
+          onClick={removeCompare}
+        />
+      </div>
       <div className="school-info-compare">
         <p className="gen-info-compare ">General Information</p>
 
