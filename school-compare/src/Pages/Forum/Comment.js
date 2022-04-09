@@ -116,6 +116,7 @@ function Comment(props) {
                                 updateComment={props.updateComment}
                                 addComment={props.addComment}
                                 parentId={parentId}
+                                userList={props.userList}
                             />
                         ))}
                     </div>
