@@ -4,8 +4,9 @@ SchoolCompare is a website that helps users, particularly students, in finding t
 
 ## Usage
 
-```bash
-URL of SchoolCompare: https://school-compare-cffbf.web.app/
+URL of SchoolCompare: 
+```
+https://school-compare-cffbf.web.app/
 ```
 ## Preview of our website
 ![dashboard](https://github.com/Hanniedew/CZ2006-SchoolCompare/blob/main/Images/HomePage1.JPG)
