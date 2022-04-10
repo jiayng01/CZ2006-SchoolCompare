@@ -1,0 +1,92 @@
+[debug] [2022-04-10T13:39:06.904Z] ----------------------------------------------------------------------
+[debug] [2022-04-10T13:39:06.907Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js init hosting
+[debug] [2022-04-10T13:39:06.907Z] CLI Version:   10.6.0
+[debug] [2022-04-10T13:39:06.907Z] Platform:      win32
+[debug] [2022-04-10T13:39:06.907Z] Node Version:  v14.17.0
+[debug] [2022-04-10T13:39:06.908Z] Time:          Sun Apr 10 2022 21:39:06 GMT+0800 (Singapore Standard Time)
+[debug] [2022-04-10T13:39:06.909Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-10T13:39:07.026Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-10T13:39:07.026Z] > authorizing via signed-in user (wong.lihan48@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Li Han\Desktop\CZ2006-SchoolCompare\school-compare
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-04-10T13:39:20.152Z] Using project from CLI flag: school-compare-cffbf
+[debug] [2022-04-10T13:39:20.157Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/school-compare-cffbf [none]
+[debug] [2022-04-10T13:39:20.573Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/school-compare-cffbf 200
+[debug] [2022-04-10T13:39:20.574Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/school-compare-cffbf {"projectId":"school-compare-cffbf","projectNumber":"788961608159","displayName":"School Compare","name":"projects/school-compare-cffbf","resources":{"hostingSite":"school-compare-cffbf","realtimeDatabaseInstance":"school-compare-cffbf-default-rtdb","storageBucket":"school-compare-cffbf.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE"}
+[info] i  Using project school-compare-cffbf (School Compare) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2022-04-10T13:46:17.383Z] ----------------------------------------------------------------------
+[debug] [2022-04-10T13:46:17.388Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2022-04-10T13:46:17.389Z] CLI Version:   10.6.0
+[debug] [2022-04-10T13:46:17.389Z] Platform:      win32
+[debug] [2022-04-10T13:46:17.390Z] Node Version:  v14.17.0
+[debug] [2022-04-10T13:46:17.391Z] Time:          Sun Apr 10 2022 21:46:17 GMT+0800 (Singapore Standard Time)
+[debug] [2022-04-10T13:46:17.392Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-10T13:46:17.562Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-10T13:46:17.563Z] > authorizing via signed-in user (wong.lihan48@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Li Han\Desktop\CZ2006-SchoolCompare\school-compare
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2022-04-10T13:46:21.801Z] Using project from CLI flag: school-compare-cffbf
+[debug] [2022-04-10T13:46:21.803Z] > refreshing access token with scopes: []
+[debug] [2022-04-10T13:46:21.804Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-04-10T13:46:21.917Z] <<< HTTP RESPONSE 200 {"date":"Sun, 10 Apr 2022 13:46:26 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-04-10T13:46:21.947Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/school-compare-cffbf [none]
+[debug] [2022-04-10T13:46:22.341Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/school-compare-cffbf 200
+[debug] [2022-04-10T13:46:22.342Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/school-compare-cffbf {"projectId":"school-compare-cffbf","projectNumber":"788961608159","displayName":"School Compare","name":"projects/school-compare-cffbf","resources":{"hostingSite":"school-compare-cffbf","realtimeDatabaseInstance":"school-compare-cffbf-default-rtdb","storageBucket":"school-compare-cffbf.appspot.com","locationId":"asia-southeast1"},"state":"ACTIVE"}
+[info] i  Using project school-compare-cffbf (School Compare) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
