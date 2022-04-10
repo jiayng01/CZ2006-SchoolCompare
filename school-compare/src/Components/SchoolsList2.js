@@ -1,4 +1,4 @@
-import react from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faTrainSubway } from "@fortawesome/free-solid-svg-icons";
@@ -6,16 +6,11 @@ import { faBus } from "@fortawesome/free-solid-svg-icons";
 import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 import mrtIcon from "../Images/mrt-icon.png";
 import "../ComponentsCSS/SchoolsList2.css";
-import { useParams } from "react-router-dom";
 
-import { SchoolsContext } from "../Contexts/SchoolsContext";
 import CompareContext from "../Contexts/CompareContext";
 import { useContext } from "react";
 
 function SchoolsList2({ schools }) {
-  const { schoolsContext } = useContext(SchoolsContext);
-  const data = schoolsContext.schools;
-  const { school_name } = useParams();
   const compareCtx = useContext(CompareContext);
   const toCompare = compareCtx.itemToCompare(schools._id);
 

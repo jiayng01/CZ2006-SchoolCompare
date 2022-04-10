@@ -1,13 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faCodeCompare, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faCodeCompare } from "@fortawesome/free-solid-svg-icons";
 import "../ComponentsCSS/SubjectsCard.css";
 import "../ComponentsCSS/SchoolsCard.css";
 
 import { useContext } from "react"; // allows us to establish connection btwn this component and the Favourites context
 import FavouritesContext from "../Contexts/FavouritesContext";
 import CompareContext from "../Contexts/CompareContext";
-import MoreInformation from "./MoreInformation";
 
 function SubjectsCard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();

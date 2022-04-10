@@ -1,38 +1,18 @@
-// import "../ComponentsCSS/MoreInformation.css";
-// import React from "react";
-
-// function MoreInfoButton() {
-//   return (
-//     <button
-//       className="more-info-button"
-//       onClick={() => console.log("button clicked")}
-//     >
-//       Click here for more information
-//     </button>
-//   );
-// }
-
-// export default MoreInfoButton;
-
-//import data from "../JSON/combined_data.json";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faTrainSubway } from "@fortawesome/free-solid-svg-icons";
 import { faBus } from "@fortawesome/free-solid-svg-icons";
 import mrtIcon from "../Images/mrt-icon.png";
 import "../ComponentsCSS/MoreInformation.css";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import Button from "@mui/material/Button";
 import { SchoolsContext } from "../Contexts/SchoolsContext";
 import React, { useContext } from "react";
 
 const MoreInformation = () => {
   const { schoolsContext } = useContext(SchoolsContext);
   const data = schoolsContext.schools;
-  //console.log("school id", props.location.state);
   const { school_name } = useParams();
 
   return (
@@ -280,7 +260,7 @@ const MoreInfo = ({
 
         <div className="website">
           <b>
-            <a href={url_address} target="_blank">
+            <a href={url_address} target="_blank" >
               Visit the School Page{" "}
             </a>
           </b>
