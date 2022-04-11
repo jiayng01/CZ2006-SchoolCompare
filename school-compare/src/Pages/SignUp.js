@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, registerWithEmailAndPassword } from "../Firebase";
+import { sendEmailVerification } from "firebase/auth";
 import "../PagesCSS/SignUp.css";
 import BackgroundParticle from "../Components/BackgroundParticle";
+import { toast } from "react-toastify";
+
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,11 +16,17 @@ function Register() {
   const navigate = useNavigate();
   const register = () => {
     if (!name) alert("Please enter name");
-    registerWithEmailAndPassword(name, email, password, setIsLoading);
-  };
+    else registerWithEmailAndPassword(name, email, password, setIsLoading);
+  }
   useEffect(() => {
     if (loading || isLoading) return;
-    if (user) navigate("/dashboard", { replace: true });
+    if (user) {
+      navigate("/dashboard", { replace: true });
+      sendEmailVerification(user)
+        .then(()=>{
+          toast("Verification Email sent. Please verify your email before proceeding", { type: "success" });
+        });
+    }
   }, [user, loading, isLoading, navigate]);
 
   return (

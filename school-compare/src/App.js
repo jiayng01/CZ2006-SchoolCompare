@@ -40,7 +40,7 @@ import SecondaryElective from "./Pages/Schools/Secondary/SecondaryElective";
 import TertiaryElective from "./Pages/Schools/Tertiary/TertiaryElective";
 
 import MoreInformation from "./Components/MoreInformation";
-import ChangePassword from "./Components/ChangePassword";
+import ChangePassword from "./Pages/ChangePassword";
 
 import { SchoolsContextProvider } from "./Contexts/SchoolsContext";
 import Compare from "./Pages/Compare";
