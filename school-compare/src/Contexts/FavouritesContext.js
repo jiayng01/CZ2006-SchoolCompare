@@ -1,9 +1,6 @@
 import React from "react";
 import { createContext } from "react";
 import { useState, useEffect } from "react";
-import { db, auth } from "../Firebase";
-import { doc, setDoc, getDoc, collection } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 const FavouritesContext = createContext({
   favourites: [],

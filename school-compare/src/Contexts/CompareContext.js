@@ -1,7 +1,6 @@
 import React from "react";
 import { createContext } from "react";
 import { useState } from "react";
-import ErrorCompare from "../Pages/ErrorCompare";
 
 const CompareContext = createContext({
   school: [],

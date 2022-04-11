@@ -42,7 +42,6 @@ import TertiaryElective from "./Pages/Schools/Tertiary/TertiaryElective";
 import MoreInformation from "./Components/MoreInformation";
 import ChangePassword from "./Pages/ChangePassword";
 
-import { SchoolsContextProvider } from "./Contexts/SchoolsContext";
 import Compare from "./Pages/Compare";
 import ErrorCompare from "./Pages/ErrorCompare";
 
@@ -123,7 +122,6 @@ function App() {
           <Route path="forum/postCreate" element={<PostCreate />} />
 
           <Route path="forum/Post/:title/:postId" element={<Post />} />
-
         </Route>
         <Route path="feedback" element={<Feedback />} />
         <Route path="login" element={<Login />} />

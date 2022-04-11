@@ -7,8 +7,6 @@ import { useContext } from "react"; // allows us to establish connection btwn th
 import FavouritesContext from "../Contexts/FavouritesContext";
 import CompareContext from "../Contexts/CompareContext";
 
-import MoreInformation from "./MoreInformation";
-
 function ElectiveCard(props) {
   props.data.school_name = props.data.school_name.toLowerCase();
 
@@ -135,9 +133,7 @@ function ElectiveCard(props) {
       </div> */}
       <p className="container">
         <FontAwesomeIcon
-          className={
-            !toCompare ? "compare-icon" : "compare-icon-toggled"
-          }
+          className={!toCompare ? "compare-icon" : "compare-icon-toggled"}
           icon={faCodeCompare}
           onClick={toggleCompareHandler}
         ></FontAwesomeIcon>

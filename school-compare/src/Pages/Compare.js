@@ -4,7 +4,6 @@ import CompareContext from "../Contexts/CompareContext";
 import SchoolsList2 from "../Components/SchoolsList2";
 import "../PagesCSS/Compare.css";
 import { Link } from "react-router-dom";
-import ErrorCompare from "./ErrorCompare";
 
 function Compare() {
   const compareCtx = useContext(CompareContext);

@@ -7,7 +7,6 @@ import "../ComponentsCSS/CutOffCard.css";
 import { useContext } from "react"; // allows us to establish connection btwn this component and the Favourites context
 import FavouritesContext from "../Contexts/FavouritesContext";
 import CompareContext from "../Contexts/CompareContext";
-import MoreInformation from "./MoreInformation";
 
 function CutOffCard(props) {
   const level = props.level;
@@ -119,9 +118,7 @@ function CutOffCard(props) {
         </div> */}
         <p className="container">
           <FontAwesomeIcon
-            className={
-              !toCompare ? "compare-icon" : "compare-icon-toggled"
-            }
+            className={!toCompare ? "compare-icon" : "compare-icon-toggled"}
             icon={faCodeCompare}
             onClick={toggleCompareHandler}
           ></FontAwesomeIcon>
