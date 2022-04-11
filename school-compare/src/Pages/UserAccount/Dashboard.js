@@ -13,6 +13,7 @@ import {
   reauthenticate,
 } from "../../Firebase";
 import { toast } from "react-toastify";
+import { sendEmailVerification } from "firebase/auth";
 function Dashboard() {
   const [currentUser, isLoading /* , err*/] = useAuthState(auth);
   const [uid, setUid] = useState("");
@@ -109,6 +110,16 @@ function Dashboard() {
     if (e.target.files[0]) {
       setPhotoURL(e.target.files[0]);
       setPhoto(URL.createObjectURL(e.target.files[0]));
+    }
+  }
+
+  function sendEmail() {
+    if (currentUser.emailVerified) toast("Account already verified.", { type: "success" })
+    else {
+      sendEmailVerification(currentUser)
+        .then(()=>{
+          toast("Verification Email sent.", { type: "success" });
+        })
     }
   }
 
@@ -236,6 +247,14 @@ function Dashboard() {
           className="dashboard-buttons"
         >
           Change Password
+        </button>
+
+        <button
+          disabled={loading}
+          onClick={sendEmail}
+          className="dashboard-buttons"
+        >
+        Resend Verification Email
         </button>
 
         <button
