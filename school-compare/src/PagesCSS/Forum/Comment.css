@@ -74,7 +74,8 @@
 
 .comment-warning {
   color: red;
-  margin-left: 12rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 @media screen and (max-width: 1000px) {

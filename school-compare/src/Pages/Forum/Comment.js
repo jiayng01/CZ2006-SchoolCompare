@@ -4,6 +4,7 @@ import { useAuth } from "../../Firebase"
 import AddComment from "./AddComment"
 import { useNavigate } from 'react-router-dom';
 import avatar from "../../PagesCSS/Dashboard/avatar.png";
+import { toast } from 'react-toastify';
 
 function Comment(props) {
 
@@ -78,7 +79,9 @@ function Comment(props) {
                 <div className='comment-actions'>
                     <div
                         className='comment-action'
-                        onClick={() => user ? props.setActiveComment({ id: props.comment.id, type: 'replying' }) : navigate("/login")} >
+                        onClick={() => user && user.emailVerified ? props.setActiveComment({ id: props.comment.id, type: 'replying' }) :
+                            !user.emailVerified ? toast("Please verify your email.", { type: "error" }) :
+                                navigate("/login")}>
                         Reply
                     </div>
                     {canEdit && (

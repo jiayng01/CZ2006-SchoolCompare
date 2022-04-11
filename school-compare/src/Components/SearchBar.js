@@ -29,7 +29,7 @@ function SearchBar(props) {
         <div className='data-result'>
           {props.filteredPost.slice(0, 5).map((post) => {
             return (
-              <Link to={`./Post/${post.values.title.trim().replace(/\s+/g, '-')}/${post.id}`}>
+              <Link key={post.id} to={`./Post/${post.values.title.trim().replace(/\s+/g, '-')}/${post.id}`}>
                 <p id={post.id}>{post.values.title}</p>
               </Link>
             )

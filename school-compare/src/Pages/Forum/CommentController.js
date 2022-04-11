@@ -7,19 +7,25 @@ function useGetCommentList(postId) {
 
     const [commentList, setCommentList] = useState([]);
     useEffect(() => {
+        let isMounted = true;
         const q = query(collection(db, "comments"),
             orderBy("values.createdAt", "desc"));
 
         const getCommentList = onSnapshot(q, (snapshot) => {
-            setCommentList(
-                snapshot.docs.filter((doc) => (
-                    doc.data().values.postId === postId))
-                    .map((doc) => ({
-                        ...doc.data(),
-                        id: doc.id,
-                    })))
+            if (isMounted) {
+                setCommentList(
+                    snapshot.docs.filter((doc) => (
+                        doc.data().values.postId === postId))
+                        .map((doc) => ({
+                            ...doc.data(),
+                            id: doc.id,
+                        })))
+            }
         });
-        return getCommentList;
+        return () => {
+            getCommentList();
+            isMounted = false;
+        }
     }, [postId]);
     return commentList;
 }

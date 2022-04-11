@@ -64,12 +64,6 @@ function ForumUI() {
       return false
   }
 
-  const checkVerification = () => {
-    if (!user) navigate("/login", { replace: true });
-    else if (!user.emailVerified) toast("Please verify your email.", { type: "error" });
-    else navigate("/forum/postCreate", { replace: true });
-  }
-
   return (
     <div>{!userList ? (
       <Backdrop
@@ -81,9 +75,12 @@ function ForumUI() {
       <div className="forum-mainpage">
         <h1 className="forum-title"> Forum Page </h1>
         <div className='forum-header'>
-          <button className="forum-create-post" onClick={checkVerification}>
+          <div className="forum-create-post"
+            onClick={() => user && user.emailVerified ? navigate("/CreatePost") :
+              !user.emailVerified ? toast("Please verify your email.", { type: "error" }) :
+                navigate("/login")}>
             Create Post
-          </button>
+          </div>
           <div className="search-input-with-dropdown">
             <SearchBar
               placeholder="Search"

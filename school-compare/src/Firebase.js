@@ -108,10 +108,10 @@ const logout = () => {
 function useAuth() {
   const [currentUser, setCurrentUser] = useState();
   // const [isAuth, setIsAuth] = useState(false);
-
   useEffect(() => {
+    let isMounted = true;
     const unsub = onAuthStateChanged(auth, (user) => {
-      if (user) {
+      if (user && isMounted) {
         setCurrentUser(user);
         // setIsAuth(true);
       } else {
@@ -119,7 +119,10 @@ function useAuth() {
         setCurrentUser(false);
       }
     });
-    return unsub;
+    unsub();
+    return () => {
+      isMounted = false;
+    };
   }, []);
   return currentUser;
 }
@@ -237,15 +240,23 @@ async function deleteAccount(setLoading) {
 const useGetUsers = () => {
   const [userList, setUserList] = useState();
 
-  const getUser = async () => {
-    const querySnapshot = await getDocs(collection(db, "users"));
-    setUserList(
-      querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-      }))
-    );
-  };
-  getUser();
+  useEffect(() => {
+    let isMounted = true;
+    const getUser = async () => {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      if (isMounted) {
+        setUserList(
+          querySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+          }))
+        )
+      }
+    };
+    getUser();
+    return () => {
+      isMounted = false;
+    };
+  }, [])
   return userList;
 };
 

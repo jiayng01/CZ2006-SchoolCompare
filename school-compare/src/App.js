@@ -119,7 +119,7 @@ function App() {
         <Route path="compare" element={<Compare />} />
         <Route>
           {""}
-          <Route path="forum/postCreate" element={<PostCreate />} />
+          <Route path="forum/CreatePost" element={<PostCreate />} />
 
           <Route path="forum/Post/:title/:postId" element={<Post />} />
         </Route>

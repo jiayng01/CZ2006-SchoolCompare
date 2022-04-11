@@ -17,6 +17,7 @@ const MoreInformation = () => {
 
   return (
     <div>
+      {console.log("testing")}
       {!data ? (
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
