@@ -119,8 +119,9 @@ function useAuth() {
         setCurrentUser(false);
       }
     });
-    unsub();
+
     return () => {
+      unsub();
       isMounted = false;
     };
   }, []);
