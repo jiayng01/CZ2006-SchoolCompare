@@ -15,17 +15,19 @@ function Register() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const register = () => {
-    if (!name) alert("Please enter name");
+    if (!name || name.replace(/\s/g, "") === "") alert("Please enter name");
     else registerWithEmailAndPassword(name, email, password, setIsLoading);
-  }
+  };
   useEffect(() => {
     if (loading || isLoading) return;
     if (user) {
       navigate("/dashboard", { replace: true });
-      sendEmailVerification(user)
-        .then(()=>{
-          toast("Verification Email sent. Please verify your email before proceeding.", { type: "success" });
-        })
+      sendEmailVerification(user).then(() => {
+        toast(
+          "Verification Email sent. Please verify your email before proceeding.",
+          { type: "success" }
+        );
+      });
     }
   }, [user, loading, isLoading, navigate]);
 
@@ -54,7 +56,11 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button className="register__btn" onClick={register} disabled={isLoading||loading}>
+        <button
+          className="register__btn"
+          onClick={register}
+          disabled={isLoading || loading}
+        >
           Register
         </button>
         <div>
