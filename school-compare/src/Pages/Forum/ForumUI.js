@@ -74,13 +74,13 @@ function ForumUI() {
       <div className="forum-mainpage">
         <h1 className="forum-title"> Forum Page </h1>
         <div className='forum-header'>
-          {user.reload() &&
-            <div className="forum-create-post"
-              onClick={() => user && user.emailVerified ? navigate("./CreatePost") :
-                !user.emailVerified ? toast("Please verify your email.", { type: "error" }) :
-                  navigate("/login")}>
-              Create Post
-            </div>}
+          {user && user.reload()}
+          <div className="forum-create-post"
+            onClick={() => user && user.emailVerified ? navigate("./CreatePost") :
+              !user.emailVerified ? toast("Please verify your email.", { type: "error" }) :
+                navigate("/login")}>
+            Create Post
+          </div>
           <div className="search-input-with-dropdown">
             <SearchBar
               placeholder="Search"

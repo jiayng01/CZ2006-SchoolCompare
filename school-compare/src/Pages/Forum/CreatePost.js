@@ -35,7 +35,7 @@ function CreatePost() {
     query: Yup.string().required("A desciption of the query is required!"),
   });
   const navigate = useNavigate();
-
+  const isTextAreaDisabled = !user || !user.emailVerified ? true : false;
 
   const initialValues = {
     toggle: false,
@@ -176,7 +176,10 @@ function CreatePost() {
 
             {/* Submit button */}
             <div className="form-control">
-              <button className="pc-button" type="submit">
+              <button
+                className="pc-button"
+                type="submit"
+                disabled={isTextAreaDisabled}>
                 Submit
               </button>
             </div>
