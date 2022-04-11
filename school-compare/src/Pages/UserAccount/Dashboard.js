@@ -118,7 +118,12 @@ function Dashboard() {
   }
 
   async function handleSave() {
-    if (name === "" || email === "") {
+    if (
+      name === "" ||
+      name.replace(/\s/g, "") === "" ||
+      email === "" ||
+      email.replace(/\s/g, "") === ""
+    ) {
       toast("Do not leave name and/or email fields empty.", {
         type: "warning",
       });
