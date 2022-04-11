@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { auth, sendPasswordReset } from "../Firebase";
-import "../PagesCSS/Reset.css";
-import BackgroundParticle from "../Components/BackgroundParticle";
+import { auth, sendPasswordReset } from "../../Firebase";
+import "../../PagesCSS/Reset.css";
+import BackgroundParticle from "../../Components/BackgroundParticle";
 function Reset() {
   const [email, setEmail] = useState("");
   const [user, loading] = useAuthState(auth);

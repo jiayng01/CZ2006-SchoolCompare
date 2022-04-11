@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { auth, reauthenticate } from "../Firebase";
+import { auth, reauthenticate } from "../../Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import "../PagesCSS/Login.css";
+import "../../PagesCSS/Login.css";
 import { toast } from "react-toastify";
 import { updatePassword } from "firebase/auth";
-import BackgroundParticle from "../Components/BackgroundParticle";
+import BackgroundParticle from "../../Components/BackgroundParticle";
 
 function ChangePassword(){
 

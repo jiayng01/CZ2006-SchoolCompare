@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, registerWithEmailAndPassword } from "../Firebase";
+import { auth, registerWithEmailAndPassword } from "../../Firebase";
 import { sendEmailVerification } from "firebase/auth";
-import "../PagesCSS/SignUp.css";
-import BackgroundParticle from "../Components/BackgroundParticle";
+import "../../PagesCSS/SignUp.css";
+import BackgroundParticle from "../../Components/BackgroundParticle";
 import { toast } from "react-toastify";
 
 function Register() {
@@ -24,8 +24,8 @@ function Register() {
       navigate("/dashboard", { replace: true });
       sendEmailVerification(user)
         .then(()=>{
-          toast("Verification Email sent. Please verify your email before proceeding", { type: "success" });
-        });
+          toast("Verification Email sent. Please verify your email before proceeding.", { type: "success" });
+        })
     }
   }, [user, loading, isLoading, navigate]);
 

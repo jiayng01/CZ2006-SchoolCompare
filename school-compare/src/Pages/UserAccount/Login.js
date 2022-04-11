@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword } from "../Firebase";
+import { auth, logInWithEmailAndPassword } from "../../Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import "../PagesCSS/Login.css";
-import BackgroundParticle from "../Components/BackgroundParticle";
+import "../../PagesCSS/Login.css";
+import BackgroundParticle from "../../Components/BackgroundParticle";
 
 function Login() {
   const [email, setEmail] = useState("");

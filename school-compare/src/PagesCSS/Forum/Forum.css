@@ -39,7 +39,10 @@
 	background-color: #ED9797;
 	border-radius: 0.4rem;
 	padding-top: 0.4rem;
+	align-items: center;
+    text-align: center;
 	width: 10rem;
+	font-family: 'Quicksand', serif;
 	color: black;
 }
 

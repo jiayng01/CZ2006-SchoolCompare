@@ -5,10 +5,10 @@ import Home from "./Pages/Home";
 import Schools from "./Pages/Schools/SchoolsMainPage";
 import Favourites from "./Pages/Favourites";
 import Feedback from "./Pages/FeedbackUI";
-import Login from "./Pages/Login";
-import SignUp from "./Pages/SignUp";
-import Reset from "./Pages/ResetPassword";
-import Dashboard from "./Pages/Dashboard";
+import Login from "./Pages/UserAccount/Login";
+import SignUp from "./Pages/UserAccount/SignUp";
+import Reset from "./Pages/UserAccount/ResetPassword";
+import Dashboard from "./Pages/UserAccount/Dashboard";
 import Error from "./Pages/Error";
 
 import Forum from "./Pages/Forum/ForumUI";
@@ -40,7 +40,7 @@ import SecondaryElective from "./Pages/Schools/Secondary/SecondaryElective";
 import TertiaryElective from "./Pages/Schools/Tertiary/TertiaryElective";
 
 import MoreInformation from "./Components/MoreInformation";
-import ChangePassword from "./Pages/ChangePassword";
+import ChangePassword from "./Pages/UserAccount/ChangePassword";
 
 import Compare from "./Pages/Compare";
 import ErrorCompare from "./Pages/ErrorCompare";

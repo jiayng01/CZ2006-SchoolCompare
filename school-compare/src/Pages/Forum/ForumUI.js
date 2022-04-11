@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useGetUsers } from "../../Firebase";
 import "../../PagesCSS/Forum/Forum.css";
 import Time from "../../Components/DatePosted";
@@ -9,6 +9,7 @@ import { useGetPostsReplies } from "./PostController"
 import Card from "../../Components/PostCard"
 import avatar from "../../PagesCSS/Dashboard/avatar.png";
 import { Backdrop, CircularProgress } from "@mui/material";
+import { toast } from "react-toastify";
 
 // TODO: Forum Title CSS
 // TODO: Animated video header CSS
@@ -22,6 +23,7 @@ function ForumUI() {
   const [filteredPost, setFilteredPost] = useState([]);
   const [textEntered, setTextEntered] = useState("");
   const [chosen, setChosen] = useState("Latest");
+  const navigate = useNavigate();
 
   const getRepliesNo = (post) => {
     return replyList.filter((reply) => reply.values.postId === post.id).length
@@ -62,6 +64,12 @@ function ForumUI() {
       return false
   }
 
+  const checkVerification = () => {
+    if (!user) navigate("/login", { replace: true });
+    else if (!user.emailVerified) toast("Please verify your email.", { type: "error" });
+    else navigate("/forum/postCreate", { replace: true });
+  }
+
   return (
     <div>{!userList ? (
       <Backdrop
@@ -73,10 +81,9 @@ function ForumUI() {
       <div className="forum-mainpage">
         <h1 className="forum-title"> Forum Page </h1>
         <div className='forum-header'>
-          <Link className="forum-create-post"
-            to={user ? "./PostCreate" : "../login"}>
+          <button className="forum-create-post" onClick={checkVerification}>
             Create Post
-          </Link>
+          </button>
           <div className="search-input-with-dropdown">
             <SearchBar
               placeholder="Search"

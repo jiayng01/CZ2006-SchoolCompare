@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import Modal from "../Components/Modal.js";
-import "../PagesCSS/Dashboard/Dashboard.css";
+import Modal from "../../Components/Modal.js";
+import "../../PagesCSS/Dashboard/Dashboard.css";
 import {
   auth, //db,
   logout,
@@ -11,7 +11,7 @@ import {
   updateUserEmail,
   deleteAccount,
   reauthenticate,
-} from "../Firebase";
+} from "../../Firebase";
 import { toast } from "react-toastify";
 function Dashboard() {
   const [currentUser, isLoading /* , err*/] = useAuthState(auth);
