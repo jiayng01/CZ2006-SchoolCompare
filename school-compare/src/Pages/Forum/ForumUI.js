@@ -44,8 +44,8 @@ function ForumUI() {
     chosen === "Latest"
       ? postList
       : chosen === "Oldest"
-        ? arrangeByOld()
-        : arrangeByAct();
+      ? arrangeByOld()
+      : arrangeByAct();
 
   const handleFilter = (event) => {
     const searchTerm = event.target.value;
@@ -59,65 +59,82 @@ function ForumUI() {
   const userExist = (uid) => {
     if (userList.some((person) => person.uid === uid)) {
       return userList.filter((person) => person.uid === uid);
-    }
-    else
-      return false
-  }
+    } else return false;
+  };
   if (user) {
     user.reload();
   }
   return (
-    <div>{!userList ? (
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>) : (
-      <div className="forum-mainpage">
-        <h1 className="forum-title"> Forum Page </h1>
-        <div className='forum-header'>
-
-          <div className="forum-create-post"
-            onClick={() => user ? ( user.emailVerified ? navigate("./CreatePost") : 
-                toast("Please verify your email.", { type: "error" })) :
-                navigate("/login")}>
-            Create Post
+    <div>
+      {!userList ? (
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      ) : (
+        <div className="forum-mainpage">
+          <h1 className="forum-title"> Forum Page </h1>
+          <div className="forum-header">
+            <div
+              className="forum-create-post"
+              onClick={() =>
+                user
+                  ? user.emailVerified
+                    ? navigate("./CreatePost")
+                    : toast("Please verify your email.", { type: "error" })
+                  : navigate("/login")
+              }
+            >
+              Create Post
+            </div>
+            <div className="search-input-with-dropdown">
+              <SearchBar
+                placeholder="Search"
+                handleFilter={handleFilter}
+                filteredPost={filteredPost}
+                setFilteredPost={setFilteredPost}
+                textEntered={textEntered}
+                setTextEntered={setTextEntered}
+              />
+              <div className="vertical-divider"></div>
+              <FilterPost chosen={chosen} setChosen={setChosen} />
+            </div>
           </div>
-          <div className="search-input-with-dropdown">
-            <SearchBar
-              placeholder="Search"
-              handleFilter={handleFilter}
-              filteredPost={filteredPost}
-              setFilteredPost={setFilteredPost}
-              textEntered={textEntered}
-              setTextEntered={setTextEntered} />
-            <div className="vertical-divider"></div>
-            <FilterPost
-              chosen={chosen}
-              setChosen={setChosen} />
-          </div>
-
-        </div>
-        <div className="posts">
-          {/* Filtered by search after selection from dropdown*/}
-          {filteredPost.length !== 0 && textEntered.length !== 0 ? (filteredPost.map((post) => {
-            return (
-              <div key={post.id}>
-                <div className="posts-header">
-                  <img className="posts-user-img" src={userExist(post.author.uid) && post.author.photoURL ? post.author.photoURL : avatar}
-                    alt="avatar" />
-                  <p className="posts-user-name">{userExist(post.author.uid) && !post.values.toggle ?
-                    userExist(post.author.uid)[0].name : userExist(post.author.uid) && post.values.toggle ? "Anonymous" : "Deleted User"}</p>
-                  <Time content={post} />
-                </div>
-                <Card content={post} />
-              </div>
-            )
-          }))
-            /* No Posts */
-            : textEntered.length !== 0 || list.length === 0 ?
-              <div> No posts available... </div> :
+          <div className="posts">
+            {/* Filtered by search after selection from dropdown*/}
+            {filteredPost.length !== 0 && textEntered.length !== 0 ? (
+              filteredPost.map((post) => {
+                return (
+                  <div key={post.id}>
+                    <div className="posts-header">
+                      <img
+                        className="posts-user-img"
+                        src={
+                          userExist(post.author.uid) && post.author.photoURL
+                            ? post.author.photoURL
+                            : avatar
+                        }
+                        alt="avatar"
+                      />
+                      <p className="posts-user-name">
+                        {userExist(post.author.uid) && !post.values.toggle
+                          ? userExist(post.author.uid)[0].name
+                          : userExist(post.author.uid) && post.values.toggle
+                          ? "Anonymous"
+                          : "Deleted User"}
+                      </p>
+                      <Time content={post} />
+                    </div>
+                    <Card content={post} />
+                  </div>
+                );
+              })
+            ) : /* No Posts */
+            textEntered.length !== 0 || list.length === 0 ? (
+              <div> No posts available... </div>
+            ) : (
               /* Filtered by dropdown*/
               list.map((post) => {
                 return (
@@ -136,8 +153,8 @@ function ForumUI() {
                         {userExist(post.author.uid) && !post.values.toggle
                           ? userExist(post.author.uid)[0].name
                           : userExist(post.author.uid) && post.values.toggle
-                            ? "Anonymous"
-                            : "Deleted User"}
+                          ? "Anonymous"
+                          : "Deleted User"}
                       </p>
                       <Time content={post} />
                     </div>
@@ -145,10 +162,10 @@ function ForumUI() {
                   </div>
                 );
               })
-          }
+            )}
+          </div>
         </div>
-      </div>
-    )}
+      )}
     </div>
   );
 }
