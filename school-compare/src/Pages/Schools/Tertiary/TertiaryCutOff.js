@@ -4,7 +4,6 @@ import JCCutOff from "../../../JSON/JC_cut_off.json"; /* CutOffPoints */
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import Dropdown from "../../../Components/Dropdown";
-//import CompareButton from "../../../Components/CompareButton";
 import SideDrawer from "../../../Components/SideDrawer";
 import CutOffCard from "../../../Components/CutOffCard";
 //import data from "../../../JSON/combined_data.json"; // COMBINED DATASET OF EVERYTHING WE NEED
@@ -78,10 +77,9 @@ function TertiaryCutOff() {
     .filter((value) => {
       if (searchTerm === "") return value;
       else if (
-        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) 
-        // value.express.includes(searchTerm) || // Numbers
-        // value.na.includes(searchTerm) || // Numbers
-        // value.nt.includes(searchTerm) // Numbers
+        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        value.arts.toString().includes(searchTerm) || // Numbers
+        value.science.toString().includes(searchTerm)
       ) {
         return value;
       }

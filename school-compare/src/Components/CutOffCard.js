@@ -81,10 +81,11 @@ function CutOffCard(props) {
         </div>
 
         <div className="container">
-          <label className="compare-btn-form-control">
-            click to compare
-            <input type="checkbox" className="compare-btn"></input>
-          </label>
+          <FontAwesomeIcon
+            className={!toCompare ? "compare-icon" : "compare-icon-toggled"}
+            icon={faCodeCompare}
+            onClick={toggleCompareHandler}
+          ></FontAwesomeIcon>
         </div>
       </div>
     );
@@ -110,19 +111,13 @@ function CutOffCard(props) {
             {props.data.science}
           </div>
         </div>
-        {/* <div className="container">
-          <label className="compare-btn-form-control">
-            click to compare
-            <input type="checkbox" className="compare-btn"></input>
-          </label>
-        </div> */}
-        <p className="container">
+        <div className="container">
           <FontAwesomeIcon
             className={!toCompare ? "compare-icon" : "compare-icon-toggled"}
             icon={faCodeCompare}
             onClick={toggleCompareHandler}
           ></FontAwesomeIcon>
-        </p>
+        </div>
       </div>
     );
   }
