@@ -79,8 +79,8 @@ function ForumUI() {
         <div className='forum-header'>
 
           <div className="forum-create-post"
-            onClick={() => user && user.emailVerified ? navigate("./CreatePost") :
-              !user.emailVerified ? toast("Please verify your email.", { type: "error" }) :
+            onClick={() => user ? ( user.emailVerified ? navigate("./CreatePost") : 
+                toast("Please verify your email.", { type: "error" })) :
                 navigate("/login")}>
             Create Post
           </div>
