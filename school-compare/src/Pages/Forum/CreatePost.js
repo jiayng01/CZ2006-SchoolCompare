@@ -45,7 +45,9 @@ function CreatePost() {
     createdAt: Timestamp.now().toDate(),
   };
 
-
+  if (!user || !user.emailVerified) {
+    navigate("/login")
+  }
   function onSubmit(values) {
 
     if (imgFile) {
