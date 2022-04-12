@@ -44,6 +44,12 @@ function CreatePost() {
     createdAt: Timestamp.now().toDate(),
   };
 
+<<<<<<< HEAD
+=======
+  if (!user || !user.emailVerified) {
+    navigate("/login")
+  }
+>>>>>>> 1a5c546799e5f6e9865b86ba2be996a4fe3bcf5a
   function onSubmit(values) {
     if (imgFile) {
       const storageRef = ref(storage, `postImages/${imgFile.name + v4()}`);

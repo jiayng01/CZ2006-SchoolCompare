@@ -79,9 +79,9 @@ function Comment(props) {
                 <div className='comment-actions'>
                     <div
                         className='comment-action'
-                        onClick={() => user && user.emailVerified ? props.setActiveComment({ id: props.comment.id, type: 'replying' }) :
-                            !user.emailVerified ? toast("Please verify your email.", { type: "error" }) :
-                                navigate("/login")}>
+                        onClick={() => user ? (user.emailVerified ? props.setActiveComment({ id: props.comment.id, type: 'replying' }) :
+                            toast("Please verify your email.", { type: "error" })) :
+                            navigate("/login")}>
                         Reply
                     </div>
                     {canEdit && (

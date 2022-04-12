@@ -117,7 +117,7 @@ function Dashboard() {
     if (currentUser.emailVerified) toast("Account already verified.", { type: "success" })
     else {
       sendEmailVerification(currentUser)
-        .then(()=>{
+        .then(() => {
           toast("Verification Email sent.", { type: "success" });
         })
     }
@@ -197,6 +197,9 @@ function Dashboard() {
     }
   }
 
+  if (!currentUser) {
+    navigate("/login")
+  }
   return (
     <div className="dashboard">
       <div className="dashboard__container">
@@ -217,11 +220,12 @@ function Dashboard() {
         </div>
 
         <div>
-          <p>
-          {
-            currentUser.emailVerified ? "Email Verified" : "Email Not Verified"
-          }
-          </p>
+          {currentUser &&
+            <p>
+              {
+                currentUser.emailVerified ? "Email Verified" : "Email Not Verified"
+              }
+            </p>}
         </div>
 
         <input
@@ -262,7 +266,7 @@ function Dashboard() {
           onClick={sendEmail}
           className="dashboard-buttons"
         >
-        Resend Verification Email
+          Resend Verification Email
         </button>
 
         <button
