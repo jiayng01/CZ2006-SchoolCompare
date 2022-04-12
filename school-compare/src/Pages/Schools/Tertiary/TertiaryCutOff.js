@@ -67,16 +67,6 @@ function TertiaryCutOff() {
   }
 
   const displaySchools = schools
-    .filter((value) => {
-      if (searchTerm === "") return value;
-      else if (
-        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.arts.includes(searchTerm) || // Numbers
-        value.science.includes(searchTerm) // Numbers
-      ) {
-        return value;
-      }
-    })
     .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
       <div key={school._id}>
@@ -84,13 +74,32 @@ function TertiaryCutOff() {
       </div>
     ));
 
+  const searchSchools = schools
+    .filter((value) => {
+      if (searchTerm === "") return value;
+      else if (
+        value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) 
+        // value.express.includes(searchTerm) || // Numbers
+        // value.na.includes(searchTerm) || // Numbers
+        // value.nt.includes(searchTerm) // Numbers
+      ) {
+        return value;
+      }
+    })
+    .map((school) => (
+      <div key={school.school_name}>
+        <CutOffCard data={school} level={"Tertiary"} />
+      </div>
+    ));
+
+  // Determine number of pages
   const pageCount = Math.ceil(JCCutOff.length / schoolsPerPage);
 
   const handlePageClick = (event) => {
     setPageNumber(event.selected);
     window.scrollTo(0, 0);
   };
-  return (
+  return searchTerm !== "" ? (
     <>
       <SideDrawer level="Tertiary" />
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -114,7 +123,34 @@ function TertiaryCutOff() {
         }}
       >
         <div className="school-level-title">Tertiary Schools </div>
-        {/* <CompareButton /> */}
+      </div>
+
+      {searchSchools}
+    </>
+  ) : (
+    <>
+      <SideDrawer level="Tertiary" />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Dropdown currentPage={"Tertiary"} />
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Type to Search..."
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "70%",
+          margin: "auto",
+          marginBottom: "1rem",
+        }}
+      >
+        <div className="school-level-title">Tertiary Schools </div>
       </div>
 
       {displaySchools}

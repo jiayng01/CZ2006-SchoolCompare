@@ -66,22 +66,25 @@ function Tertiary() {
 
   // get only the schools we want
   const displaySchools = schools
+    .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
+    .map((school) => (
+      <div key={school.school_name}>
+        <SchoolsCard data={school} />
+      </div>
+    ));
+
+  const searchSchools = schools
     .filter((value) => {
       if (searchTerm === "") return value;
       else if (
         value.school_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         value.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        value.postal_code
-          .toLowerCase()
-          .includes(
-            searchTerm.toLowerCase() ||
-              value.mrt_desc.toLowerCase().includes(searchTerm.toLowerCase())
-          )
+        value.postal_code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        value.mrt_desc.toLowerCase().includes(searchTerm.toLowerCase())
       ) {
         return value;
       }
     })
-    .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
       <div key={school.school_name}>
         <SchoolsCard data={school} />
@@ -96,8 +99,8 @@ function Tertiary() {
     window.scrollTo(0, 0);
   };
 
-  return (
-    <div>
+  return searchTerm !== "" ? (
+    <>
       <SideDrawer level="Tertiary" />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Dropdown currentPage={"Tertiary"} />
@@ -120,7 +123,33 @@ function Tertiary() {
         }}
       >
         <div className="school-level-title">Tertiary Schools </div>
-        {/* <CompareButton /> */}
+      </div>
+      {searchSchools}
+    </>
+  ) : (
+    <>
+      <SideDrawer level="Tertiary" />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Dropdown currentPage={"Tertiary"} />
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Type to Search..."
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "70%",
+          margin: "auto",
+          marginBottom: "1rem",
+        }}
+      >
+        <div className="school-level-title">Tertiary Schools </div>
       </div>
       {displaySchools}
       <ReactPaginate
@@ -138,7 +167,7 @@ function Tertiary() {
         disabledClassName={"paginationDisabled"}
         activeClassName={"paginationActive"}
       />
-    </div>
+    </>
   );
 }
 
