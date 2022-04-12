@@ -74,7 +74,7 @@ function Dashboard() {
         setPhotoURL(currentUser.photoURL);
       }
       console.log(
-        "currentUser, name, email, photoURL, photo:",
+        "currentUser, name, email, status, photoURL, photo:",
         currentUser,
         name,
         email,
@@ -214,6 +214,14 @@ function Dashboard() {
             className="dashboard-attachment"
           />
           <img src={photo} alt="Avatar" className="dashboard-img" />
+        </div>
+
+        <div>
+          <p>
+          {
+            currentUser.emailVerified ? "Email Verified" : "Email Not Verified"
+          }
+          </p>
         </div>
 
         <input
