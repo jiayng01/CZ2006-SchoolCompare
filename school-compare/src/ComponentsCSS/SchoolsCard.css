@@ -59,13 +59,13 @@
 .compare-icon {
   color: #636acf;
   float: right;
-  padding: 6px 50px 0 0;
+  padding: 6px 50px 20px 0;
 }
 
 .compare-icon-toggled {
   color: #1d1ad1;
   float: right;
-  padding: 6px 50px 0 0;
+  padding: 6px 50px 20px 0;
 }
 
 .compare-icon:hover {

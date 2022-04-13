@@ -45,7 +45,7 @@ function CreatePost() {
   };
 
   if (!user || !user.emailVerified) {
-    navigate("/login")
+    navigate("/login");
   }
   function onSubmit(values) {
     if (imgFile) {

@@ -47,6 +47,14 @@ function SecondarySubjects() {
 
   // get only the schools we want
   const displaySchools = schools
+    .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
+    .map((school) => (
+      <div key={school.school_name}>
+        <SubjectsCard data={school} />
+      </div>
+    ));
+
+  const searchSchools = schools
     .filter((value) => {
       if (searchTerm === "") return value;
       else if (
@@ -55,12 +63,13 @@ function SecondarySubjects() {
         return value;
       }
     })
-    .slice(noOfSchoolsVisited, noOfSchoolsVisited + schoolsPerPage)
     .map((school) => (
       <div key={school.school_name}>
         <SubjectsCard data={school} />
       </div>
     ));
+
+  // Determine number of pages
   const pageCount = Math.ceil(schools.length / schoolsPerPage);
 
   const handlePageClick = (event) => {
@@ -68,7 +77,7 @@ function SecondarySubjects() {
     window.scrollTo(0, 0);
   };
 
-  return (
+  return searchTerm !== "" ? (
     <>
       <SideDrawer level="Secondary" />
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -92,7 +101,34 @@ function SecondarySubjects() {
         }}
       >
         <div className="school-level-title">Secondary Schools </div>
-        {/* <CompareButton /> */}
+      </div>
+
+      {searchSchools}
+    </>
+  ) : (
+    <>
+      <SideDrawer level="Secondary" />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Dropdown currentPage={"Secondary"} />
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="Type to Search..."
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          width: "70%",
+          margin: "auto",
+          marginBottom: "1rem",
+        }}
+      >
+        <div className="school-level-title">Secondary Schools </div>
       </div>
 
       {displaySchools}

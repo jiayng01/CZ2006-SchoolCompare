@@ -197,6 +197,9 @@ function Dashboard() {
     }
   }
 
+  if (!currentUser) {
+    navigate("/login")
+  }
   return (
     <div className="dashboard">
       <div className="dashboard__container">
